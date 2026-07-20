@@ -1,0 +1,25 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/capmo-rest-api-openapi-original.json, openapi/capmo-webhook-api-openapi-original.json
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: CapmoAuth
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: 'For authentication, use the custom prefix followed by a space and then your
+    API key. Example: "Capmo YOUR_API_KEY".'
+  sources:
+  - openapi/capmo-rest-api-openapi-original.json
+- name: WebhookSignature
+  type: apiKey
+  in: header
+  parameter: X-Capmo-Signature
+  description: HMAC SHA256 signature calculated using the registered secret and the raw request
+    body to verify authenticity. The value should be prefixed with `sha256=`.
+  sources:
+  - openapi/capmo-webhook-api-openapi-original.json
