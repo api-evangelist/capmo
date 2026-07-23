@@ -1,0 +1,1294 @@
+openapi: 3.0.0
+info:
+  title: Capmo REST Organisation Companies Project Tickets API
+  description: External REST API Documentation for Capmo
+  version: '1.0'
+  contact: {}
+servers:
+- url: https://api.capmo.de
+  description: Production
+tags:
+- name: Project Tickets
+  description: ''
+paths:
+  /api/v1/projects/{projectId}/tickets:
+    get:
+      description: This can be used to list all project tickets in a paginated response.
+      operationId: getProjectTicketsPaginated
+      parameters:
+      - name: projectId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: order_by
+        required: false
+        in: query
+        description: Field to order by. It can be any field of the entity.
+        schema:
+          default: server_created_at
+          example: created_at
+          type: string
+      - name: order_direction
+        required: false
+        in: query
+        description: Order direction of the `order_by` field. It can be `asc` or `desc`.
+        schema:
+          default: asc
+          example: asc
+          type: string
+          enum:
+          - asc
+          - desc
+      - name: after
+        required: false
+        in: query
+        description: The last element from the previous page. This is a cursor. It will be returned in the output to be used in the next request. When it is not present, the first page is returned. When it is `null`, there are no more pages.
+        schema:
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: How many items should be in the output.
+        schema:
+          minimum: 1
+          maximum: 1000
+          default: 200
+          example: 20
+          type: number
+      - name: Request-Id
+        in: header
+        description: The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.
+        schema: {}
+      responses:
+        '200':
+          description: The project tickets have been successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Success
+                  data:
+                    allOf:
+                    - $ref: '#/components/schemas/PaginatedOutputDto'
+                    - properties:
+                        items:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/ReadProjectTicketDto'
+        '400':
+          description: Bad request, Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#bad-request
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: BAD_REQUEST
+                        message:
+                          type: string
+                          example: Bad request
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#unauthorized
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: UNAUTHORIZED
+                        message:
+                          type: string
+                          example: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#forbidden
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: FORBIDDEN
+                        message:
+                          type: string
+                          example: Forbidden
+        '404':
+          description: Object not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#not-found
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: NOT_FOUND
+                        message:
+                          type: string
+                          example: Object not found
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#conflict
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: CONFLICT
+                        message:
+                          type: string
+                          example: Conflict
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#internal-server-error
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: INTERNAL_SERVER_ERROR
+                        message:
+                          type: string
+                          example: Internal server error
+      security:
+      - CapmoAuth: []
+      summary: ''
+      tags:
+      - Project Tickets
+    post:
+      description: "This can be used to create a new project ticket.\n\n Please note:\n - Project ticket categories, tags, types, etc. have their own endpoints to be managed. They can be added on ticket creation if they already exist."
+      operationId: createProjectTicket
+      parameters:
+      - name: projectId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: Request-Id
+        in: header
+        description: The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.
+        schema: {}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProjectTicketDto'
+      responses:
+        '201':
+          description: The project ticket has been successfully created.
+          links:
+            Get Project Ticket:
+              description: Get the created project ticket
+              operationId: getProjectTicket
+              parameters:
+                ticketId: $response.body.data#/id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Success
+                  data:
+                    $ref: '#/components/schemas/ReadProjectTicketDto'
+        '400':
+          description: Bad request, Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#bad-request
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: BAD_REQUEST
+                        message:
+                          type: string
+                          example: Bad request
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#unauthorized
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: UNAUTHORIZED
+                        message:
+                          type: string
+                          example: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#forbidden
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: FORBIDDEN
+                        message:
+                          type: string
+                          example: Forbidden
+        '404':
+          description: Object not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#not-found
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: NOT_FOUND
+                        message:
+                          type: string
+                          example: Object not found
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#conflict
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: CONFLICT
+                        message:
+                          type: string
+                          example: Conflict
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#internal-server-error
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: INTERNAL_SERVER_ERROR
+                        message:
+                          type: string
+                          example: Internal server error
+      security:
+      - CapmoAuth: []
+      summary: ''
+      tags:
+      - Project Tickets
+  /api/v1/projects/{projectId}/tickets/{ticketId}:
+    get:
+      description: This can be used to get a specific project ticket by its id.
+      operationId: getProjectTicket
+      parameters:
+      - name: projectId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: ticketId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: Request-Id
+        in: header
+        description: The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.
+        schema: {}
+      responses:
+        '200':
+          description: The project ticket has been successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Success
+                  data:
+                    $ref: '#/components/schemas/ReadProjectTicketDto'
+        '400':
+          description: Bad request, Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#bad-request
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: BAD_REQUEST
+                        message:
+                          type: string
+                          example: Bad request
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#unauthorized
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: UNAUTHORIZED
+                        message:
+                          type: string
+                          example: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#forbidden
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: FORBIDDEN
+                        message:
+                          type: string
+                          example: Forbidden
+        '404':
+          description: Object not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#not-found
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: NOT_FOUND
+                        message:
+                          type: string
+                          example: Object not found
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#conflict
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: CONFLICT
+                        message:
+                          type: string
+                          example: Conflict
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#internal-server-error
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: INTERNAL_SERVER_ERROR
+                        message:
+                          type: string
+                          example: Internal server error
+      security:
+      - CapmoAuth: []
+      summary: ''
+      tags:
+      - Project Tickets
+    patch:
+      description: This can be used to update a specific project ticket by its ID.
+      operationId: updateProjectTicket
+      parameters:
+      - name: projectId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: ticketId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: Request-Id
+        in: header
+        description: The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.
+        schema: {}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProjectTicketDto'
+      responses:
+        '200':
+          description: The project ticket has been successfully updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Success
+                  data:
+                    $ref: '#/components/schemas/ReadProjectTicketDto'
+        '400':
+          description: Bad request, Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#bad-request
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: BAD_REQUEST
+                        message:
+                          type: string
+                          example: Bad request
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#unauthorized
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: UNAUTHORIZED
+                        message:
+                          type: string
+                          example: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#forbidden
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: FORBIDDEN
+                        message:
+                          type: string
+                          example: Forbidden
+        '404':
+          description: Object not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#not-found
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: NOT_FOUND
+                        message:
+                          type: string
+                          example: Object not found
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#conflict
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: CONFLICT
+                        message:
+                          type: string
+                          example: Conflict
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#internal-server-error
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: INTERNAL_SERVER_ERROR
+                        message:
+                          type: string
+                          example: Internal server error
+      security:
+      - CapmoAuth: []
+      summary: ''
+      tags:
+      - Project Tickets
+    delete:
+      description: This can be used to delete a specific project ticket by its ID.
+      operationId: deleteProjectTicket
+      parameters:
+      - name: projectId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: ticketId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: Request-Id
+        in: header
+        description: The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.
+        schema: {}
+      responses:
+        '200':
+          description: The project ticket has been successfully deleted.
+        '400':
+          description: Bad request, Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#bad-request
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: BAD_REQUEST
+                        message:
+                          type: string
+                          example: Bad request
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#unauthorized
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: UNAUTHORIZED
+                        message:
+                          type: string
+                          example: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#forbidden
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: FORBIDDEN
+                        message:
+                          type: string
+                          example: Forbidden
+        '404':
+          description: Object not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#not-found
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: NOT_FOUND
+                        message:
+                          type: string
+                          example: Object not found
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#conflict
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: CONFLICT
+                        message:
+                          type: string
+                          example: Conflict
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#internal-server-error
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: INTERNAL_SERVER_ERROR
+                        message:
+                          type: string
+                          example: Internal server error
+      security:
+      - CapmoAuth: []
+      summary: ''
+      tags:
+      - Project Tickets
+components:
+  schemas:
+    PaginatedOutputDto:
+      type: object
+      properties:
+        after:
+          type: string
+          example: null
+        count:
+          type: number
+          example: 1
+        total:
+          type: number
+          example: 1
+      required:
+      - after
+      - count
+      - total
+    CreateProjectTicketDto:
+      type: object
+      properties:
+        source_id:
+          type: string
+          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
+          example: 123e4567-e89b-12d3-a456-426614174000
+        name:
+          type: string
+          nullable: true
+          example: Fix the leaking pipe
+          description: The name of the ticket. Usually a short description of the issue.
+        description:
+          type: string
+          nullable: true
+          example: The pipe on the 2nd floor is leaking and needs repair.
+          description: The description of the ticket. A more detailed description of the issue.
+        category_id:
+          type: string
+          nullable: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: Unique ID of the category this ticket belongs to. If not provided, the ticket will be uncategorised.
+        status:
+          nullable: true
+          example: IN_PROGRESS
+          description: The status of the ticket. Defaults to OPEN.
+          allOf:
+          - $ref: '#/components/schemas/TicketStatus'
+        tag_ids:
+          nullable: true
+          example:
+          - 123e4567-e89b-12d3-a456-426614174000
+          - 123e4567-e89b-12d3-a456-426614174001
+          - 123e4567-e89b-12d3-a456-426614174002
+          description: List of the unique IDs of tags associated with this ticket. If not provided, the ticket will be untagged.
+          type: array
+          items:
+            type: string
+        type_id:
+          type: string
+          nullable: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: ID of the ticket type. If not provided, the ticket will be uncategorised.
+        deadline:
+          type: string
+          nullable: true
+          example: '2024-05-01T00:00:00Z'
+          description: The deadline for resolving the ticket. Can be as simple as a date or a full timestamp.
+        company_id:
+          type: string
+          nullable: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: Unique ID of the project company responsible for this ticket. This can be obtained from the project contact book.
+        responsible_ids:
+          nullable: true
+          example:
+          - 123e4567-e89b-12d3-a456-426614174000
+          - 123e4567-e89b-12d3-a456-426614174001
+          - 123e4567-e89b-12d3-a456-426614174002
+          description: List of the unique IDs of the responsible users for this ticket. These are not the IDs of the people in the project contact book. Instead, these are their user IDs as registered in our platform.
+          type: array
+          items:
+            type: string
+        cost:
+          type: number
+          nullable: true
+          example: 500
+          description: The estimated cost associated with the ticket in Euros.
+        room_listing_id:
+          type: string
+          nullable: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: ID of the room listing to associate with this ticket.
+    ReadProjectTicketDto:
+      type: object
+      properties:
+        source_id:
+          type: string
+          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
+          example: 123e4567-e89b-12d3-a456-426614174000
+        created_by:
+          type: string
+          nullable: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: The unique identifier of the creator of the entity.
+        updated_by:
+          type: string
+          example: 123e4567-e89b-12d3-a456-426614174000
+          nullable: true
+          description: The unique identifier of the last user who updated the entity.
+        created_at:
+          type: string
+          format: date-time
+          example: '2021-07-01T00:00:00.000Z'
+          description: The date when the entity was created (on the client).
+        updated_at:
+          type: string
+          format: date-time
+          example: '2021-07-01T00:00:00.000Z'
+          description: The date when the entity was last updated (on the client).
+        deleted_at:
+          type: string
+          nullable: true
+          format: date-time
+          example: '2021-07-01T00:00:00.000Z'
+          description: The date when the entity was deleted (on the client).
+        server_created_at:
+          type: string
+          format: date-time
+          example: '2021-07-01T00:00:00.000Z'
+          description: The date when the entity was created (on the server).
+        server_updated_at:
+          type: string
+          format: date-time
+          example: '2021-07-01T00:00:00.000Z'
+          description: The date when the entity was last updated (on the server).
+        server_deleted_at:
+          type: string
+          nullable: true
+          format: date-time
+          example: '2021-07-01T00:00:00.000Z'
+          description: The date when the entity was deleted (on the server).
+        id:
+          type: string
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: Unique ID of the ticket.
+        ticket_key:
+          type: string
+          example: TICKET-12345
+          description: The key or identifier of the ticket, It is the project key + unique number.
+        type_id:
+          type: string
+          nullable: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: The id of the ticket type.
+        category_id:
+          type: string
+          nullable: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: The id of the ticket category.
+        company_id:
+          type: string
+          nullable: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: The ID of the company responsible for this ticket.
+        responsible_ids:
+          type: array
+          items:
+            type: string
+          description: List of responsible users ids for this ticket.
+        name:
+          type: string
+          example: Heating
+          description: The name of the ticket.
+        description:
+          type: string
+          nullable: true
+          example: Fix the heating system
+          description: The description of the ticket.
+        ticket_number:
+          type: number
+          nullable: true
+          example: 12345
+          description: A unique sequential number assigned to the ticket. It is unique within a project
+        tags:
+          type: array
+          items:
+            type: string
+          description: List of tag ids associated with the ticket.
+        cost:
+          type: number
+          nullable: true
+          example: 500
+          description: The estimated cost associated with the ticket in Euros.
+        status:
+          example: OPEN
+          description: The status of the ticket.
+          allOf:
+          - $ref: '#/components/schemas/TicketStatus'
+        deadline:
+          type: string
+          nullable: true
+          format: date-time
+          example: '2021-07-01T00:00:00.000Z'
+          description: The deadline for resolving the ticket.
+        room_listing_id:
+          type: string
+          nullable: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: The ID of the room listing associated with this ticket.
+        plan_id:
+          type: string
+          nullable: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: The ID of the plan this ticket is pinned to. Only set when the ticket has a location on a plan.
+        location_x:
+          type: number
+          nullable: true
+          example: 0.5
+          description: X coordinate of the ticket on the linked plan PDF. Normalized to [0, 1] with origin (0, 0) in the top left corner. Multiply by the width of the plan to get the absolute X coordinate. Only set together with plan_id and location_y.
+        location_y:
+          type: number
+          nullable: true
+          example: 0.25
+          description: Y coordinate of the ticket on the linked plan PDF. Normalized to [0, 1] with origin (0, 0) in the top left corner. Multiply by the height of the plan to get the absolute Y coordinate. Only set together with plan_id and location_x.
+      required:
+      - created_by
+      - updated_by
+      - created_at
+      - updated_at
+      - deleted_at
+      - server_created_at
+      - server_updated_at
+      - server_deleted_at
+      - id
+      - ticket_key
+      - type_id
+      - category_id
+      - company_id
+      - responsible_ids
+      - name
+      - description
+      - ticket_number
+      - tags
+      - cost
+      - status
+      - deadline
+      - room_listing_id
+      - plan_id
+      - location_x
+      - location_y
+    UpdateProjectTicketDto:
+      type: object
+      properties:
+        source_id:
+          type: string
+          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
+          example: 123e4567-e89b-12d3-a456-426614174000
+        name:
+          type: string
+          nullable: true
+          example: Fix the leaking pipe
+          description: The name of the ticket. Usually a short description of the issue.
+        description:
+          type: string
+          nullable: true
+          example: The pipe on the 2nd floor is leaking and needs repair.
+          description: The description of the ticket. A more detailed description of the issue.
+        category_id:
+          type: string
+          nullable: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: Unique ID of the category this ticket belongs to. If not provided, the ticket will be uncategorised.
+        status:
+          nullable: true
+          example: IN_PROGRESS
+          description: The status of the ticket. Defaults to OPEN.
+          allOf:
+          - $ref: '#/components/schemas/TicketStatus'
+        tag_ids:
+          nullable: true
+          example:
+          - 123e4567-e89b-12d3-a456-426614174000
+          - 123e4567-e89b-12d3-a456-426614174001
+          - 123e4567-e89b-12d3-a456-426614174002
+          description: List of the unique IDs of tags associated with this ticket. If not provided, the ticket will be untagged.
+          type: array
+          items:
+            type: string
+        type_id:
+          type: string
+          nullable: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: ID of the ticket type. If not provided, the ticket will be uncategorised.
+        deadline:
+          type: string
+          nullable: true
+          example: '2024-05-01T00:00:00Z'
+          description: The deadline for resolving the ticket. Can be as simple as a date or a full timestamp.
+        company_id:
+          type: string
+          nullable: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: Unique ID of the project company responsible for this ticket. This can be obtained from the project contact book.
+        responsible_ids:
+          nullable: true
+          example:
+          - 123e4567-e89b-12d3-a456-426614174000
+          - 123e4567-e89b-12d3-a456-426614174001
+          - 123e4567-e89b-12d3-a456-426614174002
+          description: List of the unique IDs of the responsible users for this ticket. These are not the IDs of the people in the project contact book. Instead, these are their user IDs as registered in our platform.
+          type: array
+          items:
+            type: string
+        cost:
+          type: number
+          nullable: true
+          example: 500
+          description: The estimated cost associated with the ticket in Euros.
+        room_listing_id:
+          type: string
+          nullable: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: ID of the room listing to associate with this ticket.
+    TicketStatus:
+      type: string
+      enum:
+      - OPEN
+      - IN_PROGRESS
+      - SIGNED_OFF
+      - CLOSED
+      description: The status of the ticket.
+  securitySchemes:
+    CapmoAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'For authentication, use the custom prefix followed by a space and then your API key. Example: "Capmo YOUR_API_KEY".'
+x-readme:
+  headers:
+  - key: Request-Id
+    value: YOUR_REQUEST_ID

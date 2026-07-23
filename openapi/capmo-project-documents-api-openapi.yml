@@ -1,0 +1,2200 @@
+openapi: 3.0.0
+info:
+  title: Capmo REST Organisation Companies Project Documents API
+  description: External REST API Documentation for Capmo
+  version: '1.0'
+  contact: {}
+servers:
+- url: https://api.capmo.de
+  description: Production
+tags:
+- name: Project Documents
+  description: ''
+paths:
+  /api/v1/projects/{projectId}/document-files:
+    post:
+      description: This can be used to create a new project document. This must be called after obtaining an upload URL.
+      operationId: createProjectDocument
+      parameters:
+      - name: projectId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: Request-Id
+        in: header
+        description: The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.
+        schema: {}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FileCreateInputDto'
+      responses:
+        '200':
+          description: The project document has been successfully created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Success
+                  data:
+                    $ref: '#/components/schemas/ReadDocumentWithSignedUrlDto'
+        '400':
+          description: Bad request, Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#bad-request
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: BAD_REQUEST
+                        message:
+                          type: string
+                          example: Bad request
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#unauthorized
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: UNAUTHORIZED
+                        message:
+                          type: string
+                          example: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#forbidden
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: FORBIDDEN
+                        message:
+                          type: string
+                          example: Forbidden
+        '404':
+          description: Object not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#not-found
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: NOT_FOUND
+                        message:
+                          type: string
+                          example: Object not found
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#conflict
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: CONFLICT
+                        message:
+                          type: string
+                          example: Conflict
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#internal-server-error
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: INTERNAL_SERVER_ERROR
+                        message:
+                          type: string
+                          example: Internal server error
+      security:
+      - CapmoAuth: []
+      summary: ''
+      tags:
+      - Project Documents
+    get:
+      description: This can be used to list all project documents in a paginated response.
+      operationId: getProjectDocumentsPaginated
+      parameters:
+      - name: projectId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: order_by
+        required: false
+        in: query
+        description: Field to order by. It can be any field of the entity.
+        schema:
+          default: server_created_at
+          example: created_at
+          type: string
+      - name: order_direction
+        required: false
+        in: query
+        description: Order direction of the `order_by` field. It can be `asc` or `desc`.
+        schema:
+          default: asc
+          example: asc
+          type: string
+          enum:
+          - asc
+          - desc
+      - name: after
+        required: false
+        in: query
+        description: The last element from the previous page. This is a cursor. It will be returned in the output to be used in the next request. When it is not present, the first page is returned. When it is `null`, there are no more pages.
+        schema:
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: How many items should be in the output.
+        schema:
+          minimum: 1
+          maximum: 1000
+          default: 200
+          example: 20
+          type: number
+      - name: Request-Id
+        in: header
+        description: The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.
+        schema: {}
+      responses:
+        '200':
+          description: The project documents have been successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Success
+                  data:
+                    allOf:
+                    - $ref: '#/components/schemas/PaginatedOutputDto'
+                    - properties:
+                        items:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/ReadDocumentDto'
+        '400':
+          description: Bad request, Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#bad-request
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: BAD_REQUEST
+                        message:
+                          type: string
+                          example: Bad request
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#unauthorized
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: UNAUTHORIZED
+                        message:
+                          type: string
+                          example: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#forbidden
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: FORBIDDEN
+                        message:
+                          type: string
+                          example: Forbidden
+        '404':
+          description: Object not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#not-found
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: NOT_FOUND
+                        message:
+                          type: string
+                          example: Object not found
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#conflict
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: CONFLICT
+                        message:
+                          type: string
+                          example: Conflict
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#internal-server-error
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: INTERNAL_SERVER_ERROR
+                        message:
+                          type: string
+                          example: Internal server error
+      security:
+      - CapmoAuth: []
+      summary: ''
+      tags:
+      - Project Documents
+  /api/v1/projects/{projectId}/document-files/{fileId}:
+    get:
+      description: This can be used to get a single project document.
+      operationId: getProjectDocument
+      parameters:
+      - name: projectId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: fileId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: Request-Id
+        in: header
+        description: The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.
+        schema: {}
+      responses:
+        '200':
+          description: The project document has been successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Success
+                  data:
+                    $ref: '#/components/schemas/ReadDocumentWithSignedUrlDto'
+        '400':
+          description: Bad request, Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#bad-request
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: BAD_REQUEST
+                        message:
+                          type: string
+                          example: Bad request
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#unauthorized
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: UNAUTHORIZED
+                        message:
+                          type: string
+                          example: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#forbidden
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: FORBIDDEN
+                        message:
+                          type: string
+                          example: Forbidden
+        '404':
+          description: Object not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#not-found
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: NOT_FOUND
+                        message:
+                          type: string
+                          example: Object not found
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#conflict
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: CONFLICT
+                        message:
+                          type: string
+                          example: Conflict
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#internal-server-error
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: INTERNAL_SERVER_ERROR
+                        message:
+                          type: string
+                          example: Internal server error
+      security:
+      - CapmoAuth: []
+      summary: ''
+      tags:
+      - Project Documents
+    patch:
+      description: This can be used to rename a specific project document by its ID.
+      operationId: renameDocument
+      parameters:
+      - name: projectId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: fileId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: Request-Id
+        in: header
+        description: The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.
+        schema: {}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RenameDocumentDto'
+      responses:
+        '200':
+          description: The document has been successfully renamed.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Success
+                  data:
+                    $ref: '#/components/schemas/ReadDocumentDto'
+        '400':
+          description: Bad request, Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#bad-request
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: BAD_REQUEST
+                        message:
+                          type: string
+                          example: Bad request
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#unauthorized
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: UNAUTHORIZED
+                        message:
+                          type: string
+                          example: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#forbidden
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: FORBIDDEN
+                        message:
+                          type: string
+                          example: Forbidden
+        '404':
+          description: Object not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#not-found
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: NOT_FOUND
+                        message:
+                          type: string
+                          example: Object not found
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#conflict
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: CONFLICT
+                        message:
+                          type: string
+                          example: Conflict
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#internal-server-error
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: INTERNAL_SERVER_ERROR
+                        message:
+                          type: string
+                          example: Internal server error
+      security:
+      - CapmoAuth: []
+      summary: ''
+      tags:
+      - Project Documents
+    delete:
+      description: This can be used to delete a project document.
+      operationId: deleteProjectDocument
+      parameters:
+      - name: projectId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: fileId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: Request-Id
+        in: header
+        description: The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.
+        schema: {}
+      responses:
+        '200':
+          description: The project document has been successfully deleted.
+        '400':
+          description: Bad request, Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#bad-request
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: BAD_REQUEST
+                        message:
+                          type: string
+                          example: Bad request
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#unauthorized
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: UNAUTHORIZED
+                        message:
+                          type: string
+                          example: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#forbidden
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: FORBIDDEN
+                        message:
+                          type: string
+                          example: Forbidden
+        '404':
+          description: Object not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#not-found
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: NOT_FOUND
+                        message:
+                          type: string
+                          example: Object not found
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#conflict
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: CONFLICT
+                        message:
+                          type: string
+                          example: Conflict
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#internal-server-error
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: INTERNAL_SERVER_ERROR
+                        message:
+                          type: string
+                          example: Internal server error
+      security:
+      - CapmoAuth: []
+      summary: ''
+      tags:
+      - Project Documents
+  /api/v1/projects/{projectId}/document-folders:
+    get:
+      description: This can be used to list all project document folders in a paginated response.
+      operationId: getProjectDocumentFolders
+      parameters:
+      - name: projectId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: order_direction
+        required: false
+        in: query
+        description: Order direction of the `order_by` field. It can be `asc` or `desc`.
+        schema:
+          default: asc
+          example: asc
+          type: string
+          enum:
+          - asc
+          - desc
+      - name: after
+        required: false
+        in: query
+        description: The last element from the previous page. This is a cursor. It will be returned in the output to be used in the next request. When it is not present, the first page is returned. When it is `null`, there are no more pages.
+        schema:
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: How many items should be in the output.
+        schema:
+          minimum: 1
+          maximum: 1000
+          default: 200
+          example: 20
+          type: number
+      - name: parent_folder_id
+        required: false
+        in: query
+        description: The unique identifier of the document folder's parent folder ID.
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+          type: string
+      - name: include_sub_folders
+        required: false
+        in: query
+        description: Whether the response should include all sub-folders or not.
+        schema:
+          example: true
+          type: boolean
+      - name: order_by
+        required: false
+        in: query
+        description: The field to order the document folders by.
+        schema:
+          default: created_at
+          example: name
+          type: string
+      - name: query
+        required: false
+        in: query
+        description: Can be used to search for a document folder by a partial match on its name.
+        schema:
+          example: fotos
+          type: string
+      - name: folder_ids
+        required: false
+        in: query
+        description: Can be used to filter the results to a list of document folders IDs.
+        schema:
+          example:
+          - 123e4567-e89b-12d3-a456-426614174000
+          - 123e4567-e89b-12d3-a456-426614174001
+          - 123e4567-e89b-12d3-a456-426614174002
+          type: array
+          items:
+            type: string
+      - name: Request-Id
+        in: header
+        description: The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.
+        schema: {}
+      responses:
+        '200':
+          description: The project document folders have been successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Success
+                  data:
+                    allOf:
+                    - $ref: '#/components/schemas/PaginatedOutputDto'
+                    - properties:
+                        items:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/ReadDocumentFolderDto'
+        '400':
+          description: Bad request, Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#bad-request
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: BAD_REQUEST
+                        message:
+                          type: string
+                          example: Bad request
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#unauthorized
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: UNAUTHORIZED
+                        message:
+                          type: string
+                          example: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#forbidden
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: FORBIDDEN
+                        message:
+                          type: string
+                          example: Forbidden
+        '404':
+          description: Object not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#not-found
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: NOT_FOUND
+                        message:
+                          type: string
+                          example: Object not found
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#conflict
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: CONFLICT
+                        message:
+                          type: string
+                          example: Conflict
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#internal-server-error
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: INTERNAL_SERVER_ERROR
+                        message:
+                          type: string
+                          example: Internal server error
+      security:
+      - CapmoAuth: []
+      summary: ''
+      tags:
+      - Project Documents
+    post:
+      description: This can be used to create a new project document folder.
+      operationId: createProjectDocumentFolder
+      parameters:
+      - name: projectId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: Request-Id
+        in: header
+        description: The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.
+        schema: {}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDocumentFolderDto'
+      responses:
+        '201':
+          description: The project document folder has been successfully created.
+          links:
+            Get Project Document Folder:
+              description: Get the created project document folder
+              operationId: getProjectDocumentFolder
+              parameters:
+                projectId: $response.body.data#/id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Success
+                  data:
+                    $ref: '#/components/schemas/ReadDocumentFolderDto'
+        '400':
+          description: Bad request, Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#bad-request
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: BAD_REQUEST
+                        message:
+                          type: string
+                          example: Bad request
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#unauthorized
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: UNAUTHORIZED
+                        message:
+                          type: string
+                          example: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#forbidden
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: FORBIDDEN
+                        message:
+                          type: string
+                          example: Forbidden
+        '404':
+          description: Object not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#not-found
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: NOT_FOUND
+                        message:
+                          type: string
+                          example: Object not found
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#conflict
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: CONFLICT
+                        message:
+                          type: string
+                          example: Conflict
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#internal-server-error
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: INTERNAL_SERVER_ERROR
+                        message:
+                          type: string
+                          example: Internal server error
+      security:
+      - CapmoAuth: []
+      summary: ''
+      tags:
+      - Project Documents
+  /api/v1/projects/{projectId}/document-folders/{folderId}:
+    get:
+      description: This can be used to retrieve a specific project document folder by its ID.
+      operationId: getProjectDocumentFolder
+      parameters:
+      - name: projectId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: folderId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: Request-Id
+        in: header
+        description: The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.
+        schema: {}
+      responses:
+        '200':
+          description: The project document folder has been successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Success
+                  data:
+                    $ref: '#/components/schemas/ReadDocumentFolderDto'
+        '400':
+          description: Bad request, Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#bad-request
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: BAD_REQUEST
+                        message:
+                          type: string
+                          example: Bad request
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#unauthorized
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: UNAUTHORIZED
+                        message:
+                          type: string
+                          example: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#forbidden
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: FORBIDDEN
+                        message:
+                          type: string
+                          example: Forbidden
+        '404':
+          description: Object not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#not-found
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: NOT_FOUND
+                        message:
+                          type: string
+                          example: Object not found
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#conflict
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: CONFLICT
+                        message:
+                          type: string
+                          example: Conflict
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#internal-server-error
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: INTERNAL_SERVER_ERROR
+                        message:
+                          type: string
+                          example: Internal server error
+      security:
+      - CapmoAuth: []
+      summary: ''
+      tags:
+      - Project Documents
+    patch:
+      description: This can be used to rename a project document folder.
+      operationId: renameProjectDocumentFolder
+      parameters:
+      - name: projectId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: folderId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: Request-Id
+        in: header
+        description: The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.
+        schema: {}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RenameDocumentFolderDto'
+      responses:
+        '400':
+          description: Bad request, Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#bad-request
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: BAD_REQUEST
+                        message:
+                          type: string
+                          example: Bad request
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#unauthorized
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: UNAUTHORIZED
+                        message:
+                          type: string
+                          example: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#forbidden
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: FORBIDDEN
+                        message:
+                          type: string
+                          example: Forbidden
+        '404':
+          description: Object not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#not-found
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: NOT_FOUND
+                        message:
+                          type: string
+                          example: Object not found
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#conflict
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: CONFLICT
+                        message:
+                          type: string
+                          example: Conflict
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#internal-server-error
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: INTERNAL_SERVER_ERROR
+                        message:
+                          type: string
+                          example: Internal server error
+      security:
+      - CapmoAuth: []
+      summary: ''
+      tags:
+      - Project Documents
+    delete:
+      description: This can be used to delete a project document folder.
+      operationId: deleteProjectDocumentFolder
+      parameters:
+      - name: projectId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: folderId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: Request-Id
+        in: header
+        description: The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.
+        schema: {}
+      responses:
+        '400':
+          description: Bad request, Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#bad-request
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: BAD_REQUEST
+                        message:
+                          type: string
+                          example: Bad request
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#unauthorized
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: UNAUTHORIZED
+                        message:
+                          type: string
+                          example: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#forbidden
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: FORBIDDEN
+                        message:
+                          type: string
+                          example: Forbidden
+        '404':
+          description: Object not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#not-found
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: NOT_FOUND
+                        message:
+                          type: string
+                          example: Object not found
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#conflict
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: CONFLICT
+                        message:
+                          type: string
+                          example: Conflict
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#internal-server-error
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: INTERNAL_SERVER_ERROR
+                        message:
+                          type: string
+                          example: Internal server error
+      security:
+      - CapmoAuth: []
+      summary: ''
+      tags:
+      - Project Documents
+components:
+  schemas:
+    ReadDocumentFolderDto:
+      type: object
+      properties:
+        source_id:
+          type: string
+          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
+          example: 123e4567-e89b-12d3-a456-426614174000
+        created_by:
+          type: string
+          nullable: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: The unique identifier of the creator of the entity.
+        updated_by:
+          type: string
+          example: 123e4567-e89b-12d3-a456-426614174000
+          nullable: true
+          description: The unique identifier of the last user who updated the entity.
+        created_at:
+          type: string
+          format: date-time
+          example: '2021-07-01T00:00:00.000Z'
+          description: The date when the entity was created (on the client).
+        updated_at:
+          type: string
+          format: date-time
+          example: '2021-07-01T00:00:00.000Z'
+          description: The date when the entity was last updated (on the client).
+        id:
+          type: string
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: The unique identifier of the document folder.
+        name:
+          type: string
+          example: Inspektionsfotos (Mai 2024)
+          description: The name of the document folder.
+        parent_folder_id:
+          type: string
+          nullable: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: The unique ID of the folder's parent. When not provided, the folder has no parent and will be placed in the root folder.
+      required:
+      - created_by
+      - updated_by
+      - created_at
+      - updated_at
+      - id
+      - name
+      - parent_folder_id
+    PaginatedOutputDto:
+      type: object
+      properties:
+        after:
+          type: string
+          example: null
+        count:
+          type: number
+          example: 1
+        total:
+          type: number
+          example: 1
+      required:
+      - after
+      - count
+      - total
+    FileCreateInputDto:
+      type: object
+      properties:
+        source_id:
+          type: string
+          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
+          example: 123e4567-e89b-12d3-a456-426614174000
+        name:
+          type: string
+          description: The name of the file.
+          example: Report_2024.pdf
+        data_path:
+          type: string
+          description: The data path of the file.
+          example: tmp/9357781c-05da-11ef-9539-7b47b1fda975/eae0751a-9e89-4ff3-98a9-d4cb31f2a792
+        on_duplicate:
+          type: string
+          enum:
+          - forbid
+          - rename
+          - replace
+          description: The optional enum to configure how duplicate files are handled.
+          example: replace
+        event_id:
+          type: string
+          description: "This is an optional field that should be used to track activity when multiple files are being created. e.g. when you create a single file you don't need it,\n       but when you create more than one file together, you should use the same event_id for all files. So we can correctly group them into one activity"
+          example: 123e4567-e89b-12d3-a456-426614174000
+        folder_id:
+          type: string
+          description: The `folderId` where the file should be created. When not present, the file will be placed at the root directory.
+          example: 123e4567-e89b-12d3-a456-426614174000
+      required:
+      - name
+      - data_path
+    ReadDocumentDto:
+      type: object
+      properties:
+        source_id:
+          type: string
+          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
+          example: 123e4567-e89b-12d3-a456-426614174000
+        created_by:
+          type: string
+          nullable: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: The unique identifier of the creator of the entity.
+        updated_by:
+          type: string
+          example: 123e4567-e89b-12d3-a456-426614174000
+          nullable: true
+          description: The unique identifier of the last user who updated the entity.
+        created_at:
+          type: string
+          format: date-time
+          example: '2021-07-01T00:00:00.000Z'
+          description: The date when the entity was created (on the client).
+        updated_at:
+          type: string
+          format: date-time
+          example: '2021-07-01T00:00:00.000Z'
+          description: The date when the entity was last updated (on the client).
+        id:
+          type: string
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: The unique identifier of the file.
+        name:
+          type: string
+          example: Report_2024.pdf
+          description: The name of the file.
+        mime_type:
+          type: string
+          nullable: true
+          description: The mime type of the file.
+          example: application/pdf
+        extension:
+          type: string
+          nullable: true
+          description: The file extension of the file.
+          example: .pdf
+        data_byte_size:
+          type: number
+          example: 963841
+          description: The size of the file in bytes.
+        version_number:
+          type: number
+          example: 3
+          description: The current version number of the file.
+        folder_id:
+          type: string
+          nullable: true
+          description: The folder's unique ID where the file is stored. When not present, the file exists at the root directory.
+          example: 123e4567-e89b-12d3-a456-426614174000
+      required:
+      - created_by
+      - updated_by
+      - created_at
+      - updated_at
+      - id
+      - name
+      - mime_type
+      - extension
+      - data_byte_size
+      - version_number
+      - folder_id
+    ReadDocumentWithSignedUrlDto:
+      type: object
+      properties:
+        source_id:
+          type: string
+          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
+          example: 123e4567-e89b-12d3-a456-426614174000
+        created_by:
+          type: string
+          nullable: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: The unique identifier of the creator of the entity.
+        updated_by:
+          type: string
+          example: 123e4567-e89b-12d3-a456-426614174000
+          nullable: true
+          description: The unique identifier of the last user who updated the entity.
+        created_at:
+          type: string
+          format: date-time
+          example: '2021-07-01T00:00:00.000Z'
+          description: The date when the entity was created (on the client).
+        updated_at:
+          type: string
+          format: date-time
+          example: '2021-07-01T00:00:00.000Z'
+          description: The date when the entity was last updated (on the client).
+        id:
+          type: string
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: The unique identifier of the file.
+        name:
+          type: string
+          example: Report_2024.pdf
+          description: The name of the file.
+        mime_type:
+          type: string
+          nullable: true
+          description: The mime type of the file.
+          example: application/pdf
+        extension:
+          type: string
+          nullable: true
+          description: The file extension of the file.
+          example: .pdf
+        data_byte_size:
+          type: number
+          example: 963841
+          description: The size of the file in bytes.
+        version_number:
+          type: number
+          example: 3
+          description: The current version number of the file.
+        folder_id:
+          type: string
+          nullable: true
+          description: The folder's unique ID where the file is stored. When not present, the file exists at the root directory.
+          example: 123e4567-e89b-12d3-a456-426614174000
+        signed_download_url:
+          type: string
+          example: https://signed-url.com
+          description: The signed download URL of the file. This url is short lived and should not be saved.
+      required:
+      - created_by
+      - updated_by
+      - created_at
+      - updated_at
+      - id
+      - name
+      - mime_type
+      - extension
+      - data_byte_size
+      - version_number
+      - folder_id
+      - signed_download_url
+    RenameDocumentFolderDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the document folder.
+          example: Inspektionsfotos (Mai 2024)
+      required:
+      - name
+    CreateDocumentFolderDto:
+      type: object
+      properties:
+        source_id:
+          type: string
+          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
+          example: 123e4567-e89b-12d3-a456-426614174000
+        name:
+          type: string
+          description: The name of the document folder.
+          example: Inspektionsfotos (Mai 2024)
+        parent_folder_id:
+          type: string
+          nullable: true
+          description: The unique ID of the folder's parent. When not provided, the folder has no parent and will be placed in the root folder.
+          example: 123e4567-e89b-12d3-a456-426614174000
+      required:
+      - name
+      - parent_folder_id
+    RenameDocumentDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The new name of the file.
+          example: Report_2025.pdf
+      required:
+      - name
+  securitySchemes:
+    CapmoAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'For authentication, use the custom prefix followed by a space and then your API key. Example: "Capmo YOUR_API_KEY".'
+x-readme:
+  headers:
+  - key: Request-Id
+    value: YOUR_REQUEST_ID

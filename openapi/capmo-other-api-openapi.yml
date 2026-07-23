@@ -1,0 +1,106 @@
+openapi: 3.0.0
+info:
+  title: Capmo REST Organisation Companies Other API
+  description: External REST API Documentation for Capmo
+  version: '1.0'
+  contact: {}
+servers:
+- url: https://api.capmo.de
+  description: Production
+tags:
+- name: Other
+  description: ''
+paths:
+  /api/v1/validate:
+    get:
+      description: This can be used to validate the API Key. If valid, it will return the associated user ID.
+      operationId: validate
+      parameters:
+      - name: Request-Id
+        in: header
+        description: The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.
+        schema: {}
+      responses:
+        '200':
+          description: The user is valid.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Success
+                  data:
+                    type: object
+                    properties:
+                      user:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: 123e4567-e89b-12d3-a456-426614174000
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#unauthorized
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: UNAUTHORIZED
+                        message:
+                          type: string
+                          example: Unauthorized
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#internal-server-error
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: INTERNAL_SERVER_ERROR
+                        message:
+                          type: string
+                          example: Internal server error
+      security:
+      - CapmoAuth: []
+      summary: ''
+      tags:
+      - Other
+components:
+  securitySchemes:
+    CapmoAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'For authentication, use the custom prefix followed by a space and then your API key. Example: "Capmo YOUR_API_KEY".'
+x-readme:
+  headers:
+  - key: Request-Id
+    value: YOUR_REQUEST_ID

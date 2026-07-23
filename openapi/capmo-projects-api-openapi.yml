@@ -1,0 +1,1793 @@
+openapi: 3.0.0
+info:
+  title: Capmo REST Organisation Companies Projects API
+  description: External REST API Documentation for Capmo
+  version: '1.0'
+  contact: {}
+servers:
+- url: https://api.capmo.de
+  description: Production
+tags:
+- name: Projects
+  description: ''
+paths:
+  /api/v1/projects:
+    get:
+      description: This can be used to list all projects in a paginated response.
+      operationId: getProjects
+      parameters:
+      - name: order_by
+        required: false
+        in: query
+        description: Field to order by. It can be any field of the entity.
+        schema:
+          default: server_created_at
+          example: created_at
+          type: string
+      - name: order_direction
+        required: false
+        in: query
+        description: Order direction of the `order_by` field. It can be `asc` or `desc`.
+        schema:
+          default: asc
+          example: asc
+          type: string
+          enum:
+          - asc
+          - desc
+      - name: after
+        required: false
+        in: query
+        description: The last element from the previous page. This is a cursor. It will be returned in the output to be used in the next request. When it is not present, the first page is returned. When it is `null`, there are no more pages.
+        schema:
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: How many items should be in the output.
+        schema:
+          minimum: 1
+          maximum: 1000
+          default: 200
+          example: 20
+          type: number
+      - name: source_id
+        required: false
+        in: query
+        description: '[Filtering Parameter] The unique identifier of the source. This is a user-generated string, used to link the project to a resource in an external system.'
+        schema:
+          maxLength: 255
+          example: 123e4567-e89b-12d3-a456-426614174000
+          type: string
+      - name: Request-Id
+        in: header
+        description: The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.
+        schema: {}
+      responses:
+        '200':
+          description: The projects have been successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Success
+                  data:
+                    allOf:
+                    - $ref: '#/components/schemas/PaginatedOutputDto'
+                    - properties:
+                        items:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/ReadProjectDto'
+        '400':
+          description: Bad request, Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#bad-request
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: BAD_REQUEST
+                        message:
+                          type: string
+                          example: Bad request
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#unauthorized
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: UNAUTHORIZED
+                        message:
+                          type: string
+                          example: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#forbidden
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: FORBIDDEN
+                        message:
+                          type: string
+                          example: Forbidden
+        '404':
+          description: Object not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#not-found
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: NOT_FOUND
+                        message:
+                          type: string
+                          example: Object not found
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#conflict
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: CONFLICT
+                        message:
+                          type: string
+                          example: Conflict
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#internal-server-error
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: INTERNAL_SERVER_ERROR
+                        message:
+                          type: string
+                          example: Internal server error
+      security:
+      - CapmoAuth: []
+      summary: ''
+      tags:
+      - Projects
+    post:
+      description: "This can be used to create a new project, including creating a new project from a template. If `project_template_id` is provided, the project will be created from the template, otherwise a new blank project will be created.\n\n Please note:\n - The API user will be added as project member with full access to the project.\n - Creating a project from a template can be a slow operation, as it may involve copying a lot of data. This can typically be in the order of a few seconds."
+      operationId: createProject
+      parameters:
+      - name: Request-Id
+        in: header
+        description: The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.
+        schema: {}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProjectDto'
+      responses:
+        '201':
+          description: The project has been successfully created.
+          links:
+            Get Project:
+              description: Get the created project
+              operationId: getProject
+              parameters:
+                projectId: $response.body.data#/id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Success
+                  data:
+                    $ref: '#/components/schemas/ReadProjectDto'
+        '400':
+          description: Bad request, Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#bad-request
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: BAD_REQUEST
+                        message:
+                          type: string
+                          example: Bad request
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#unauthorized
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: UNAUTHORIZED
+                        message:
+                          type: string
+                          example: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#forbidden
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: FORBIDDEN
+                        message:
+                          type: string
+                          example: Forbidden
+        '404':
+          description: Object not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#not-found
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: NOT_FOUND
+                        message:
+                          type: string
+                          example: Object not found
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#conflict
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: CONFLICT
+                        message:
+                          type: string
+                          example: Conflict
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#internal-server-error
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: INTERNAL_SERVER_ERROR
+                        message:
+                          type: string
+                          example: Internal server error
+      security:
+      - CapmoAuth: []
+      summary: ''
+      tags:
+      - Projects
+  /api/v1/projects/{projectId}:
+    get:
+      description: This can be used to retrieve a specific project by its ID.
+      operationId: getProject
+      parameters:
+      - name: projectId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: Request-Id
+        in: header
+        description: The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.
+        schema: {}
+      responses:
+        '200':
+          description: The project has been successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Success
+                  data:
+                    $ref: '#/components/schemas/ReadProjectDto'
+        '400':
+          description: Bad request, Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#bad-request
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: BAD_REQUEST
+                        message:
+                          type: string
+                          example: Bad request
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#unauthorized
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: UNAUTHORIZED
+                        message:
+                          type: string
+                          example: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#forbidden
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: FORBIDDEN
+                        message:
+                          type: string
+                          example: Forbidden
+        '404':
+          description: Object not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#not-found
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: NOT_FOUND
+                        message:
+                          type: string
+                          example: Object not found
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#conflict
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: CONFLICT
+                        message:
+                          type: string
+                          example: Conflict
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#internal-server-error
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: INTERNAL_SERVER_ERROR
+                        message:
+                          type: string
+                          example: Internal server error
+      security:
+      - CapmoAuth: []
+      summary: ''
+      tags:
+      - Projects
+    patch:
+      description: This can be used to update a specific project by its ID.
+      operationId: updateProject
+      parameters:
+      - name: projectId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: Request-Id
+        in: header
+        description: The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.
+        schema: {}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProjectDto'
+      responses:
+        '200':
+          description: The project has been successfully updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Success
+                  data:
+                    $ref: '#/components/schemas/ReadProjectDto'
+        '400':
+          description: Bad request, Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#bad-request
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: BAD_REQUEST
+                        message:
+                          type: string
+                          example: Bad request
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#unauthorized
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: UNAUTHORIZED
+                        message:
+                          type: string
+                          example: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#forbidden
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: FORBIDDEN
+                        message:
+                          type: string
+                          example: Forbidden
+        '404':
+          description: Object not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#not-found
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: NOT_FOUND
+                        message:
+                          type: string
+                          example: Object not found
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#conflict
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: CONFLICT
+                        message:
+                          type: string
+                          example: Conflict
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#internal-server-error
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: INTERNAL_SERVER_ERROR
+                        message:
+                          type: string
+                          example: Internal server error
+      security:
+      - CapmoAuth: []
+      summary: ''
+      tags:
+      - Projects
+    delete:
+      description: This can be used to delete a specific project by its ID.
+      operationId: deleteProject
+      parameters:
+      - name: projectId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: Request-Id
+        in: header
+        description: The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.
+        schema: {}
+      responses:
+        '200':
+          description: The project has been successfully deleted.
+        '400':
+          description: Bad request, Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#bad-request
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: BAD_REQUEST
+                        message:
+                          type: string
+                          example: Bad request
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#unauthorized
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: UNAUTHORIZED
+                        message:
+                          type: string
+                          example: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#forbidden
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: FORBIDDEN
+                        message:
+                          type: string
+                          example: Forbidden
+        '404':
+          description: Object not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#not-found
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: NOT_FOUND
+                        message:
+                          type: string
+                          example: Object not found
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#conflict
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: CONFLICT
+                        message:
+                          type: string
+                          example: Conflict
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#internal-server-error
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: INTERNAL_SERVER_ERROR
+                        message:
+                          type: string
+                          example: Internal server error
+      security:
+      - CapmoAuth: []
+      summary: ''
+      tags:
+      - Projects
+  /api/v1/projects/{projectId}/archived:
+    put:
+      description: This can be used to archive a specific project by its ID. Archiving a project will also remove all pins associated with the project for the authenticated user.
+      operationId: archiveProject
+      parameters:
+      - name: projectId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: Request-Id
+        in: header
+        description: The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.
+        schema: {}
+      responses:
+        '200':
+          description: The project has been successfully archived.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Success
+                  data:
+                    $ref: '#/components/schemas/ReadProjectDto'
+        '400':
+          description: Bad request, Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#bad-request
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: BAD_REQUEST
+                        message:
+                          type: string
+                          example: Bad request
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#unauthorized
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: UNAUTHORIZED
+                        message:
+                          type: string
+                          example: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#forbidden
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: FORBIDDEN
+                        message:
+                          type: string
+                          example: Forbidden
+        '404':
+          description: Object not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#not-found
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: NOT_FOUND
+                        message:
+                          type: string
+                          example: Object not found
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#conflict
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: CONFLICT
+                        message:
+                          type: string
+                          example: Conflict
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#internal-server-error
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: INTERNAL_SERVER_ERROR
+                        message:
+                          type: string
+                          example: Internal server error
+      security:
+      - CapmoAuth: []
+      summary: ''
+      tags:
+      - Projects
+    delete:
+      description: This can be used to unarchive a specific project by its ID.
+      operationId: unarchiveProject
+      parameters:
+      - name: projectId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: Request-Id
+        in: header
+        description: The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.
+        schema: {}
+      responses:
+        '200':
+          description: The project has been successfully unarchived.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Success
+                  data:
+                    $ref: '#/components/schemas/ReadProjectDto'
+        '400':
+          description: Bad request, Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#bad-request
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: BAD_REQUEST
+                        message:
+                          type: string
+                          example: Bad request
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#unauthorized
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: UNAUTHORIZED
+                        message:
+                          type: string
+                          example: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#forbidden
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: FORBIDDEN
+                        message:
+                          type: string
+                          example: Forbidden
+        '404':
+          description: Object not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#not-found
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: NOT_FOUND
+                        message:
+                          type: string
+                          example: Object not found
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#conflict
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: CONFLICT
+                        message:
+                          type: string
+                          example: Conflict
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: https://capmoapi.readme.io/reference/errors#internal-server-error
+                  message:
+                    type: string
+                    example: An error occurred
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: INTERNAL_SERVER_ERROR
+                        message:
+                          type: string
+                          example: Internal server error
+      security:
+      - CapmoAuth: []
+      summary: ''
+      tags:
+      - Projects
+components:
+  schemas:
+    ReadProjectDto:
+      type: object
+      properties:
+        source_id:
+          type: string
+          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
+          example: 123e4567-e89b-12d3-a456-426614174000
+        created_by:
+          type: string
+          nullable: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: The unique identifier of the creator of the entity.
+        updated_by:
+          type: string
+          example: 123e4567-e89b-12d3-a456-426614174000
+          nullable: true
+          description: The unique identifier of the last user who updated the entity.
+        created_at:
+          type: string
+          format: date-time
+          example: '2021-07-01T00:00:00.000Z'
+          description: The date when the entity was created (on the client).
+        updated_at:
+          type: string
+          format: date-time
+          example: '2021-07-01T00:00:00.000Z'
+          description: The date when the entity was last updated (on the client).
+        deleted_at:
+          type: string
+          nullable: true
+          format: date-time
+          example: '2021-07-01T00:00:00.000Z'
+          description: The date when the entity was deleted (on the client).
+        server_created_at:
+          type: string
+          format: date-time
+          example: '2021-07-01T00:00:00.000Z'
+          description: The date when the entity was created (on the server).
+        server_updated_at:
+          type: string
+          format: date-time
+          example: '2021-07-01T00:00:00.000Z'
+          description: The date when the entity was last updated (on the server).
+        server_deleted_at:
+          type: string
+          nullable: true
+          format: date-time
+          example: '2021-07-01T00:00:00.000Z'
+          description: The date when the entity was deleted (on the server).
+        id:
+          type: string
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: The unique identifier of the project.
+        name:
+          type: string
+          example: Berlin Data Center Campus (BER1)
+          description: The name of the project.
+        owner:
+          type: string
+          nullable: true
+          example: Vantage Data Centers
+          description: The owner of the project.
+        address:
+          type: string
+          example: Brandenburg Park, Uferring 5, Ludwigsfelde, Germany
+          description: The address of the project.
+        owner_organisation_id:
+          type: string
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: The unique identifier of the owner organisation.
+        latitude:
+          type: number
+          nullable: true
+          example: 52.3220832
+          description: The latitude of the project.
+        longitude:
+          type: number
+          nullable: true
+          example: 13.2922907
+          description: The longitude of the project.
+        is_archived:
+          type: boolean
+          example: false
+          description: The archived status of the project.
+        project_key:
+          type: string
+          example: BER1
+          description: The project key. This is a short string that identifies the project. It must be at least 1 character(s) long, and at most 12 characters long and may only consist of numbers and letters
+        project_status:
+          example: PROJECT_PREPARATION
+          nullable: true
+          description: The phase of the project.
+          allOf:
+          - $ref: '#/components/schemas/ProjectStatus'
+        project_volume:
+          type: integer
+          nullable: true
+          example: 500000000
+          description: The volume of the project (in Euros).
+        approved_additions_sum:
+          type: integer
+          nullable: true
+          example: 50000
+          description: Sum of approved Change Orders (in Euros).
+        owner_type:
+          nullable: true
+          example: FreeText
+          description: The type of the project owner reference.
+          allOf:
+          - $ref: '#/components/schemas/ProjectContactType'
+        owner_person_id:
+          type: string
+          format: uuid
+          nullable: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: The ID of the person from the organisation contact book linked as owner.
+        owner_company_id:
+          type: string
+          format: uuid
+          nullable: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: The ID of the company from the organisation contact book linked as owner.
+        client:
+          type: string
+          nullable: true
+          example: Munich Construction GmbH
+          description: The client of the project.
+        client_type:
+          nullable: true
+          example: FreeText
+          description: The type of the project client reference.
+          allOf:
+          - $ref: '#/components/schemas/ProjectContactType'
+        client_person_id:
+          type: string
+          format: uuid
+          nullable: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: The ID of the person from the organisation contact book linked as client.
+        client_company_id:
+          type: string
+          format: uuid
+          nullable: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: The ID of the company from the organisation contact book linked as client.
+        main_responsible:
+          type: string
+          nullable: true
+          example: Max Mustermann
+          description: The main responsible person of the project.
+        responsible_contact_id:
+          type: string
+          format: uuid
+          nullable: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: The ID of the person from the project contact book assigned as main responsible.
+        project_type:
+          nullable: true
+          example: NEW_CONSTRUCTION
+          description: The type of construction project.
+          allOf:
+          - $ref: '#/components/schemas/ProjectType'
+        building_type:
+          nullable: true
+          example: RESIDENTIAL_BUILDINGS
+          description: The type of building being constructed.
+          allOf:
+          - $ref: '#/components/schemas/BuildingType'
+        start_date:
+          type: string
+          format: date-time
+          example: '2021-07-01T00:00:00.000Z'
+          description: The start date of the project.
+        end_date:
+          type: string
+          nullable: true
+          format: date-time
+          example: '2021-07-01T00:00:00.000Z'
+          description: The planned end date of the project.
+      required:
+      - created_by
+      - updated_by
+      - created_at
+      - updated_at
+      - deleted_at
+      - server_created_at
+      - server_updated_at
+      - server_deleted_at
+      - id
+      - name
+      - owner
+      - address
+      - owner_organisation_id
+      - latitude
+      - longitude
+      - is_archived
+      - project_key
+      - project_status
+      - project_volume
+      - approved_additions_sum
+      - owner_type
+      - owner_person_id
+      - owner_company_id
+      - client
+      - client_type
+      - client_person_id
+      - client_company_id
+      - main_responsible
+      - responsible_contact_id
+      - project_type
+      - building_type
+      - start_date
+      - end_date
+    CreateProjectDto:
+      type: object
+      properties:
+        source_id:
+          type: string
+          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
+          example: 123e4567-e89b-12d3-a456-426614174000
+        name:
+          type: string
+          description: The name of the project. Must be 128 characters or less.
+          maxLength: 128
+          example: Berlin Data Center Campus (BER1)
+        owner:
+          type: string
+          description: The owner of the project. Must be 255 characters or less.
+          maxLength: 255
+          example: Vantage Data Centers
+        address:
+          type: string
+          description: The address of the project. Must be between 6 and 128 characters long.
+          minLength: 6
+          maxLength: 128
+          example: Brandenburg Park, Uferring 5, Ludwigsfelde, Germany
+        latitude:
+          type: number
+          description: The latitude of the project. This is used to compute for instance the weather conditions on the project site.
+          example: 52.3220832
+        longitude:
+          type: number
+          description: The longitude of the project. This is used to compute the weather conditions.
+          example: 13.2922907
+        project_key:
+          type: string
+          description: The project key. This is a short string that identifies the project. It must be at least 1 character(s) long, and at most 12 characters long & may only consist of numbers and letters.
+          minLength: 1
+          maxLength: 12
+          pattern: ^[a-zA-Z0-9]+$
+          example: BER1
+        project_volume:
+          type: integer
+          description: The volume of the project (in Euros). Must be a positive integer.
+          minimum: 1
+          example: 500000000
+        project_status:
+          example: PROJECT_PREPARATION
+          nullable: true
+          description: The phase of the project.
+          allOf:
+          - $ref: '#/components/schemas/ProjectStatus'
+        start_date:
+          type: string
+          description: The start date of the project (in ISO8601 format). Must be between 2010-01-01 and 2039-12-31.
+          format: date-time
+          example: '2021-07-01T00:00:00.000Z'
+        end_date:
+          type: string
+          nullable: true
+          description: The planned end date of the project (in ISO8601 format). Must be between 2010-01-01 and 2039-12-31.
+          format: date-time
+          example: '2021-07-01T00:00:00.000Z'
+        owner_person_id:
+          type: string
+          format: uuid
+          nullable: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: Links the project owner to a person from the organisation contact book. Mutually exclusive with `owner_company_id`. Takes precedence over `owner` (free text) when provided.
+        owner_company_id:
+          type: string
+          format: uuid
+          nullable: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: Links the project owner to a company from the organisation contact book. Mutually exclusive with `owner_person_id`. Takes precedence over `owner` (free text) when provided.
+        client:
+          type: string
+          nullable: true
+          maxLength: 255
+          example: Munich Construction GmbH
+          description: The client of the project (free text). Must be 255 characters or less.
+        client_person_id:
+          type: string
+          format: uuid
+          nullable: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: Links the project client to a person from the organisation contact book. Mutually exclusive with `client_company_id`. Takes precedence over `client` (free text) when provided.
+        client_company_id:
+          type: string
+          format: uuid
+          nullable: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: Links the project client to a company from the organisation contact book. Mutually exclusive with `client_person_id`. Takes precedence over `client` (free text) when provided.
+        project_type:
+          nullable: true
+          example: NEW_CONSTRUCTION
+          description: The type of construction project.
+          allOf:
+          - $ref: '#/components/schemas/ProjectType'
+        building_type:
+          nullable: true
+          example: RESIDENTIAL_BUILDINGS
+          description: The type of building being constructed.
+          allOf:
+          - $ref: '#/components/schemas/BuildingType'
+        project_template_id:
+          type: string
+          description: The unique identifier of the project template. This is used to create a project from a project template. If not provided, the project will be created from scratch. This is mandatory if there is an organisation-level requirement to create projects from project templates only.
+          example: 224b4499-1c67-4315-9749-3d928d25ce2d
+      required:
+      - name
+      - address
+      - project_volume
+    PaginatedOutputDto:
+      type: object
+      properties:
+        after:
+          type: string
+          example: null
+        count:
+          type: number
+          example: 1
+        total:
+          type: number
+          example: 1
+      required:
+      - after
+      - count
+      - total
+    ProjectContactType:
+      type: string
+      enum:
+      - FreeText
+      - ContactBookPerson
+      - ContactBookCompany
+      description: The type of the project owner reference.
+    UpdateProjectDto:
+      type: object
+      properties:
+        source_id:
+          type: string
+          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
+          example: 123e4567-e89b-12d3-a456-426614174000
+        name:
+          type: string
+          description: The name of the project. Must be 128 characters or less.
+          maxLength: 128
+          example: Berlin Data Center Campus (BER1)
+        owner:
+          type: string
+          description: The owner of the project. Must be 255 characters or less.
+          maxLength: 255
+          example: Vantage Data Centers
+        address:
+          type: string
+          description: The address of the project. Must be between 6 and 128 characters long.
+          minLength: 6
+          maxLength: 128
+          example: Brandenburg Park, Uferring 5, Ludwigsfelde, Germany
+        latitude:
+          type: number
+          description: The latitude of the project. This is used to compute for instance the weather conditions on the project site.
+          example: 52.3220832
+        longitude:
+          type: number
+          description: The longitude of the project. This is used to compute the weather conditions.
+          example: 13.2922907
+        project_key:
+          type: string
+          description: The project key. This is a short string that identifies the project. It must be at least 1 character(s) long, and at most 12 characters long & may only consist of numbers and letters.
+          minLength: 1
+          maxLength: 12
+          pattern: ^[a-zA-Z0-9]+$
+          example: BER1
+        project_volume:
+          type: integer
+          description: The volume of the project (in Euros). Must be a positive integer.
+          minimum: 1
+          example: 500000000
+        project_status:
+          example: PROJECT_PREPARATION
+          nullable: true
+          description: The phase of the project.
+          allOf:
+          - $ref: '#/components/schemas/ProjectStatus'
+        start_date:
+          type: string
+          description: The start date of the project (in ISO8601 format). Must be between 2010-01-01 and 2039-12-31.
+          format: date-time
+          example: '2021-07-01T00:00:00.000Z'
+        end_date:
+          type: string
+          nullable: true
+          description: The planned end date of the project (in ISO8601 format). Must be between 2010-01-01 and 2039-12-31.
+          format: date-time
+          example: '2021-07-01T00:00:00.000Z'
+        owner_person_id:
+          type: string
+          format: uuid
+          nullable: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: Links the project owner to a person from the organisation contact book. Mutually exclusive with `owner_company_id`. Takes precedence over `owner` (free text) when provided.
+        owner_company_id:
+          type: string
+          format: uuid
+          nullable: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: Links the project owner to a company from the organisation contact book. Mutually exclusive with `owner_person_id`. Takes precedence over `owner` (free text) when provided.
+        client:
+          type: string
+          nullable: true
+          maxLength: 255
+          example: Munich Construction GmbH
+          description: The client of the project (free text). Must be 255 characters or less.
+        client_person_id:
+          type: string
+          format: uuid
+          nullable: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: Links the project client to a person from the organisation contact book. Mutually exclusive with `client_company_id`. Takes precedence over `client` (free text) when provided.
+        client_company_id:
+          type: string
+          format: uuid
+          nullable: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: Links the project client to a company from the organisation contact book. Mutually exclusive with `client_person_id`. Takes precedence over `client` (free text) when provided.
+        project_type:
+          nullable: true
+          example: NEW_CONSTRUCTION
+          description: The type of construction project.
+          allOf:
+          - $ref: '#/components/schemas/ProjectType'
+        building_type:
+          nullable: true
+          example: RESIDENTIAL_BUILDINGS
+          description: The type of building being constructed.
+          allOf:
+          - $ref: '#/components/schemas/BuildingType'
+        responsible_contact_id:
+          type: string
+          format: uuid
+          nullable: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: The ID of the person from the project contact book responsible for the project. Must be a project member with active membership.
+        approved_additions_sum:
+          type: integer
+          nullable: true
+          minimum: 1
+          example: 50000
+          description: Sum of approved additions (in Euros). Must be a positive integer.
+    ProjectType:
+      type: string
+      enum:
+      - NEW_CONSTRUCTION
+      - ALTERATION
+      - REFURBISHMENT
+      description: The type of construction project.
+    ProjectStatus:
+      type: string
+      enum:
+      - PROJECT_PREPARATION
+      - PLANNING
+      - EXECUTION_PREPARATION
+      - EXECUTION
+      - PROJECT_COMPLETION
+      - COMPLETED
+      - DEFECTS_LIABILITY
+      description: The phase of the project.
+    BuildingType:
+      type: string
+      enum:
+      - RESIDENTIAL_BUILDINGS
+      - OFFICE_BUILDINGS
+      - COMMERCIAL_RETAIL
+      - INDUSTRIAL_MANUFACTURING
+      - LOGISTICS_WAREHOUSING
+      - HOTELS_HOSPITALITY
+      - HEALTHCARE_NURSING
+      - EDUCATION
+      - PUBLIC_BUILDINGS
+      - MIXED_USE
+      - OTHER_SPECIAL_STRUCTURES
+      description: The type of building being constructed.
+  securitySchemes:
+    CapmoAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'For authentication, use the custom prefix followed by a space and then your API key. Example: "Capmo YOUR_API_KEY".'
+x-readme:
+  headers:
+  - key: Request-Id
+    value: YOUR_REQUEST_ID
