@@ -1,0 +1,32 @@
+generated: '2026-07-18'
+method: searched
+source: https://github.com/capmo + npm registry search
+note: Capmo publishes no dedicated first-party API client SDK. An official TypeScript usage EXAMPLE exists,
+  plus internal-scoped npm packages under the @capmo org. No SDKs pointer is emitted because none of these
+  are general-purpose API client libraries.
+packages:
+- language: typescript
+  registry: github
+  name: capmo/external-api-example
+  url: https://github.com/capmo/external-api-example
+  install: git clone https://github.com/capmo/external-api-example
+  kind: example
+  official: true
+  license: MIT
+  description: Official practical example showing how to consume Capmo's external REST API in TypeScript.
+- language: javascript
+  registry: npm
+  name: '@capmo/theme'
+  url: https://www.npmjs.com/package/@capmo/theme
+  install: npm install @capmo/theme
+  kind: internal-ui
+  official: true
+  description: First-party UI theme package (web-app / mobile-app / components); not an API client SDK.
+- language: javascript
+  registry: npm
+  name: '@capmo/service-commons'
+  url: https://www.npmjs.com/package/@capmo/service-commons
+  install: npm install @capmo/service-commons
+  kind: internal-service
+  official: true
+  description: First-party service commons/middleware package; not an API client SDK.

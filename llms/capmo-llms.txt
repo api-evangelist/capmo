@@ -1,0 +1,105 @@
+# Capmo API Documentation
+
+> The Capmo API facilitates direct, programmatic interaction with our construction management platform, offering a suite of RESTful endpoints for efficient data management and retrieval, including project information, schedules, and tasks.
+
+## API Reference
+- [Where To Start](https://capmoapi.readme.io/reference/where-to-start.md)
+- [Errors](https://capmoapi.readme.io/reference/errors.md): Glossary of common errors returned by the Capmo API.
+- [File Management API](https://capmoapi.readme.io/reference/file-management-api.md): File Management API Documentation
+- [Webhooks](https://capmoapi.readme.io/reference/webhooks.md)
+- [OpenAPI Specifications](https://capmoapi.readme.io/reference/openapi-specifications.md)
+- [/api/v1/organisation/people](https://capmoapi.readme.io/reference/getorganisationpeople.md): This can be used to list all organisation contact book people in a paginated response.
+- [/api/v1/organisation/people](https://capmoapi.readme.io/reference/createorganisationperson.md): This can be used to add a new organisation contact book person.
+- [/api/v1/organisation/people/{personId}](https://capmoapi.readme.io/reference/getorganisationperson.md): This can be used to retrieve a specific organisation person by its ID.
+- [/api/v1/organisation/people/{personId}](https://capmoapi.readme.io/reference/updateorganisationperson.md): This can be used to update a specific organisation contact book person by its ID.
+- [/api/v1/organisation/people/{personId}](https://capmoapi.readme.io/reference/deleteorganisationperson.md): This can be used to delete an organisation contact book person. If the person is a member of the organisation, their membership will be deleted as well.
+- [/api/v1/organisation/companies](https://capmoapi.readme.io/reference/getorganisationcompanies.md): This can be used to list all organisation contact book companies in a paginated response.
+- [/api/v1/organisation/companies](https://capmoapi.readme.io/reference/createorganisationcompany.md): This can be used to add a new organisation contact book company.
+- [/api/v1/organisation/companies/{companyId}](https://capmoapi.readme.io/reference/getorganisationcompany.md): This can be used to retrieve a specific organisation company by its ID.
+- [/api/v1/organisation/companies/{companyId}](https://capmoapi.readme.io/reference/updateorganisationcompany.md): This can be used to update a specific organisation contact book company by its ID.
+- [/api/v1/organisation/companies/{companyId}](https://capmoapi.readme.io/reference/deleteorganisationcompany.md): This can be used to delete an organisation contact book company.
+- [/api/v1/organisation/memberships](https://capmoapi.readme.io/reference/getorganisationmemberships.md): This can be used to list all organisation memberships in a paginated response.
+- [/api/v1/organisation/memberships](https://capmoapi.readme.io/reference/inviteorganisationperson.md): This can be used to invite an organisation contact book person to organisation. As a result, an organisation membership for them will be created.
+- [/api/v1/organisation/memberships/{membershipId}](https://capmoapi.readme.io/reference/getorganisationmembership.md): This can be used to retrieve a specific organisation membership by its ID.
+- [/api/v1/organisation/memberships/{membershipId}](https://capmoapi.readme.io/reference/updateorganisationmembership.md): This can be used to update an organisation membership.
+- [/api/v1/organisation/memberships/{membershipId}](https://capmoapi.readme.io/reference/revokeorganisationmembership.md): This can be used to revoke an organisation membership.
+- [/api/v1/organisation/projects](https://capmoapi.readme.io/reference/getorganisationprojects.md): This can be used to list all projects owned by your organisation in a paginated response. Project templates are excluded.
+- [/api/v1/organisation/projects/{projectId}/membership](https://capmoapi.readme.io/reference/joinownorganisationproject.md): This can be used to join an organisation project. The API-key user must be an organisation admin, and the project must be owned by the user's organisation. If the user previously left the project (soft-deleted membership), a new membership is created.
+- [/api/v1/organisation/projects/{projectId}/membership](https://capmoapi.readme.io/reference/leaveownorganisationproject.md): This can be used to leave an organisation project. The API-key user must be an organisation admin, and the project must be owned by the user's organisation. The user's project membership and associated project contact are removed.
+- [/api/v1/project-templates](https://capmoapi.readme.io/reference/getprojecttemplates.md): This can be used to list all project templates in a paginated response.
+- [/api/v1/project-templates/{projectTemplateId}](https://capmoapi.readme.io/reference/getprojecttemplate.md): This can be used to retrieve a specific project template by its ID.
+- [/api/v1/projects](https://capmoapi.readme.io/reference/getprojects.md): This can be used to list all projects in a paginated response.
+- [/api/v1/projects](https://capmoapi.readme.io/reference/createproject.md): This can be used to create a new project, including creating a new project from a template. If `project_template_id` is provided, the project will be created from the template, otherwise a new blank project will be created.   Please note:  - The API user will be added as project member with full access to the project.  - Creating a project from a template can be a slow operation, as it may involve copying a lot of data. This can typically be in the order of a few seconds.
+- [/api/v1/projects/{projectId}](https://capmoapi.readme.io/reference/getproject.md): This can be used to retrieve a specific project by its ID.
+- [/api/v1/projects/{projectId}](https://capmoapi.readme.io/reference/updateproject.md): This can be used to update a specific project by its ID.
+- [/api/v1/projects/{projectId}](https://capmoapi.readme.io/reference/deleteproject.md): This can be used to delete a specific project by its ID.
+- [/api/v1/projects/{projectId}/archived](https://capmoapi.readme.io/reference/archiveproject.md): This can be used to archive a specific project by its ID. Archiving a project will also remove all pins associated with the project for the authenticated user.
+- [/api/v1/projects/{projectId}/archived](https://capmoapi.readme.io/reference/unarchiveproject.md): This can be used to unarchive a specific project by its ID.
+- [/api/v1/projects/{projectId}/people](https://capmoapi.readme.io/reference/getprojectpeople.md): This can be used to list all project contact book people in a paginated response.
+- [/api/v1/projects/{projectId}/people](https://capmoapi.readme.io/reference/createprojectperson.md): This can be used to add a new project contact book person.
+- [/api/v1/projects/{projectId}/people/{personId}](https://capmoapi.readme.io/reference/getprojectperson.md): This can be used to retrieve a specific project person by its ID.
+- [/api/v1/projects/{projectId}/people/{personId}](https://capmoapi.readme.io/reference/updateprojectperson.md): This can be used to update a project contact book person.
+- [/api/v1/projects/{projectId}/people/{personId}](https://capmoapi.readme.io/reference/deleteprojectperson.md): This can be used to delete a project contact book person. If the person is a member of the project, their membership will be deleted as well.
+- [/api/v1/projects/{projectId}/people-from-organisation](https://capmoapi.readme.io/reference/createprojectpersonfromorganisation.md): This can be used to add an organisation contact book person to a project.
+- [/api/v1/projects/{projectId}/companies](https://capmoapi.readme.io/reference/getprojectcompanies.md): This can be used to list all project contact book companies in a paginated response.
+- [/api/v1/projects/{projectId}/companies](https://capmoapi.readme.io/reference/createprojectcompany.md): This can be used to add a new project contact book company.
+- [/api/v1/projects/{projectId}/companies/{companyId}](https://capmoapi.readme.io/reference/getprojectcompany.md): This can be used to retrieve a specific project company by its ID.
+- [/api/v1/projects/{projectId}/companies/{companyId}](https://capmoapi.readme.io/reference/updateprojectcompany.md): This can be used to update a project contact book company.
+- [/api/v1/projects/{projectId}/companies/{companyId}](https://capmoapi.readme.io/reference/deletecompany.md): This can be used to delete a project contact book company, the contacts assigned to the company will remain.
+- [/api/v1/projects/{projectId}/companies-from-organisation](https://capmoapi.readme.io/reference/createprojectcompanyfromorganisation.md): This can be used to add an organisation contact book company to a project.
+- [/api/v1/projects/{projectId}/memberships](https://capmoapi.readme.io/reference/getprojectmemberships.md): This can be used to list all project memberships in a paginated response.
+- [/api/v1/projects/{projectId}/memberships](https://capmoapi.readme.io/reference/inviteprojectperson.md): This can be used to invite a project contact book person to a project identified by projectId. As a result, a project membership for them will be created.
+- [/api/v1/projects/{projectId}/memberships/{membershipId}](https://capmoapi.readme.io/reference/getprojectmembership.md): This can be used to retrieve a specific project membership by membershipId from a project identified by projectId.
+- [/api/v1/projects/{projectId}/memberships/{membershipId}](https://capmoapi.readme.io/reference/revokeprojectmembership.md): This can be used to revoke a project membership.
+- [/api/v1/projects/{projectId}/permission-sets](https://capmoapi.readme.io/reference/getprojectpermissionsets.md): This can be used to list all permission sets available within a project. Use the returned IDs as `permission_set_id` when inviting a project member.
+- [/api/v1/projects/{projectId}/document-files](https://capmoapi.readme.io/reference/createprojectdocument.md): This can be used to create a new project document. This must be called after obtaining an upload URL.
+- [/api/v1/projects/{projectId}/document-files](https://capmoapi.readme.io/reference/getprojectdocumentspaginated.md): This can be used to list all project documents in a paginated response.
+- [/api/v1/projects/{projectId}/document-files/{fileId}](https://capmoapi.readme.io/reference/getprojectdocument.md): This can be used to get a single project document.
+- [/api/v1/projects/{projectId}/document-files/{fileId}](https://capmoapi.readme.io/reference/renamedocument.md): This can be used to rename a specific project document by its ID.
+- [/api/v1/projects/{projectId}/document-files/{fileId}](https://capmoapi.readme.io/reference/deleteprojectdocument.md): This can be used to delete a project document.
+- [/api/v1/projects/{projectId}/document-folders](https://capmoapi.readme.io/reference/getprojectdocumentfolders.md): This can be used to list all project document folders in a paginated response.
+- [/api/v1/projects/{projectId}/document-folders](https://capmoapi.readme.io/reference/createprojectdocumentfolder.md): This can be used to create a new project document folder.
+- [/api/v1/projects/{projectId}/document-folders/{folderId}](https://capmoapi.readme.io/reference/getprojectdocumentfolder.md): This can be used to retrieve a specific project document folder by its ID.
+- [/api/v1/projects/{projectId}/document-folders/{folderId}](https://capmoapi.readme.io/reference/renameprojectdocumentfolder.md): This can be used to rename a project document folder.
+- [/api/v1/projects/{projectId}/document-folders/{folderId}](https://capmoapi.readme.io/reference/deleteprojectdocumentfolder.md): This can be used to delete a project document folder.
+- [/api/v1/projects/{projectId}/plan-folders](https://capmoapi.readme.io/reference/getplanfolders.md): This can be used to list all project plan folders in a paginated response.
+- [/api/v1/projects/{projectId}/plan-folders](https://capmoapi.readme.io/reference/createplanfolder.md): This can be used to create a new project plan folder.
+- [/api/v1/projects/{projectId}/plan-folders/{folderId}](https://capmoapi.readme.io/reference/updateplanfolder.md): This can be used to rename a project plan folder.
+- [/api/v1/projects/{projectId}/plan-folders/{folderId}](https://capmoapi.readme.io/reference/deleteplanfolder.md): This can be used to delete a specific project plan folder by its ID.
+- [/api/v1/projects/{projectId}/plans](https://capmoapi.readme.io/reference/createprojectplan.md): This can be used to create a new project plan.
+- [/api/v1/projects/{projectId}/plans](https://capmoapi.readme.io/reference/getprojectplanslist.md): This can be used to list all project plans in a paginated response.
+- [/api/v1/projects/{projectId}/plans/{planId}](https://capmoapi.readme.io/reference/getprojectplan.md): This can be used to get a single project plan.
+- [/api/v1/projects/{projectId}/plans/{planId}](https://capmoapi.readme.io/reference/deleteplan.md): This can be used to delete a specific project plan by its ID.
+- [/api/v1/projects/{projectId}/plans/{planId}](https://capmoapi.readme.io/reference/updateprojectplan.md): This can be used to update a specific project plan by its ID.
+- [/api/v1/projects/{projectId}/tickets](https://capmoapi.readme.io/reference/getprojectticketspaginated.md): This can be used to list all project tickets in a paginated response.
+- [/api/v1/projects/{projectId}/tickets](https://capmoapi.readme.io/reference/createprojectticket.md): This can be used to create a new project ticket.   Please note:  - Project ticket categories, tags, types, etc. have their own endpoints to be managed. They can be added on ticket creation if they already exist.
+- [/api/v1/projects/{projectId}/tickets/{ticketId}](https://capmoapi.readme.io/reference/getprojectticket.md): This can be used to get a specific project ticket by its id.
+- [/api/v1/projects/{projectId}/tickets/{ticketId}](https://capmoapi.readme.io/reference/updateprojectticket.md): This can be used to update a specific project ticket by its ID.
+- [/api/v1/projects/{projectId}/tickets/{ticketId}](https://capmoapi.readme.io/reference/deleteprojectticket.md): This can be used to delete a specific project ticket by its ID.
+- [/api/v1/projects/{projectId}/ticket-categories](https://capmoapi.readme.io/reference/getprojectticketcategories.md): This can be used to list all project ticket categories in a paginated response.
+- [/api/v1/projects/{projectId}/ticket-types](https://capmoapi.readme.io/reference/getprojecttickettypes.md): This can be used to list all project ticket types in a paginated response.
+- [/api/v1/projects/{projectId}/ticket-tags](https://capmoapi.readme.io/reference/getprojecttickettags.md): This can be used to list all project ticket tags in a paginated response.
+- [/api/v1/projects/{projectId}/tickets/{ticketId}/comments](https://capmoapi.readme.io/reference/getprojectticketcommentspaginated.md): This can be used to list all project tickets comments in a paginated response.   Please note:  - The pagination system works slightly differently for the project tickets' comments.  - Because of the way our system is designed, we cannot offer the exact same pagination system as for the other entities.  - In this case, we cannot offer the total number of items in the collection, only the next page token (referred to as `after`).  - `limit` is only used in conjunction with `after` to fetch the next page of results and it defaults to `25`.  - Ordering is also not supported, at the moment.
+- [/api/v1/projects/{projectId}/tickets/{ticketId}/attachments](https://capmoapi.readme.io/reference/getprojectticketattachments.md): This can be used to list all project ticket attachments in a paginated response.
+- [/api/v1/projects/{projectId}/tickets/{ticketId}/attachments](https://capmoapi.readme.io/reference/createprojectticketattachment.md): This can be used to create a project ticket attachment.
+- [/api/v1/projects/{projectId}/tickets/{ticketId}/attachments/{attachmentId}](https://capmoapi.readme.io/reference/getprojectticketattachment.md): This can be used to get a specific project ticket attachment by its ID.
+- [/api/v1/projects/{projectId}/tickets/{ticketId}/attachments/{attachmentId}](https://capmoapi.readme.io/reference/deleteprojectticketattachment.md): This can be used to delete a specific project ticket attachment by its ID.
+- [/api/v1/projects/{projectId}/room-listings](https://capmoapi.readme.io/reference/getprojectroomlistings.md): This can be used to list all room listings in a project in a paginated response.
+- [/api/v1/projects/{projectId}/site-journals](https://capmoapi.readme.io/reference/getsitejournalspaginated.md): Gets all the site journals in a paginated response.
+- [/api/v1/projects/{projectId}/site-journals](https://capmoapi.readme.io/reference/createsitejournal.md): Creates a new project site journal.
+- [/api/v1/projects/{projectId}/site-journals/{siteJournalId}](https://capmoapi.readme.io/reference/getsitejournal.md): Retrieves a single project site journal by ID.
+- [/api/v1/projects/{projectId}/site-journals/{siteJournalId}](https://capmoapi.readme.io/reference/updatesitejournal.md): Updates a project site journal. When the properties to be updated are objects, they are completely replaced. This means that attendances, visits or weather observation will always be replaced in case of an update.
+- [/api/v1/projects/{projectId}/site-journals/{siteJournalId}](https://capmoapi.readme.io/reference/deletesitejournal.md): This endpoint deletes a project site journal and all its associated entries (company attendances, visits, weather observations).
+- [/api/v1/projects/{projectId}/change-orders](https://capmoapi.readme.io/reference/getchangeorderspaginated.md): This can be used to list all project change orders in a paginated response.
+- [/api/v1/projects/{projectId}/change-orders](https://capmoapi.readme.io/reference/createchangeorder.md): This can be used to create a new project change order.
+- [/api/v1/projects/{projectId}/change-orders/steps](https://capmoapi.readme.io/reference/getchangeordersteps.md): This can be used to list all available workflow steps for change orders in a project.
+- [/api/v1/projects/{projectId}/change-orders/{changeOrderId}](https://capmoapi.readme.io/reference/getchangeorder.md): This can be used to get a specific project change order by its ID.
+- [/api/v1/projects/{projectId}/change-orders/{changeOrderId}](https://capmoapi.readme.io/reference/updatechangeorder.md): This can be used to update a specific project change order by its ID.
+- [/api/v1/projects/{projectId}/change-orders/{changeOrderId}](https://capmoapi.readme.io/reference/deletechangeorder.md): This can be used to delete a specific project change order by its ID.
+- [/api/v1/upload/projects/{projectId}/document-files](https://capmoapi.readme.io/reference/getdocumentuploadurl.md): This can be used to obtain an upload URL for a new project document.
+- [/api/v1/upload/plans](https://capmoapi.readme.io/reference/getplanuploadurl.md): This can be used to obtain an upload URL for a new plan file.
+- [/api/v1/upload/ticket-attachments](https://capmoapi.readme.io/reference/getticketattachmentuploadurl.md): This can be used to obtain an upload URL for a new ticket attachment.
+- [/api/v1/validate](https://capmoapi.readme.io/reference/validate.md): This can be used to validate the API Key. If valid, it will return the associated user ID.
+- [Event: change_order.created](https://capmoapi.readme.io/reference/webhookchangeordercreated.md): This webhook is triggered when a change order event 'change_order.created' occurs. Your endpoint will receive a POST request with the following payload structure.
+- [Event: change_order.updated](https://capmoapi.readme.io/reference/webhookchangeorderupdated.md): This webhook is triggered when a change order event 'change_order.updated' occurs. Your endpoint will receive a POST request with the following payload structure.  change_order.updated is triggered by the following fields changes: * stepId * name * key * position * orderNumber * reasonForChange * projectCategories * changeOrderType * billOfQuantities * projectCompanies * probability * assignee * cost * description * isCompleted
+- [Event: change_order.deleted](https://capmoapi.readme.io/reference/webhookchangeorderdeleted.md): This webhook is triggered when a change order event 'change_order.deleted' occurs. Your endpoint will receive a POST request with the following payload structure.

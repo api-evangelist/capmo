@@ -1,0 +1,16 @@
+generated: '2026-07-18'
+method: generated
+source: openapi/capmo-rest-api-openapi-original.json
+skills:
+- file: capmo-create-project-and-invite.md
+  name: Create a project and invite a member
+  api: openapi/capmo-rest-api-openapi-original.json
+  operations: [validate, getProjectTemplates, createProject, getProjectPermissionSets, createProjectPersonFromOrganisation, inviteProjectPerson]
+- file: capmo-file-ticket-with-attachment.md
+  name: File a defect ticket with a photo attachment
+  api: openapi/capmo-rest-api-openapi-original.json
+  operations: [getProjectTicketCategories, getProjectTicketTypes, createProjectTicket, getTicketAttachmentUploadUrl, createProjectTicketAttachment, getProjectTicket]
+- file: capmo-record-site-journal.md
+  name: Record a daily site journal
+  api: openapi/capmo-rest-api-openapi-original.json
+  operations: [validate, getProjects, createSiteJournal, getSiteJournalsPaginated, getSiteJournal]

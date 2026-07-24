@@ -1,0 +1,302 @@
+generated: '2026-07-18'
+method: derived
+status: candidate
+source: openapi/capmo-rest-api-openapi-original.json
+note: No official Capmo MCP server was found as of 2026-07-18. Tools derived one-per-operation from the
+  Capmo REST API OpenAPI; candidates for a future MCP wrapper.
+server:
+  name: capmo
+  transport: http
+tools:
+- name: validate
+  description: This can be used to validate the API Key. If valid, it will return the associated user
+    ID.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#validate
+- name: getDocumentUploadUrl
+  description: This can be used to obtain an upload URL for a new project document.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getDocumentUploadUrl
+- name: getPlanUploadUrl
+  description: This can be used to obtain an upload URL for a new plan file.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getPlanUploadUrl
+- name: getTicketAttachmentUploadUrl
+  description: This can be used to obtain an upload URL for a new ticket attachment.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getTicketAttachmentUploadUrl
+- name: getProjects
+  description: This can be used to list all projects in a paginated response.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getProjects
+- name: createProject
+  description: 'This can be used to create a new project, including creating a new project from a template.
+    If `project_template_id` is '
+  source_operation: openapi/capmo-rest-api-openapi-original.json#createProject
+- name: getProject
+  description: This can be used to retrieve a specific project by its ID.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getProject
+- name: updateProject
+  description: This can be used to update a specific project by its ID.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#updateProject
+- name: deleteProject
+  description: This can be used to delete a specific project by its ID.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#deleteProject
+- name: archiveProject
+  description: 'This can be used to archive a specific project by its ID. Archiving a project will also
+    remove all pins associated with '
+  source_operation: openapi/capmo-rest-api-openapi-original.json#archiveProject
+- name: unarchiveProject
+  description: This can be used to unarchive a specific project by its ID.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#unarchiveProject
+- name: getProjectTemplates
+  description: This can be used to list all project templates in a paginated response.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getProjectTemplates
+- name: getProjectTemplate
+  description: This can be used to retrieve a specific project template by its ID.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getProjectTemplate
+- name: getOrganisationPeople
+  description: This can be used to list all organisation contact book people in a paginated response.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getOrganisationPeople
+- name: createOrganisationPerson
+  description: This can be used to add a new organisation contact book person.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#createOrganisationPerson
+- name: getOrganisationPerson
+  description: This can be used to retrieve a specific organisation person by its ID.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getOrganisationPerson
+- name: updateOrganisationPerson
+  description: This can be used to update a specific organisation contact book person by its ID.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#updateOrganisationPerson
+- name: deleteOrganisationPerson
+  description: This can be used to delete an organisation contact book person. If the person is a member
+    of the organisation, their mem
+  source_operation: openapi/capmo-rest-api-openapi-original.json#deleteOrganisationPerson
+- name: getOrganisationCompanies
+  description: This can be used to list all organisation contact book companies in a paginated response.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getOrganisationCompanies
+- name: createOrganisationCompany
+  description: This can be used to add a new organisation contact book company.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#createOrganisationCompany
+- name: getOrganisationCompany
+  description: This can be used to retrieve a specific organisation company by its ID.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getOrganisationCompany
+- name: updateOrganisationCompany
+  description: This can be used to update a specific organisation contact book company by its ID.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#updateOrganisationCompany
+- name: deleteOrganisationCompany
+  description: This can be used to delete an organisation contact book company.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#deleteOrganisationCompany
+- name: getOrganisationMemberships
+  description: This can be used to list all organisation memberships in a paginated response.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getOrganisationMemberships
+- name: inviteOrganisationPerson
+  description: 'This can be used to invite an organisation contact book person to organisation. As a result,
+    an organisation membership '
+  source_operation: openapi/capmo-rest-api-openapi-original.json#inviteOrganisationPerson
+- name: getOrganisationMembership
+  description: This can be used to retrieve a specific organisation membership by its ID.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getOrganisationMembership
+- name: updateOrganisationMembership
+  description: This can be used to update an organisation membership.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#updateOrganisationMembership
+- name: revokeOrganisationMembership
+  description: This can be used to revoke an organisation membership.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#revokeOrganisationMembership
+- name: getOrganisationProjects
+  description: This can be used to list all projects owned by your organisation in a paginated response.
+    Project templates are excluded
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getOrganisationProjects
+- name: joinOwnOrganisationProject
+  description: This can be used to join an organisation project. The API-key user must be an organisation
+    admin, and the project must b
+  source_operation: openapi/capmo-rest-api-openapi-original.json#joinOwnOrganisationProject
+- name: leaveOwnOrganisationProject
+  description: 'This can be used to leave an organisation project. The API-key user must be an organisation
+    admin, and the project must '
+  source_operation: openapi/capmo-rest-api-openapi-original.json#leaveOwnOrganisationProject
+- name: getProjectPeople
+  description: This can be used to list all project contact book people in a paginated response.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getProjectPeople
+- name: createProjectPerson
+  description: This can be used to add a new project contact book person.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#createProjectPerson
+- name: getProjectPerson
+  description: This can be used to retrieve a specific project person by its ID.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getProjectPerson
+- name: updateProjectPerson
+  description: This can be used to update a project contact book person.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#updateProjectPerson
+- name: deleteProjectPerson
+  description: This can be used to delete a project contact book person. If the person is a member of
+    the project, their membership wil
+  source_operation: openapi/capmo-rest-api-openapi-original.json#deleteProjectPerson
+- name: createProjectPersonFromOrganisation
+  description: This can be used to add an organisation contact book person to a project.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#createProjectPersonFromOrganisation
+- name: getProjectCompanies
+  description: This can be used to list all project contact book companies in a paginated response.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getProjectCompanies
+- name: createProjectCompany
+  description: This can be used to add a new project contact book company.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#createProjectCompany
+- name: getProjectCompany
+  description: This can be used to retrieve a specific project company by its ID.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getProjectCompany
+- name: updateProjectCompany
+  description: This can be used to update a project contact book company.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#updateProjectCompany
+- name: deleteCompany
+  description: This can be used to delete a project contact book company, the contacts assigned to the
+    company will remain.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#deleteCompany
+- name: createProjectCompanyFromOrganisation
+  description: This can be used to add an organisation contact book company to a project.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#createProjectCompanyFromOrganisation
+- name: getProjectMemberships
+  description: This can be used to list all project memberships in a paginated response.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getProjectMemberships
+- name: inviteProjectPerson
+  description: This can be used to invite a project contact book person to a project identified by projectId.
+    As a result, a project me
+  source_operation: openapi/capmo-rest-api-openapi-original.json#inviteProjectPerson
+- name: getProjectMembership
+  description: This can be used to retrieve a specific project membership by membershipId from a project
+    identified by projectId.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getProjectMembership
+- name: revokeProjectMembership
+  description: This can be used to revoke a project membership.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#revokeProjectMembership
+- name: getProjectPermissionSets
+  description: This can be used to list all permission sets available within a project. Use the returned
+    IDs as `permission_set_id` whe
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getProjectPermissionSets
+- name: getProjectTicketsPaginated
+  description: This can be used to list all project tickets in a paginated response.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getProjectTicketsPaginated
+- name: createProjectTicket
+  description: This can be used to create a new project ticket.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#createProjectTicket
+- name: getProjectTicket
+  description: This can be used to get a specific project ticket by its id.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getProjectTicket
+- name: updateProjectTicket
+  description: This can be used to update a specific project ticket by its ID.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#updateProjectTicket
+- name: deleteProjectTicket
+  description: This can be used to delete a specific project ticket by its ID.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#deleteProjectTicket
+- name: getProjectTicketCategories
+  description: This can be used to list all project ticket categories in a paginated response.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getProjectTicketCategories
+- name: getProjectTicketTypes
+  description: This can be used to list all project ticket types in a paginated response.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getProjectTicketTypes
+- name: getProjectTicketTags
+  description: This can be used to list all project ticket tags in a paginated response.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getProjectTicketTags
+- name: getPlanFolders
+  description: This can be used to list all project plan folders in a paginated response.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getPlanFolders
+- name: createPlanFolder
+  description: This can be used to create a new project plan folder.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#createPlanFolder
+- name: updatePlanFolder
+  description: This can be used to rename a project plan folder.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#updatePlanFolder
+- name: deletePlanFolder
+  description: This can be used to delete a specific project plan folder by its ID.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#deletePlanFolder
+- name: createProjectPlan
+  description: This can be used to create a new project plan.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#createProjectPlan
+- name: getProjectPlansList
+  description: This can be used to list all project plans in a paginated response.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getProjectPlansList
+- name: getProjectPlan
+  description: This can be used to get a single project plan.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getProjectPlan
+- name: deletePlan
+  description: This can be used to delete a specific project plan by its ID.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#deletePlan
+- name: updateProjectPlan
+  description: This can be used to update a specific project plan by its ID.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#updateProjectPlan
+- name: createProjectDocument
+  description: This can be used to create a new project document. This must be called after obtaining
+    an upload URL.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#createProjectDocument
+- name: getProjectDocumentsPaginated
+  description: This can be used to list all project documents in a paginated response.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getProjectDocumentsPaginated
+- name: getProjectDocument
+  description: This can be used to get a single project document.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getProjectDocument
+- name: renameDocument
+  description: This can be used to rename a specific project document by its ID.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#renameDocument
+- name: deleteProjectDocument
+  description: This can be used to delete a project document.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#deleteProjectDocument
+- name: getProjectDocumentFolders
+  description: This can be used to list all project document folders in a paginated response.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getProjectDocumentFolders
+- name: createProjectDocumentFolder
+  description: This can be used to create a new project document folder.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#createProjectDocumentFolder
+- name: getProjectDocumentFolder
+  description: This can be used to retrieve a specific project document folder by its ID.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getProjectDocumentFolder
+- name: renameProjectDocumentFolder
+  description: This can be used to rename a project document folder.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#renameProjectDocumentFolder
+- name: deleteProjectDocumentFolder
+  description: This can be used to delete a project document folder.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#deleteProjectDocumentFolder
+- name: getProjectTicketCommentsPaginated
+  description: This can be used to list all project tickets comments in a paginated response.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getProjectTicketCommentsPaginated
+- name: getProjectTicketAttachments
+  description: This can be used to list all project ticket attachments in a paginated response.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getProjectTicketAttachments
+- name: createProjectTicketAttachment
+  description: This can be used to create a project ticket attachment.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#createProjectTicketAttachment
+- name: getProjectTicketAttachment
+  description: This can be used to get a specific project ticket attachment by its ID.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getProjectTicketAttachment
+- name: deleteProjectTicketAttachment
+  description: This can be used to delete a specific project ticket attachment by its ID.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#deleteProjectTicketAttachment
+- name: getProjectRoomListings
+  description: This can be used to list all room listings in a project in a paginated response.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getProjectRoomListings
+- name: getSiteJournalsPaginated
+  description: Gets all the site journals in a paginated response.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getSiteJournalsPaginated
+- name: createSiteJournal
+  description: Creates a new project site journal.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#createSiteJournal
+- name: getSiteJournal
+  description: Retrieves a single project site journal by ID.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getSiteJournal
+- name: updateSiteJournal
+  description: 'Updates a project site journal. When the properties to be updated are objects, they are
+    completely replaced. This means '
+  source_operation: openapi/capmo-rest-api-openapi-original.json#updateSiteJournal
+- name: deleteSiteJournal
+  description: This endpoint deletes a project site journal and all its associated entries (company attendances,
+    visits, weather observ
+  source_operation: openapi/capmo-rest-api-openapi-original.json#deleteSiteJournal
+- name: getChangeOrdersPaginated
+  description: This can be used to list all project change orders in a paginated response.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getChangeOrdersPaginated
+- name: createChangeOrder
+  description: This can be used to create a new project change order.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#createChangeOrder
+- name: getChangeOrderSteps
+  description: This can be used to list all available workflow steps for change orders in a project.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getChangeOrderSteps
+- name: getChangeOrder
+  description: This can be used to get a specific project change order by its ID.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#getChangeOrder
+- name: updateChangeOrder
+  description: This can be used to update a specific project change order by its ID.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#updateChangeOrder
+- name: deleteChangeOrder
+  description: This can be used to delete a specific project change order by its ID.
+  source_operation: openapi/capmo-rest-api-openapi-original.json#deleteChangeOrder

@@ -1,0 +1,48 @@
+generated: '2026-07-18'
+method: searched
+source: https://capmoapi.readme.io/reference/where-to-start
+authentication:
+  style: api-key
+  header: Authorization
+  format: Capmo <API_KEY>
+  ref: authentication/capmo-authentication.yml
+idempotency:
+  supported: false
+  note: No idempotency-key header/parameter documented or present in the OpenAPI as of 2026-07-18.
+pagination:
+  style: cursor
+  request_params:
+  - after
+  - limit
+  - order_by
+  - order_direction
+  response_fields:
+  - after
+  - count
+  - total
+  note: List responses wrap results in data.items with a PaginatedOutputDto (after/count/total). Ticket
+    comments use a reduced token-only scheme (after + limit; no total, no ordering).
+request_tracing:
+  header: Request-Id
+  note: Optional Request-Id request header accepted across operations for client-side correlation.
+versioning:
+  scheme: uri-path
+  current: v1
+  ref: lifecycle/capmo-lifecycle.yml
+error_envelope:
+  content_type: application/json
+  shape: '{type,message,errors[{code,message}]}'
+  ref: errors/capmo-problem-types.yml
+rate_limiting:
+  limit: 600 requests/minute
+  scope: all resources
+  reset_header: x-rate-limit-reset
+  error_status: 429
+webhooks:
+  signature_header: X-Capmo-Signature
+  algorithm: HMAC-SHA256
+  prefix: sha256=
+  ref: openapi/capmo-webhook-api-openapi-original.json
+uploads:
+  note: 'File uploads are two-step: request an upload URL (/api/v1/upload/*), PUT the file, then create
+    the document/plan/attachment record.'

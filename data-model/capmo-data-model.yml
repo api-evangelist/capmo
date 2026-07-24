@@ -1,0 +1,172 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/capmo-rest-api-openapi-original.json
+note: Entity graph derived from Capmo REST API OpenAPI schemas ($ref links and *_id reference fields).
+  The domain centers on an Organisation that owns Projects; Projects contain contacts, memberships, documents,
+  plans, tickets, site journals and change orders.
+entities:
+- name: Organisation
+  description: Top-level tenant that owns projects, contact-book people/companies and memberships.
+- name: OrganisationPerson
+  description: A person in the organisation contact book.
+- name: OrganisationCompany
+  description: A company in the organisation contact book.
+- name: OrganisationMembership
+  description: Membership linking an organisation person to the organisation.
+- name: Project
+  description: A construction project; the primary aggregate root under an organisation.
+- name: ProjectTemplate
+  description: Reusable template a project can be created from.
+- name: ProjectPerson
+  description: A person in a project contact book (may reference a company).
+- name: ProjectCompany
+  description: A company in a project contact book.
+- name: ProjectMembership
+  description: Membership linking a project person to a project with a permission set.
+- name: ProjectPermissionSet
+  description: Named set of project permissions used when inviting members.
+- name: Document
+  description: A project document file, stored in a document folder.
+- name: DocumentFolder
+  description: Folder hierarchy for project documents.
+- name: Plan
+  description: A project plan file, stored in a plan folder.
+- name: PlanFolder
+  description: Folder hierarchy for project plans.
+- name: ProjectTicket
+  description: A ticket (defect/task) with category, type, tags, comments and attachments.
+- name: TicketCategory
+  description: Category for project tickets.
+- name: TicketType
+  description: Type for project tickets.
+- name: ProjectTicketTag
+  description: Tag applied to project tickets.
+- name: ProjectTicketComment
+  description: Comment on a project ticket (token-paginated).
+- name: TicketAttachment
+  description: File attachment on a project ticket.
+- name: RoomListing
+  description: Room listing within a project (self-referential parent).
+- name: SiteJournal
+  description: Site/construction journal entry with attendances, visits and weather observations.
+- name: ChangeOrder
+  description: A change order following a workflow step.
+- name: ChangeOrderStep
+  description: A workflow step available for change orders.
+relationships:
+- from: Organisation
+  type: has_many
+  to: Project
+  via: organisation ownership
+- from: Organisation
+  type: has_many
+  to: OrganisationPerson
+  via: contact book
+- from: Organisation
+  type: has_many
+  to: OrganisationCompany
+  via: contact book
+- from: OrganisationMembership
+  type: belongs_to
+  to: OrganisationPerson
+  via: person_id
+- from: Project
+  type: belongs_to
+  to: ProjectTemplate
+  via: project_template_id
+- from: Project
+  type: belongs_to
+  to: ProjectPerson
+  via: client_person_id
+- from: Project
+  type: has_many
+  to: ProjectPerson
+  via: project contact book
+- from: Project
+  type: has_many
+  to: ProjectCompany
+  via: project contact book
+- from: Project
+  type: has_many
+  to: ProjectMembership
+  via: projectId
+- from: Project
+  type: has_many
+  to: Document
+  via: projectId
+- from: Project
+  type: has_many
+  to: Plan
+  via: projectId
+- from: Project
+  type: has_many
+  to: ProjectTicket
+  via: projectId
+- from: Project
+  type: has_many
+  to: SiteJournal
+  via: projectId
+- from: Project
+  type: has_many
+  to: ChangeOrder
+  via: projectId
+- from: Project
+  type: has_many
+  to: RoomListing
+  via: projectId
+- from: ProjectMembership
+  type: belongs_to
+  to: ProjectPerson
+  via: person_id
+- from: ProjectMembership
+  type: belongs_to
+  to: ProjectPermissionSet
+  via: permission_set_id
+- from: ProjectPerson
+  type: belongs_to
+  to: ProjectCompany
+  via: company_id
+- from: Document
+  type: belongs_to
+  to: DocumentFolder
+  via: folder_id
+- from: DocumentFolder
+  type: belongs_to
+  to: DocumentFolder
+  via: parent (hierarchy)
+- from: Plan
+  type: belongs_to
+  to: PlanFolder
+  via: file_source_id/folder
+- from: PlanFolder
+  type: belongs_to
+  to: PlanFolder
+  via: parent_folder_id
+- from: ProjectTicket
+  type: belongs_to
+  to: TicketCategory
+  via: category_id
+- from: ProjectTicket
+  type: belongs_to
+  to: TicketType
+  via: type_id
+- from: ProjectTicket
+  type: has_many
+  to: ProjectTicketTag
+  via: ticket-tags
+- from: ProjectTicket
+  type: has_many
+  to: ProjectTicketComment
+  via: ticketId
+- from: ProjectTicket
+  type: has_many
+  to: TicketAttachment
+  via: ticketId
+- from: RoomListing
+  type: belongs_to
+  to: RoomListing
+  via: parent_id
+- from: ChangeOrder
+  type: belongs_to
+  to: ChangeOrderStep
+  via: workflow_id/stepId

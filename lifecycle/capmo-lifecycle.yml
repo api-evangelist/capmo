@@ -1,0 +1,22 @@
+generated: '2026-07-18'
+method: searched
+source: https://capmoapi.readme.io/reference/where-to-start
+versioning:
+  scheme: uri-path
+  current: v1
+  base_path: /api/v1
+  docs: https://capmoapi.readme.io/reference/where-to-start
+status_page: https://statuspage.capmo.de/
+status_page_provider: Atlassian Statuspage
+monitored_components:
+- Capmo Web Platform
+- Mobile Applications
+- Capmo API
+sla:
+  note: No public SLA/uptime-target document found as of 2026-07-18; status page reports 90-day uptime
+    per component.
+deprecation:
+  note: No formal deprecation policy or Sunset/Deprecation (RFC 8594) header support documented as of
+    2026-07-18.
+deprecated_operations: []
+roadmap: https://portal.productboard.com/capmo/1-capmo-produktportal

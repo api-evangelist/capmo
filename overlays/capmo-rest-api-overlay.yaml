@@ -1,0 +1,15 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Capmo REST API
+  version: 1.0.0
+extends: openapi/capmo-rest-api-openapi-original.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: '2026-07-18'
+    x-api-evangelist-provider: capmo
+    x-rate-limit: 600 requests/minute (x-rate-limit-reset header)
+    x-status-page: https://statuspage.capmo.de/
+- target: $.info
+  update:
+    x-authentication-docs: https://capmoapi.readme.io/reference/where-to-start#authentication

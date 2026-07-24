@@ -1,8 +1,13 @@
 aid: capmo
 name: Capmo
-description: 'Capmo is a company surfaced as a portfolio company of bessemer-venture-partners and added
-  to the API Evangelist network as a stub for enrichment. Sector: vertical-software. This profile is a
-  lead awaiting the enrichment pipeline.'
+description: >-
+  Capmo is a Munich-based construction project management platform ("Bauprojektmanagement-Software")
+  for the DACH market, backed by Bessemer Venture Partners. Its web and mobile apps cover defect and
+  task management (tickets), site journals (Bautagebuch), plans, documents, change orders, project and
+  organisation contact books, and reporting for construction teams. Capmo exposes a public REST API
+  (api.capmo.de, /api/v1) documented on ReadMe, with API-key authentication, cursor pagination, a
+  600 requests/minute rate limit, HMAC-signed webhooks for change-order events, and downloadable
+  OpenAPI specifications for both the REST and Webhook surfaces.
 url: https://raw.githubusercontent.com/api-evangelist/capmo/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -10,18 +15,469 @@ x-backed-by:
 - bessemer-venture-partners
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
+image: https://cdn.prod.website-files.com/620fb9c4a7a29bb3b2650350/652667d7d817b5862140ee97_Capmo_2310_Webclip.png
 tags:
 - Company
 - Vertical Software
-apis: []
+- Construction
+- Project Management
+- Construction Tech
+- Field Management
+- Building
+- DACH
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: capmo:capmo-organisation-companies-api
+  name: Capmo Organisation Companies API
+  description: The Organisation Companies API from Capmo — 2 operation(s) for organisation companies.
+  humanURL: https://capmoapi.readme.io/reference/where-to-start
+  baseURL: https://api.capmo.de/api/v1
+  tags:
+  - Organisation Companies
+  properties:
+  - type: OpenAPI
+    url: openapi/capmo-organisation-companies-api-openapi.yml
+  - type: Documentation
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: APIReference
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: Webhooks
+    url: openapi/capmo-webhook-api-openapi-original.json
+- aid: capmo:capmo-organisation-memberships-api
+  name: Capmo Organisation Memberships API
+  description: >-
+    The Organisation Memberships API from Capmo — 2 operation(s) for organisation memberships.
+  humanURL: https://capmoapi.readme.io/reference/where-to-start
+  baseURL: https://api.capmo.de/api/v1
+  tags:
+  - Organisation Memberships
+  properties:
+  - type: OpenAPI
+    url: openapi/capmo-organisation-memberships-api-openapi.yml
+  - type: Documentation
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: APIReference
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: Webhooks
+    url: openapi/capmo-webhook-api-openapi-original.json
+- aid: capmo:capmo-organisation-people-api
+  name: Capmo Organisation People API
+  description: The Organisation People API from Capmo — 2 operation(s) for organisation people.
+  humanURL: https://capmoapi.readme.io/reference/where-to-start
+  baseURL: https://api.capmo.de/api/v1
+  tags:
+  - Organisation People
+  properties:
+  - type: OpenAPI
+    url: openapi/capmo-organisation-people-api-openapi.yml
+  - type: Documentation
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: APIReference
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: Webhooks
+    url: openapi/capmo-webhook-api-openapi-original.json
+- aid: capmo:capmo-organisation-projects-api
+  name: Capmo Organisation Projects API
+  description: The Organisation Projects API from Capmo — 2 operation(s) for organisation projects.
+  humanURL: https://capmoapi.readme.io/reference/where-to-start
+  baseURL: https://api.capmo.de/api/v1
+  tags:
+  - Organisation Projects
+  properties:
+  - type: OpenAPI
+    url: openapi/capmo-organisation-projects-api-openapi.yml
+  - type: Documentation
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: APIReference
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: Webhooks
+    url: openapi/capmo-webhook-api-openapi-original.json
+- aid: capmo:capmo-other-api
+  name: Capmo Other API
+  description: The Other API from Capmo — 1 operation(s) for other.
+  humanURL: https://capmoapi.readme.io/reference/where-to-start
+  baseURL: https://api.capmo.de/api/v1
+  tags:
+  - Other
+  properties:
+  - type: OpenAPI
+    url: openapi/capmo-other-api-openapi.yml
+  - type: Documentation
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: APIReference
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: Webhooks
+    url: openapi/capmo-webhook-api-openapi-original.json
+- aid: capmo:capmo-project-change-orders-api
+  name: Capmo Project Change Orders API
+  description: The Project Change Orders API from Capmo — 3 operation(s) for project change orders.
+  humanURL: https://capmoapi.readme.io/reference/where-to-start
+  baseURL: https://api.capmo.de/api/v1
+  tags:
+  - Project Change Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/capmo-project-change-orders-api-openapi.yml
+  - type: Documentation
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: APIReference
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: Webhooks
+    url: openapi/capmo-webhook-api-openapi-original.json
+- aid: capmo:capmo-project-companies-api
+  name: Capmo Project Companies API
+  description: The Project Companies API from Capmo — 3 operation(s) for project companies.
+  humanURL: https://capmoapi.readme.io/reference/where-to-start
+  baseURL: https://api.capmo.de/api/v1
+  tags:
+  - Project Companies
+  properties:
+  - type: OpenAPI
+    url: openapi/capmo-project-companies-api-openapi.yml
+  - type: Documentation
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: APIReference
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: Webhooks
+    url: openapi/capmo-webhook-api-openapi-original.json
+- aid: capmo:capmo-project-documents-api
+  name: Capmo Project Documents API
+  description: The Project Documents API from Capmo — 4 operation(s) for project documents.
+  humanURL: https://capmoapi.readme.io/reference/where-to-start
+  baseURL: https://api.capmo.de/api/v1
+  tags:
+  - Project Documents
+  properties:
+  - type: OpenAPI
+    url: openapi/capmo-project-documents-api-openapi.yml
+  - type: Documentation
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: APIReference
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: Webhooks
+    url: openapi/capmo-webhook-api-openapi-original.json
+- aid: capmo:capmo-project-memberships-api
+  name: Capmo Project Memberships API
+  description: The Project Memberships API from Capmo — 2 operation(s) for project memberships.
+  humanURL: https://capmoapi.readme.io/reference/where-to-start
+  baseURL: https://api.capmo.de/api/v1
+  tags:
+  - Project Memberships
+  properties:
+  - type: OpenAPI
+    url: openapi/capmo-project-memberships-api-openapi.yml
+  - type: Documentation
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: APIReference
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: Webhooks
+    url: openapi/capmo-webhook-api-openapi-original.json
+- aid: capmo:capmo-project-people-api
+  name: Capmo Project People API
+  description: The Project People API from Capmo — 3 operation(s) for project people.
+  humanURL: https://capmoapi.readme.io/reference/where-to-start
+  baseURL: https://api.capmo.de/api/v1
+  tags:
+  - Project People
+  properties:
+  - type: OpenAPI
+    url: openapi/capmo-project-people-api-openapi.yml
+  - type: Documentation
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: APIReference
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: Webhooks
+    url: openapi/capmo-webhook-api-openapi-original.json
+- aid: capmo:capmo-project-permission-sets-api
+  name: Capmo Project Permission Sets API
+  description: The Project Permission Sets API from Capmo — 1 operation(s) for project permission sets.
+  humanURL: https://capmoapi.readme.io/reference/where-to-start
+  baseURL: https://api.capmo.de/api/v1
+  tags:
+  - Project Permission Sets
+  properties:
+  - type: OpenAPI
+    url: openapi/capmo-project-permission-sets-api-openapi.yml
+  - type: Documentation
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: APIReference
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: Webhooks
+    url: openapi/capmo-webhook-api-openapi-original.json
+- aid: capmo:capmo-project-plans-api
+  name: Capmo Project Plans API
+  description: The Project Plans API from Capmo — 4 operation(s) for project plans.
+  humanURL: https://capmoapi.readme.io/reference/where-to-start
+  baseURL: https://api.capmo.de/api/v1
+  tags:
+  - Project Plans
+  properties:
+  - type: OpenAPI
+    url: openapi/capmo-project-plans-api-openapi.yml
+  - type: Documentation
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: APIReference
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: Webhooks
+    url: openapi/capmo-webhook-api-openapi-original.json
+- aid: capmo:capmo-project-room-listings-api
+  name: Capmo Project Room Listings API
+  description: The Project Room Listings API from Capmo — 1 operation(s) for project room listings.
+  humanURL: https://capmoapi.readme.io/reference/where-to-start
+  baseURL: https://api.capmo.de/api/v1
+  tags:
+  - Project Room Listings
+  properties:
+  - type: OpenAPI
+    url: openapi/capmo-project-room-listings-api-openapi.yml
+  - type: Documentation
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: APIReference
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: Webhooks
+    url: openapi/capmo-webhook-api-openapi-original.json
+- aid: capmo:capmo-project-site-journals-api
+  name: Capmo Project Site Journals API
+  description: The Project Site Journals API from Capmo — 2 operation(s) for project site journals.
+  humanURL: https://capmoapi.readme.io/reference/where-to-start
+  baseURL: https://api.capmo.de/api/v1
+  tags:
+  - Project Site Journals
+  properties:
+  - type: OpenAPI
+    url: openapi/capmo-project-site-journals-api-openapi.yml
+  - type: Documentation
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: APIReference
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: Webhooks
+    url: openapi/capmo-webhook-api-openapi-original.json
+- aid: capmo:capmo-project-templates-api
+  name: Capmo Project Templates API
+  description: The Project Templates API from Capmo — 2 operation(s) for project templates.
+  humanURL: https://capmoapi.readme.io/reference/where-to-start
+  baseURL: https://api.capmo.de/api/v1
+  tags:
+  - Project Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/capmo-project-templates-api-openapi.yml
+  - type: Documentation
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: APIReference
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: Webhooks
+    url: openapi/capmo-webhook-api-openapi-original.json
+- aid: capmo:capmo-project-ticket-attachments-api
+  name: Capmo Project Ticket Attachments API
+  description: >-
+    The Project Ticket Attachments API from Capmo — 2 operation(s) for project ticket attachments.
+  humanURL: https://capmoapi.readme.io/reference/where-to-start
+  baseURL: https://api.capmo.de/api/v1
+  tags:
+  - Project Ticket Attachments
+  properties:
+  - type: OpenAPI
+    url: openapi/capmo-project-ticket-attachments-api-openapi.yml
+  - type: Documentation
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: APIReference
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: Webhooks
+    url: openapi/capmo-webhook-api-openapi-original.json
+- aid: capmo:capmo-project-ticket-categories-api
+  name: Capmo Project Ticket Categories API
+  description: >-
+    The Project Ticket Categories API from Capmo — 1 operation(s) for project ticket categories.
+  humanURL: https://capmoapi.readme.io/reference/where-to-start
+  baseURL: https://api.capmo.de/api/v1
+  tags:
+  - Project Ticket Categories
+  properties:
+  - type: OpenAPI
+    url: openapi/capmo-project-ticket-categories-api-openapi.yml
+  - type: Documentation
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: APIReference
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: Webhooks
+    url: openapi/capmo-webhook-api-openapi-original.json
+- aid: capmo:capmo-project-ticket-comments-api
+  name: Capmo Project Ticket Comments API
+  description: The Project Ticket Comments API from Capmo — 1 operation(s) for project ticket comments.
+  humanURL: https://capmoapi.readme.io/reference/where-to-start
+  baseURL: https://api.capmo.de/api/v1
+  tags:
+  - Project Ticket Comments
+  properties:
+  - type: OpenAPI
+    url: openapi/capmo-project-ticket-comments-api-openapi.yml
+  - type: Documentation
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: APIReference
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: Webhooks
+    url: openapi/capmo-webhook-api-openapi-original.json
+- aid: capmo:capmo-project-ticket-tags-api
+  name: Capmo Project Ticket Tags API
+  description: The Project Ticket Tags API from Capmo — 1 operation(s) for project ticket tags.
+  humanURL: https://capmoapi.readme.io/reference/where-to-start
+  baseURL: https://api.capmo.de/api/v1
+  tags:
+  - Project Ticket Tags
+  properties:
+  - type: OpenAPI
+    url: openapi/capmo-project-ticket-tags-api-openapi.yml
+  - type: Documentation
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: APIReference
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: Webhooks
+    url: openapi/capmo-webhook-api-openapi-original.json
+- aid: capmo:capmo-project-ticket-types-api
+  name: Capmo Project Ticket Types API
+  description: The Project Ticket Types API from Capmo — 1 operation(s) for project ticket types.
+  humanURL: https://capmoapi.readme.io/reference/where-to-start
+  baseURL: https://api.capmo.de/api/v1
+  tags:
+  - Project Ticket Types
+  properties:
+  - type: OpenAPI
+    url: openapi/capmo-project-ticket-types-api-openapi.yml
+  - type: Documentation
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: APIReference
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: Webhooks
+    url: openapi/capmo-webhook-api-openapi-original.json
+- aid: capmo:capmo-project-tickets-api
+  name: Capmo Project Tickets API
+  description: The Project Tickets API from Capmo — 2 operation(s) for project tickets.
+  humanURL: https://capmoapi.readme.io/reference/where-to-start
+  baseURL: https://api.capmo.de/api/v1
+  tags:
+  - Project Tickets
+  properties:
+  - type: OpenAPI
+    url: openapi/capmo-project-tickets-api-openapi.yml
+  - type: Documentation
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: APIReference
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: Webhooks
+    url: openapi/capmo-webhook-api-openapi-original.json
+- aid: capmo:capmo-projects-api
+  name: Capmo Projects API
+  description: The Projects API from Capmo — 3 operation(s) for projects.
+  humanURL: https://capmoapi.readme.io/reference/where-to-start
+  baseURL: https://api.capmo.de/api/v1
+  tags:
+  - Projects
+  properties:
+  - type: OpenAPI
+    url: openapi/capmo-projects-api-openapi.yml
+  - type: Documentation
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: APIReference
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: Webhooks
+    url: openapi/capmo-webhook-api-openapi-original.json
+- aid: capmo:capmo-uploads-api
+  name: Capmo Uploads API
+  description: The Uploads API from Capmo — 3 operation(s) for uploads.
+  humanURL: https://capmoapi.readme.io/reference/where-to-start
+  baseURL: https://api.capmo.de/api/v1
+  tags:
+  - Uploads
+  properties:
+  - type: OpenAPI
+    url: openapi/capmo-uploads-api-openapi.yml
+  - type: Documentation
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: APIReference
+    url: https://capmoapi.readme.io/reference/where-to-start
+  - type: Webhooks
+    url: openapi/capmo-webhook-api-openapi-original.json
 common:
 - type: Website
   url: https://www.capmo.com/en/
+- type: DeveloperPortal
+  url: https://capmoapi.readme.io/
+- type: Documentation
+  url: https://capmoapi.readme.io/reference/where-to-start
+- type: APIReference
+  url: https://capmoapi.readme.io/reference/where-to-start
+- type: GettingStarted
+  url: https://capmoapi.readme.io/reference/where-to-start
+- type: Support
+  url: https://support.capmo.com/
+- type: Blog
+  url: https://www.capmo.com/blog
+- type: GitHubOrganization
+  url: https://github.com/capmo
+- type: Roadmap
+  url: https://portal.productboard.com/capmo/1-capmo-produktportal
+- type: Pricing
+  url: https://www.capmo.com/en/preise
+- type: Login
+  url: https://app.capmo.de/
+- type: TermsOfService
+  url: https://www.capmo.com/en/agb
+- type: PrivacyPolicy
+  url: https://www.capmo.com/en/datenschutz
+- type: StatusPage
+  url: https://statuspage.capmo.de/
+- type: Webhooks
+  url: openapi/capmo-webhook-api-openapi-original.json
+- type: LLMsTxt
+  url: llms/capmo-llms.txt
+- type: Packages
+  url: packages/capmo-packages.yml
+- type: WellKnown
+  url: well-known/capmo-well-known.yml
+- type: MCPServer
+  url: mcp/capmo-mcp.yml
+- type: Overlay
+  url: overlays/capmo-rest-api-overlay.yaml
+- type: Conformance
+  url: conformance/capmo-conformance.yml
+- type: ErrorCatalog
+  url: errors/capmo-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/capmo-lifecycle.yml
+- type: Conventions
+  url: conventions/capmo-conventions.yml
+- type: DataModel
+  url: data-model/capmo-data-model.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DomainSecurity
+  url: security/capmo-domain-security.yml
+- type: AgenticAccess
+  url: agentic-access/capmo-agentic-access.yml
+- type: Authentication
+  url: authentication/capmo-authentication.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

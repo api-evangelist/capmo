@@ -1,0 +1,36 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/capmo-rest-api-openapi-original.json + https://capmoapi.readme.io/reference/errors
+standards:
+- id: openapi-3.0
+  conforms: true
+  evidence: Capmo publishes an OpenAPI 3.0.0 document for the REST API.
+- id: openapi-3.1
+  conforms: true
+  evidence: Capmo publishes an OpenAPI 3.1.0 document for the Webhook API.
+- id: oauth2
+  conforms: false
+  evidence: No oauth2 security scheme; authentication is an API key.
+- id: oidc
+  conforms: false
+- id: api-key-auth
+  conforms: true
+  evidence: apiKey security scheme CapmoAuth in Authorization header ("Capmo <key>").
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors use a custom application/json envelope {type,message,errors[]}, not application/problem+json.
+- id: cursor-pagination
+  conforms: true
+  evidence: List endpoints use cursor pagination (after/limit/order_by/order_direction; response after/count/total).
+- id: webhooks-hmac
+  conforms: true
+  evidence: Webhooks are signed with HMAC SHA256 in the X-Capmo-Signature header (sha256= prefix).
+- id: rate-limit-headers
+  conforms: true
+  evidence: 600 requests/minute; reset conveyed via x-rate-limit-reset header.
+- id: fhir
+  conforms: false
+- id: scim
+  conforms: false
+- id: json-api
+  conforms: false
