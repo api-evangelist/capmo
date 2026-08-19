@@ -27,7 +27,7 @@ accessModel:
   - authentication
   generated: '2026-07-22'
   method: derived
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 created: '2026-07-17'
 modified: '2026-07-18'
 image: https://cdn.prod.website-files.com/620fb9c4a7a29bb3b2650350/652667d7d817b5862140ee97_Capmo_2310_Webclip.png
