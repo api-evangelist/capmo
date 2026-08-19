@@ -1,0 +1,2542 @@
+{
+  "item": [
+    {
+      "id": "f369cde5-28a6-4d1b-8bba-63c951ab53ee",
+      "name": "Project Site Journals",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "310b7a52-9511-4451-a621-6ec428362c3d",
+          "name": "get Site Journals Paginated",
+          "request": {
+            "name": "get Site Journals Paginated",
+            "description": {
+              "content": "Gets all the site journals in a paginated response.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "projects",
+                ":projectId",
+                "site-journals"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "order_by",
+                  "value": "server_created_at",
+                  "description": "Field to order by."
+                },
+                {
+                  "disabled": false,
+                  "key": "order_direction",
+                  "value": "asc",
+                  "description": "Order direction of the `order_by` field. It can be `asc` or `desc`."
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "The last element from the previous page. This is a cursor. It will be returned in the output to be used in the next request. When it is not present, the first page is returned. When it is `null`, there are no more pages."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "200",
+                  "description": "How many items should be in the output."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                "key": "Request-Id",
+                "value": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fe2d1218-e016-4e6b-ba3b-a35897be870d",
+              "name": "The site journals have been successfully retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "site-journals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "order_by",
+                      "value": "server_updated_at"
+                    },
+                    {
+                      "key": "order_direction",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Success\",\n  \"data\": {\n    \"after\": \"string\",\n    \"count\": 1,\n    \"total\": 1,\n    \"items\": [\n      {\n        \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n        \"date\": \"2025-01-13\",\n        \"project_id\": \"adc99411-eaa2-11e9-11ed-efee563cda11\",\n        \"weather_observation\": {},\n        \"visits\": [\n          \"string\",\n          \"string\"\n        ],\n        \"company_attendances\": [\n          \"string\",\n          \"string\"\n        ],\n        \"custom_texts\": [\n          {\n            \"text\": \"Foundation work completed on the east wing.\"\n          },\n          {\n            \"text\": \"Foundation work completed on the east wing.\"\n          }\n        ],\n        \"source_id\": \"123e4567-e89b-12d3-a456-426614174000\"\n      },\n      {\n        \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n        \"date\": \"2025-01-13\",\n        \"project_id\": \"adc99411-eaa2-11e9-11ed-efee563cda11\",\n        \"weather_observation\": {},\n        \"visits\": [\n          \"string\",\n          \"string\"\n        ],\n        \"company_attendances\": [\n          \"string\",\n          \"string\"\n        ],\n        \"custom_texts\": [\n          {\n            \"text\": \"Foundation work completed on the east wing.\"\n          },\n          {\n            \"text\": \"Foundation work completed on the east wing.\"\n          }\n        ],\n        \"source_id\": \"123e4567-e89b-12d3-a456-426614174000\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf5f9f3c-e67f-4ab1-b44e-34ebde0f887f",
+              "name": "Bad request, Invalid input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "site-journals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "order_by",
+                      "value": "server_updated_at"
+                    },
+                    {
+                      "key": "order_direction",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#bad-request\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"BAD_REQUEST\",\n      \"message\": \"Bad request\"\n    },\n    {\n      \"code\": \"BAD_REQUEST\",\n      \"message\": \"Bad request\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6296129a-6e34-4c48-9e26-440e07dea930",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "site-journals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "order_by",
+                      "value": "server_updated_at"
+                    },
+                    {
+                      "key": "order_direction",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#unauthorized\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"UNAUTHORIZED\",\n      \"message\": \"Unauthorized\"\n    },\n    {\n      \"code\": \"UNAUTHORIZED\",\n      \"message\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f94ed688-2efb-46d1-a262-3d3574dcae42",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "site-journals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "order_by",
+                      "value": "server_updated_at"
+                    },
+                    {
+                      "key": "order_direction",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#forbidden\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"FORBIDDEN\",\n      \"message\": \"Forbidden\"\n    },\n    {\n      \"code\": \"FORBIDDEN\",\n      \"message\": \"Forbidden\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7bbe2fdf-17a5-48fe-8350-70ca6aa2ce2a",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "site-journals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "order_by",
+                      "value": "server_updated_at"
+                    },
+                    {
+                      "key": "order_direction",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#internal-server-error\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"INTERNAL_SERVER_ERROR\",\n      \"message\": \"Internal server error\"\n    },\n    {\n      \"code\": \"INTERNAL_SERVER_ERROR\",\n      \"message\": \"Internal server error\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aa97651c-2166-4793-bdec-d10e135d5fb6",
+          "name": "create Site Journal",
+          "request": {
+            "name": "create Site Journal",
+            "description": {
+              "content": "Creates a new project site journal.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "projects",
+                ":projectId",
+                "site-journals"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) The unique identifier of the project."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                "key": "Request-Id",
+                "value": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"date\": \"<string>\",\n  \"source_id\": \"<string>\",\n  \"visits\": [\n    {\n      \"started_at\": \"<string>\",\n      \"ended_at\": \"<string>\",\n      \"visitor_id\": \"<string>\",\n      \"qualification\": \"<string>\"\n    },\n    {\n      \"started_at\": \"<string>\",\n      \"ended_at\": \"<string>\",\n      \"visitor_id\": \"<string>\",\n      \"qualification\": \"<string>\"\n    }\n  ],\n  \"weather_observation\": \"<object>\",\n  \"company_attendances\": [\n    {\n      \"company_id\": \"<string>\",\n      \"headcount\": \"<number>\",\n      \"description\": \"<string>\",\n      \"worker_entries\": [\n        {\n          \"id\": \"<string>\",\n          \"started_at\": \"<string>\",\n          \"ended_at\": \"<string>\",\n          \"duration\": \"<number>\",\n          \"worker_id\": \"<string>\",\n          \"qualification\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"started_at\": \"<string>\",\n          \"ended_at\": \"<string>\",\n          \"duration\": \"<number>\",\n          \"worker_id\": \"<string>\",\n          \"qualification\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"company_id\": \"<string>\",\n      \"headcount\": \"<number>\",\n      \"description\": \"<string>\",\n      \"worker_entries\": [\n        {\n          \"id\": \"<string>\",\n          \"started_at\": \"<string>\",\n          \"ended_at\": \"<string>\",\n          \"duration\": \"<number>\",\n          \"worker_id\": \"<string>\",\n          \"qualification\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"started_at\": \"<string>\",\n          \"ended_at\": \"<string>\",\n          \"duration\": \"<number>\",\n          \"worker_id\": \"<string>\",\n          \"qualification\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"custom_texts\": [\n    {\n      \"text\": \"<string>\"\n    },\n    {\n      \"text\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d91a2281-04cd-456d-a6a2-b028f6b2183c",
+              "name": "Site journal successfully created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "site-journals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier of the project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"date\": \"2025-01-13\",\n  \"source_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"visits\": [\n    {\n      \"started_at\": \"11:00\",\n      \"ended_at\": \"12:00\",\n      \"visitor_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"qualification\": \"CONSTRUCTION_WORKER\"\n    },\n    {\n      \"started_at\": \"11:00\",\n      \"ended_at\": \"12:00\",\n      \"visitor_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"qualification\": \"CONSTRUCTION_WORKER\"\n    }\n  ],\n  \"weather_observation\": \"<object>\",\n  \"company_attendances\": [\n    {\n      \"company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"headcount\": 5,\n      \"description\": \"Arrived late due to traffic.\",\n      \"worker_entries\": [\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        },\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        }\n      ]\n    },\n    {\n      \"company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"headcount\": 5,\n      \"description\": \"Arrived late due to traffic.\",\n      \"worker_entries\": [\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        },\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        }\n      ]\n    }\n  ],\n  \"custom_texts\": [\n    {\n      \"text\": \"Foundation work completed on the east wing.\"\n    },\n    {\n      \"text\": \"Foundation work completed on the east wing.\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Success\",\n  \"data\": {\n    \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"date\": \"2025-01-13\",\n    \"project_id\": \"adc99411-eaa2-11e9-11ed-efee563cda11\",\n    \"weather_observation\": {},\n    \"visits\": [\n      \"string\",\n      \"string\"\n    ],\n    \"company_attendances\": [\n      \"string\",\n      \"string\"\n    ],\n    \"custom_texts\": [\n      {\n        \"text\": \"Foundation work completed on the east wing.\"\n      },\n      {\n        \"text\": \"Foundation work completed on the east wing.\"\n      }\n    ],\n    \"source_id\": \"123e4567-e89b-12d3-a456-426614174000\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a455eb60-4465-48d4-aeaa-8078cdda542f",
+              "name": "Bad request, Invalid input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "site-journals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier of the project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"date\": \"2025-01-13\",\n  \"source_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"visits\": [\n    {\n      \"started_at\": \"11:00\",\n      \"ended_at\": \"12:00\",\n      \"visitor_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"qualification\": \"CONSTRUCTION_WORKER\"\n    },\n    {\n      \"started_at\": \"11:00\",\n      \"ended_at\": \"12:00\",\n      \"visitor_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"qualification\": \"CONSTRUCTION_WORKER\"\n    }\n  ],\n  \"weather_observation\": \"<object>\",\n  \"company_attendances\": [\n    {\n      \"company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"headcount\": 5,\n      \"description\": \"Arrived late due to traffic.\",\n      \"worker_entries\": [\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        },\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        }\n      ]\n    },\n    {\n      \"company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"headcount\": 5,\n      \"description\": \"Arrived late due to traffic.\",\n      \"worker_entries\": [\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        },\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        }\n      ]\n    }\n  ],\n  \"custom_texts\": [\n    {\n      \"text\": \"Foundation work completed on the east wing.\"\n    },\n    {\n      \"text\": \"Foundation work completed on the east wing.\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#bad-request\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"BAD_REQUEST\",\n      \"message\": \"Bad request\"\n    },\n    {\n      \"code\": \"BAD_REQUEST\",\n      \"message\": \"Bad request\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "42a974ff-a835-4bb4-9df9-2aa9e4645b9a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "site-journals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier of the project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"date\": \"2025-01-13\",\n  \"source_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"visits\": [\n    {\n      \"started_at\": \"11:00\",\n      \"ended_at\": \"12:00\",\n      \"visitor_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"qualification\": \"CONSTRUCTION_WORKER\"\n    },\n    {\n      \"started_at\": \"11:00\",\n      \"ended_at\": \"12:00\",\n      \"visitor_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"qualification\": \"CONSTRUCTION_WORKER\"\n    }\n  ],\n  \"weather_observation\": \"<object>\",\n  \"company_attendances\": [\n    {\n      \"company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"headcount\": 5,\n      \"description\": \"Arrived late due to traffic.\",\n      \"worker_entries\": [\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        },\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        }\n      ]\n    },\n    {\n      \"company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"headcount\": 5,\n      \"description\": \"Arrived late due to traffic.\",\n      \"worker_entries\": [\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        },\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        }\n      ]\n    }\n  ],\n  \"custom_texts\": [\n    {\n      \"text\": \"Foundation work completed on the east wing.\"\n    },\n    {\n      \"text\": \"Foundation work completed on the east wing.\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#unauthorized\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"UNAUTHORIZED\",\n      \"message\": \"Unauthorized\"\n    },\n    {\n      \"code\": \"UNAUTHORIZED\",\n      \"message\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b865615f-2ba2-42ed-a83d-f4911c61bdd9",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "site-journals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier of the project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"date\": \"2025-01-13\",\n  \"source_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"visits\": [\n    {\n      \"started_at\": \"11:00\",\n      \"ended_at\": \"12:00\",\n      \"visitor_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"qualification\": \"CONSTRUCTION_WORKER\"\n    },\n    {\n      \"started_at\": \"11:00\",\n      \"ended_at\": \"12:00\",\n      \"visitor_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"qualification\": \"CONSTRUCTION_WORKER\"\n    }\n  ],\n  \"weather_observation\": \"<object>\",\n  \"company_attendances\": [\n    {\n      \"company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"headcount\": 5,\n      \"description\": \"Arrived late due to traffic.\",\n      \"worker_entries\": [\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        },\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        }\n      ]\n    },\n    {\n      \"company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"headcount\": 5,\n      \"description\": \"Arrived late due to traffic.\",\n      \"worker_entries\": [\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        },\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        }\n      ]\n    }\n  ],\n  \"custom_texts\": [\n    {\n      \"text\": \"Foundation work completed on the east wing.\"\n    },\n    {\n      \"text\": \"Foundation work completed on the east wing.\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#forbidden\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"FORBIDDEN\",\n      \"message\": \"Forbidden\"\n    },\n    {\n      \"code\": \"FORBIDDEN\",\n      \"message\": \"Forbidden\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "67622553-5d1b-4134-b59a-ad659053ce7b",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "site-journals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier of the project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"date\": \"2025-01-13\",\n  \"source_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"visits\": [\n    {\n      \"started_at\": \"11:00\",\n      \"ended_at\": \"12:00\",\n      \"visitor_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"qualification\": \"CONSTRUCTION_WORKER\"\n    },\n    {\n      \"started_at\": \"11:00\",\n      \"ended_at\": \"12:00\",\n      \"visitor_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"qualification\": \"CONSTRUCTION_WORKER\"\n    }\n  ],\n  \"weather_observation\": \"<object>\",\n  \"company_attendances\": [\n    {\n      \"company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"headcount\": 5,\n      \"description\": \"Arrived late due to traffic.\",\n      \"worker_entries\": [\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        },\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        }\n      ]\n    },\n    {\n      \"company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"headcount\": 5,\n      \"description\": \"Arrived late due to traffic.\",\n      \"worker_entries\": [\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        },\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        }\n      ]\n    }\n  ],\n  \"custom_texts\": [\n    {\n      \"text\": \"Foundation work completed on the east wing.\"\n    },\n    {\n      \"text\": \"Foundation work completed on the east wing.\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#conflict\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"CONFLICT\",\n      \"message\": \"Conflict\"\n    },\n    {\n      \"code\": \"CONFLICT\",\n      \"message\": \"Conflict\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e315d7f5-448d-4b2f-807b-93988dc3c1cd",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "site-journals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier of the project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"date\": \"2025-01-13\",\n  \"source_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"visits\": [\n    {\n      \"started_at\": \"11:00\",\n      \"ended_at\": \"12:00\",\n      \"visitor_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"qualification\": \"CONSTRUCTION_WORKER\"\n    },\n    {\n      \"started_at\": \"11:00\",\n      \"ended_at\": \"12:00\",\n      \"visitor_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"qualification\": \"CONSTRUCTION_WORKER\"\n    }\n  ],\n  \"weather_observation\": \"<object>\",\n  \"company_attendances\": [\n    {\n      \"company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"headcount\": 5,\n      \"description\": \"Arrived late due to traffic.\",\n      \"worker_entries\": [\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        },\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        }\n      ]\n    },\n    {\n      \"company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"headcount\": 5,\n      \"description\": \"Arrived late due to traffic.\",\n      \"worker_entries\": [\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        },\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        }\n      ]\n    }\n  ],\n  \"custom_texts\": [\n    {\n      \"text\": \"Foundation work completed on the east wing.\"\n    },\n    {\n      \"text\": \"Foundation work completed on the east wing.\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#internal-server-error\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"INTERNAL_SERVER_ERROR\",\n      \"message\": \"Internal server error\"\n    },\n    {\n      \"code\": \"INTERNAL_SERVER_ERROR\",\n      \"message\": \"Internal server error\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "67448412-a478-47d9-a98a-e1d1f213525b",
+          "name": "get Site Journal",
+          "request": {
+            "name": "get Site Journal",
+            "description": {
+              "content": "Retrieves a single project site journal by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "projects",
+                ":projectId",
+                "site-journals",
+                ":siteJournalId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) The unique identifier of the project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "siteJournalId",
+                  "description": "(Required) The unique identifier of the site journal."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                "key": "Request-Id",
+                "value": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "53832fc8-16c7-43df-ae70-5ae3681cc272",
+              "name": "The project site journal has been successfully retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "site-journals",
+                    ":siteJournalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteJournalId",
+                      "description": "(Required) The unique identifier of the site journal."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Success\",\n  \"data\": {\n    \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"date\": \"2025-01-13\",\n    \"project_id\": \"adc99411-eaa2-11e9-11ed-efee563cda11\",\n    \"weather_observation\": {},\n    \"visits\": [\n      \"string\",\n      \"string\"\n    ],\n    \"company_attendances\": [\n      \"string\",\n      \"string\"\n    ],\n    \"custom_texts\": [\n      {\n        \"text\": \"Foundation work completed on the east wing.\"\n      },\n      {\n        \"text\": \"Foundation work completed on the east wing.\"\n      }\n    ],\n    \"source_id\": \"123e4567-e89b-12d3-a456-426614174000\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "047d4ca1-5c12-40c4-89b2-1be6aacb23c4",
+              "name": "Bad request, Invalid input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "site-journals",
+                    ":siteJournalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteJournalId",
+                      "description": "(Required) The unique identifier of the site journal."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#bad-request\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"BAD_REQUEST\",\n      \"message\": \"Bad request\"\n    },\n    {\n      \"code\": \"BAD_REQUEST\",\n      \"message\": \"Bad request\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7dd33861-1431-482e-a023-b71196b73e6a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "site-journals",
+                    ":siteJournalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteJournalId",
+                      "description": "(Required) The unique identifier of the site journal."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#unauthorized\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"UNAUTHORIZED\",\n      \"message\": \"Unauthorized\"\n    },\n    {\n      \"code\": \"UNAUTHORIZED\",\n      \"message\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f01e7a45-50a2-4908-b19e-4a1e12af2a7b",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "site-journals",
+                    ":siteJournalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteJournalId",
+                      "description": "(Required) The unique identifier of the site journal."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#forbidden\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"FORBIDDEN\",\n      \"message\": \"Forbidden\"\n    },\n    {\n      \"code\": \"FORBIDDEN\",\n      \"message\": \"Forbidden\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "090e9723-3ddc-46fa-b049-431f35903d89",
+              "name": "Object not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "site-journals",
+                    ":siteJournalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteJournalId",
+                      "description": "(Required) The unique identifier of the site journal."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#not-found\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"NOT_FOUND\",\n      \"message\": \"Object not found\"\n    },\n    {\n      \"code\": \"NOT_FOUND\",\n      \"message\": \"Object not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "82fb0c77-6795-464c-a12b-ed5e62608b21",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "site-journals",
+                    ":siteJournalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteJournalId",
+                      "description": "(Required) The unique identifier of the site journal."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#internal-server-error\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"INTERNAL_SERVER_ERROR\",\n      \"message\": \"Internal server error\"\n    },\n    {\n      \"code\": \"INTERNAL_SERVER_ERROR\",\n      \"message\": \"Internal server error\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6643bc80-af30-465d-af06-81c486d01dfa",
+          "name": "update Site Journal",
+          "request": {
+            "name": "update Site Journal",
+            "description": {
+              "content": "Updates a project site journal. When the properties to be updated are objects, they are completely replaced. This means that attendances, visits or weather observation will always be replaced in case of an update.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "projects",
+                ":projectId",
+                "site-journals",
+                ":siteJournalId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) The unique identifier of the project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "siteJournalId",
+                  "description": "(Required) The unique identifier of the site journal."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                "key": "Request-Id",
+                "value": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"source_id\": \"<string>\",\n  \"date\": \"<string>\",\n  \"visits\": [\n    {\n      \"started_at\": \"<string>\",\n      \"ended_at\": \"<string>\",\n      \"visitor_id\": \"<string>\",\n      \"qualification\": \"<string>\"\n    },\n    {\n      \"started_at\": \"<string>\",\n      \"ended_at\": \"<string>\",\n      \"visitor_id\": \"<string>\",\n      \"qualification\": \"<string>\"\n    }\n  ],\n  \"weather_observation\": \"<object>\",\n  \"company_attendances\": [\n    {\n      \"company_id\": \"<string>\",\n      \"headcount\": \"<number>\",\n      \"description\": \"<string>\",\n      \"worker_entries\": [\n        {\n          \"id\": \"<string>\",\n          \"started_at\": \"<string>\",\n          \"ended_at\": \"<string>\",\n          \"duration\": \"<number>\",\n          \"worker_id\": \"<string>\",\n          \"qualification\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"started_at\": \"<string>\",\n          \"ended_at\": \"<string>\",\n          \"duration\": \"<number>\",\n          \"worker_id\": \"<string>\",\n          \"qualification\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"company_id\": \"<string>\",\n      \"headcount\": \"<number>\",\n      \"description\": \"<string>\",\n      \"worker_entries\": [\n        {\n          \"id\": \"<string>\",\n          \"started_at\": \"<string>\",\n          \"ended_at\": \"<string>\",\n          \"duration\": \"<number>\",\n          \"worker_id\": \"<string>\",\n          \"qualification\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"started_at\": \"<string>\",\n          \"ended_at\": \"<string>\",\n          \"duration\": \"<number>\",\n          \"worker_id\": \"<string>\",\n          \"qualification\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"custom_texts\": [\n    {\n      \"text\": \"<string>\"\n    },\n    {\n      \"text\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "55bb0765-66b4-46ef-a7b5-e148a41342fc",
+              "name": "The project site journal has been successfully updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "site-journals",
+                    ":siteJournalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteJournalId",
+                      "description": "(Required) The unique identifier of the site journal."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"date\": \"2025-01-13\",\n  \"visits\": [\n    {\n      \"started_at\": \"11:00\",\n      \"ended_at\": \"12:00\",\n      \"visitor_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"qualification\": \"CONSTRUCTION_WORKER\"\n    },\n    {\n      \"started_at\": \"11:00\",\n      \"ended_at\": \"12:00\",\n      \"visitor_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"qualification\": \"CONSTRUCTION_WORKER\"\n    }\n  ],\n  \"weather_observation\": \"<object>\",\n  \"company_attendances\": [\n    {\n      \"company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"headcount\": 5,\n      \"description\": \"Arrived late due to traffic.\",\n      \"worker_entries\": [\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        },\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        }\n      ]\n    },\n    {\n      \"company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"headcount\": 5,\n      \"description\": \"Arrived late due to traffic.\",\n      \"worker_entries\": [\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        },\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        }\n      ]\n    }\n  ],\n  \"custom_texts\": [\n    {\n      \"text\": \"Foundation work completed on the east wing.\"\n    },\n    {\n      \"text\": \"Foundation work completed on the east wing.\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Success\",\n  \"data\": {\n    \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"date\": \"2025-01-13\",\n    \"project_id\": \"adc99411-eaa2-11e9-11ed-efee563cda11\",\n    \"weather_observation\": {},\n    \"visits\": [\n      \"string\",\n      \"string\"\n    ],\n    \"company_attendances\": [\n      \"string\",\n      \"string\"\n    ],\n    \"custom_texts\": [\n      {\n        \"text\": \"Foundation work completed on the east wing.\"\n      },\n      {\n        \"text\": \"Foundation work completed on the east wing.\"\n      }\n    ],\n    \"source_id\": \"123e4567-e89b-12d3-a456-426614174000\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a653ddd3-0a6b-4b0d-a2fa-ca3016a10a4e",
+              "name": "Bad request, Invalid input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "site-journals",
+                    ":siteJournalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteJournalId",
+                      "description": "(Required) The unique identifier of the site journal."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"date\": \"2025-01-13\",\n  \"visits\": [\n    {\n      \"started_at\": \"11:00\",\n      \"ended_at\": \"12:00\",\n      \"visitor_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"qualification\": \"CONSTRUCTION_WORKER\"\n    },\n    {\n      \"started_at\": \"11:00\",\n      \"ended_at\": \"12:00\",\n      \"visitor_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"qualification\": \"CONSTRUCTION_WORKER\"\n    }\n  ],\n  \"weather_observation\": \"<object>\",\n  \"company_attendances\": [\n    {\n      \"company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"headcount\": 5,\n      \"description\": \"Arrived late due to traffic.\",\n      \"worker_entries\": [\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        },\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        }\n      ]\n    },\n    {\n      \"company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"headcount\": 5,\n      \"description\": \"Arrived late due to traffic.\",\n      \"worker_entries\": [\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        },\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        }\n      ]\n    }\n  ],\n  \"custom_texts\": [\n    {\n      \"text\": \"Foundation work completed on the east wing.\"\n    },\n    {\n      \"text\": \"Foundation work completed on the east wing.\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#bad-request\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"BAD_REQUEST\",\n      \"message\": \"Bad request\"\n    },\n    {\n      \"code\": \"BAD_REQUEST\",\n      \"message\": \"Bad request\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc79fcfd-6e73-4d53-a19e-07d81f1f0e54",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "site-journals",
+                    ":siteJournalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteJournalId",
+                      "description": "(Required) The unique identifier of the site journal."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"date\": \"2025-01-13\",\n  \"visits\": [\n    {\n      \"started_at\": \"11:00\",\n      \"ended_at\": \"12:00\",\n      \"visitor_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"qualification\": \"CONSTRUCTION_WORKER\"\n    },\n    {\n      \"started_at\": \"11:00\",\n      \"ended_at\": \"12:00\",\n      \"visitor_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"qualification\": \"CONSTRUCTION_WORKER\"\n    }\n  ],\n  \"weather_observation\": \"<object>\",\n  \"company_attendances\": [\n    {\n      \"company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"headcount\": 5,\n      \"description\": \"Arrived late due to traffic.\",\n      \"worker_entries\": [\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        },\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        }\n      ]\n    },\n    {\n      \"company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"headcount\": 5,\n      \"description\": \"Arrived late due to traffic.\",\n      \"worker_entries\": [\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        },\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        }\n      ]\n    }\n  ],\n  \"custom_texts\": [\n    {\n      \"text\": \"Foundation work completed on the east wing.\"\n    },\n    {\n      \"text\": \"Foundation work completed on the east wing.\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#unauthorized\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"UNAUTHORIZED\",\n      \"message\": \"Unauthorized\"\n    },\n    {\n      \"code\": \"UNAUTHORIZED\",\n      \"message\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8fe0c9bd-5c75-4e42-8420-90576a87755f",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "site-journals",
+                    ":siteJournalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteJournalId",
+                      "description": "(Required) The unique identifier of the site journal."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"date\": \"2025-01-13\",\n  \"visits\": [\n    {\n      \"started_at\": \"11:00\",\n      \"ended_at\": \"12:00\",\n      \"visitor_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"qualification\": \"CONSTRUCTION_WORKER\"\n    },\n    {\n      \"started_at\": \"11:00\",\n      \"ended_at\": \"12:00\",\n      \"visitor_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"qualification\": \"CONSTRUCTION_WORKER\"\n    }\n  ],\n  \"weather_observation\": \"<object>\",\n  \"company_attendances\": [\n    {\n      \"company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"headcount\": 5,\n      \"description\": \"Arrived late due to traffic.\",\n      \"worker_entries\": [\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        },\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        }\n      ]\n    },\n    {\n      \"company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"headcount\": 5,\n      \"description\": \"Arrived late due to traffic.\",\n      \"worker_entries\": [\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        },\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        }\n      ]\n    }\n  ],\n  \"custom_texts\": [\n    {\n      \"text\": \"Foundation work completed on the east wing.\"\n    },\n    {\n      \"text\": \"Foundation work completed on the east wing.\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#forbidden\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"FORBIDDEN\",\n      \"message\": \"Forbidden\"\n    },\n    {\n      \"code\": \"FORBIDDEN\",\n      \"message\": \"Forbidden\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "daf22a02-4de2-414d-904a-c805db4f98a9",
+              "name": "Object not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "site-journals",
+                    ":siteJournalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteJournalId",
+                      "description": "(Required) The unique identifier of the site journal."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"date\": \"2025-01-13\",\n  \"visits\": [\n    {\n      \"started_at\": \"11:00\",\n      \"ended_at\": \"12:00\",\n      \"visitor_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"qualification\": \"CONSTRUCTION_WORKER\"\n    },\n    {\n      \"started_at\": \"11:00\",\n      \"ended_at\": \"12:00\",\n      \"visitor_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"qualification\": \"CONSTRUCTION_WORKER\"\n    }\n  ],\n  \"weather_observation\": \"<object>\",\n  \"company_attendances\": [\n    {\n      \"company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"headcount\": 5,\n      \"description\": \"Arrived late due to traffic.\",\n      \"worker_entries\": [\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        },\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        }\n      ]\n    },\n    {\n      \"company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"headcount\": 5,\n      \"description\": \"Arrived late due to traffic.\",\n      \"worker_entries\": [\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        },\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        }\n      ]\n    }\n  ],\n  \"custom_texts\": [\n    {\n      \"text\": \"Foundation work completed on the east wing.\"\n    },\n    {\n      \"text\": \"Foundation work completed on the east wing.\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#not-found\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"NOT_FOUND\",\n      \"message\": \"Object not found\"\n    },\n    {\n      \"code\": \"NOT_FOUND\",\n      \"message\": \"Object not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1e43f8d7-ef68-4396-9f0f-c54905fcf853",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "site-journals",
+                    ":siteJournalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteJournalId",
+                      "description": "(Required) The unique identifier of the site journal."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"date\": \"2025-01-13\",\n  \"visits\": [\n    {\n      \"started_at\": \"11:00\",\n      \"ended_at\": \"12:00\",\n      \"visitor_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"qualification\": \"CONSTRUCTION_WORKER\"\n    },\n    {\n      \"started_at\": \"11:00\",\n      \"ended_at\": \"12:00\",\n      \"visitor_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"qualification\": \"CONSTRUCTION_WORKER\"\n    }\n  ],\n  \"weather_observation\": \"<object>\",\n  \"company_attendances\": [\n    {\n      \"company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"headcount\": 5,\n      \"description\": \"Arrived late due to traffic.\",\n      \"worker_entries\": [\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        },\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        }\n      ]\n    },\n    {\n      \"company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"headcount\": 5,\n      \"description\": \"Arrived late due to traffic.\",\n      \"worker_entries\": [\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        },\n        {\n          \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"started_at\": \"08:00\",\n          \"ended_at\": \"17:00\",\n          \"duration\": 480,\n          \"worker_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n          \"qualification\": \"CONSTRUCTION_WORKER\"\n        }\n      ]\n    }\n  ],\n  \"custom_texts\": [\n    {\n      \"text\": \"Foundation work completed on the east wing.\"\n    },\n    {\n      \"text\": \"Foundation work completed on the east wing.\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#internal-server-error\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"INTERNAL_SERVER_ERROR\",\n      \"message\": \"Internal server error\"\n    },\n    {\n      \"code\": \"INTERNAL_SERVER_ERROR\",\n      \"message\": \"Internal server error\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "751488c2-1baf-4973-a643-e5da1b710e57",
+          "name": "delete Site Journal",
+          "request": {
+            "name": "delete Site Journal",
+            "description": {
+              "content": "This endpoint deletes a project site journal and all its associated entries (company attendances, visits, weather observations).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "projects",
+                ":projectId",
+                "site-journals",
+                ":siteJournalId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) The unique identifier of the project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "siteJournalId",
+                  "description": "(Required) The unique identifier of the site journal."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                "key": "Request-Id",
+                "value": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "96b356cd-236e-49e2-9922-ca0b8adfdd4d",
+              "name": "The project site journal has been successfully deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "site-journals",
+                    ":siteJournalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteJournalId",
+                      "description": "(Required) The unique identifier of the site journal."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6a668adc-165a-4c91-8f15-9faaec8cdcbc",
+              "name": "Bad request, Invalid input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "site-journals",
+                    ":siteJournalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteJournalId",
+                      "description": "(Required) The unique identifier of the site journal."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#bad-request\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"BAD_REQUEST\",\n      \"message\": \"Bad request\"\n    },\n    {\n      \"code\": \"BAD_REQUEST\",\n      \"message\": \"Bad request\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b463748-a15f-4195-b468-1929b02640f3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "site-journals",
+                    ":siteJournalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteJournalId",
+                      "description": "(Required) The unique identifier of the site journal."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#unauthorized\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"UNAUTHORIZED\",\n      \"message\": \"Unauthorized\"\n    },\n    {\n      \"code\": \"UNAUTHORIZED\",\n      \"message\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dcd6f906-eeac-4e64-970f-a739f26dd255",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "site-journals",
+                    ":siteJournalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteJournalId",
+                      "description": "(Required) The unique identifier of the site journal."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#forbidden\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"FORBIDDEN\",\n      \"message\": \"Forbidden\"\n    },\n    {\n      \"code\": \"FORBIDDEN\",\n      \"message\": \"Forbidden\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d470cf0d-729f-440b-b534-a2aae1c07973",
+              "name": "Object not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "site-journals",
+                    ":siteJournalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteJournalId",
+                      "description": "(Required) The unique identifier of the site journal."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#not-found\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"NOT_FOUND\",\n      \"message\": \"Object not found\"\n    },\n    {\n      \"code\": \"NOT_FOUND\",\n      \"message\": \"Object not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0c1a99f3-8695-4c16-87f3-dd94e090014c",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "site-journals",
+                    ":siteJournalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteJournalId",
+                      "description": "(Required) The unique identifier of the site journal."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#internal-server-error\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"INTERNAL_SERVER_ERROR\",\n      \"message\": \"Internal server error\"\n    },\n    {\n      \"code\": \"INTERNAL_SERVER_ERROR\",\n      \"message\": \"Internal server error\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.capmo.de",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b2417424-9d0c-49f4-bb09-26b24b200a78",
+    "name": "Capmo REST Organisation Companies Project Site Journals API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "External REST API Documentation for Capmo",
+      "type": "text/plain"
+    }
+  }
+}

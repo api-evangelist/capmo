@@ -1,0 +1,222 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Capmo REST Organisation Companies Project Site Journals API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Project Site Journals",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getSiteJournalsPaginated",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.capmo.de/api/v1/projects/:projectId/site-journals",
+            "headers": [
+              {
+                "name": "Request-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query",
+                "description": "Field to order by."
+              },
+              {
+                "name": "order_direction",
+                "value": "",
+                "type": "query",
+                "description": "Order direction of the `order_by` field. It can be `asc` or `desc`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "The last element from the previous page. This is a cursor. It will be returned in the output to be used in the next request. When it is not present, the first page is returned. When it is `null`, there are no more pages."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "How many items should be in the output."
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Gets all the site journals in a paginated response."
+        },
+        {
+          "info": {
+            "name": "createSiteJournal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.capmo.de/api/v1/projects/:projectId/site-journals",
+            "headers": [
+              {
+                "name": "Request-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a new project site journal."
+        },
+        {
+          "info": {
+            "name": "getSiteJournal",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.capmo.de/api/v1/projects/:projectId/site-journals/:siteJournalId",
+            "headers": [
+              {
+                "name": "Request-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project."
+              },
+              {
+                "name": "siteJournalId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the site journal."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves a single project site journal by ID."
+        },
+        {
+          "info": {
+            "name": "updateSiteJournal",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.capmo.de/api/v1/projects/:projectId/site-journals/:siteJournalId",
+            "headers": [
+              {
+                "name": "Request-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project."
+              },
+              {
+                "name": "siteJournalId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the site journal."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates a project site journal. When the properties to be updated are objects, they are completely replaced. This means that attendances, visits or weather observation will always be replaced in case of an update."
+        },
+        {
+          "info": {
+            "name": "deleteSiteJournal",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.capmo.de/api/v1/projects/:projectId/site-journals/:siteJournalId",
+            "headers": [
+              {
+                "name": "Request-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project."
+              },
+              {
+                "name": "siteJournalId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the site journal."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint deletes a project site journal and all its associated entries (company attendances, visits, weather observations)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

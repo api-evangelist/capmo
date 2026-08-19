@@ -1,0 +1,127 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Capmo REST Organisation Companies Organisation Projects API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organisation Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getOrganisationProjects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.capmo.de/api/v1/organisation/projects",
+            "headers": [
+              {
+                "name": "Request-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query",
+                "description": "Field to order by. It can be any field of the entity."
+              },
+              {
+                "name": "order_direction",
+                "value": "",
+                "type": "query",
+                "description": "Order direction of the `order_by` field. It can be `asc` or `desc`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "The last element from the previous page. This is a cursor. It will be returned in the output to be used in the next request. When it is not present, the first page is returned. When it is `null`, there are no more pages."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "How many items should be in the output."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This can be used to list all projects owned by your organisation in a paginated response. Project templates are excluded."
+        },
+        {
+          "info": {
+            "name": "joinOwnOrganisationProject",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.capmo.de/api/v1/organisation/projects/:projectId/membership",
+            "headers": [
+              {
+                "name": "Request-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This can be used to join an organisation project. The API-key user must be an organisation admin, and the project must be owned by the user's organisation. If the user previously left the project (soft-deleted membership), a new membership is created."
+        },
+        {
+          "info": {
+            "name": "leaveOwnOrganisationProject",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.capmo.de/api/v1/organisation/projects/:projectId/membership",
+            "headers": [
+              {
+                "name": "Request-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This can be used to leave an organisation project. The API-key user must be an organisation admin, and the project must be owned by the user's organisation. The user's project membership and associated project contact are removed."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

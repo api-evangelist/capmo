@@ -1,0 +1,373 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Capmo REST Organisation Companies Project Plans API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Project Plans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getPlanFolders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.capmo.de/api/v1/projects/:projectId/plan-folders",
+            "headers": [
+              {
+                "name": "Request-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query",
+                "description": "Field to order by. It can be any field of the entity."
+              },
+              {
+                "name": "order_direction",
+                "value": "",
+                "type": "query",
+                "description": "Order direction of the `order_by` field. It can be `asc` or `desc`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "The last element from the previous page. This is a cursor. It will be returned in the output to be used in the next request. When it is not present, the first page is returned. When it is `null`, there are no more pages."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "How many items should be in the output."
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This can be used to list all project plan folders in a paginated response."
+        },
+        {
+          "info": {
+            "name": "createPlanFolder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.capmo.de/api/v1/projects/:projectId/plan-folders",
+            "headers": [
+              {
+                "name": "Request-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This can be used to create a new project plan folder."
+        },
+        {
+          "info": {
+            "name": "updatePlanFolder",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.capmo.de/api/v1/projects/:projectId/plan-folders/:folderId",
+            "headers": [
+              {
+                "name": "Request-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "folderId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This can be used to rename a project plan folder."
+        },
+        {
+          "info": {
+            "name": "deletePlanFolder",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.capmo.de/api/v1/projects/:projectId/plan-folders/:folderId",
+            "headers": [
+              {
+                "name": "Request-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "folderId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This can be used to delete a specific project plan folder by its ID."
+        },
+        {
+          "info": {
+            "name": "getProjectPlansList",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.capmo.de/api/v1/projects/:projectId/plans",
+            "headers": [
+              {
+                "name": "Request-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query",
+                "description": "Field to order by. It can be any field of the entity."
+              },
+              {
+                "name": "order_direction",
+                "value": "",
+                "type": "query",
+                "description": "Order direction of the `order_by` field. It can be `asc` or `desc`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "The last element from the previous page. This is a cursor. It will be returned in the output to be used in the next request. When it is not present, the first page is returned. When it is `null`, there are no more pages."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "How many items should be in the output."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This can be used to list all project plans in a paginated response."
+        },
+        {
+          "info": {
+            "name": "createProjectPlan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.capmo.de/api/v1/projects/:projectId/plans",
+            "headers": [
+              {
+                "name": "Request-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This can be used to create a new project plan."
+        },
+        {
+          "info": {
+            "name": "getProjectPlan",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.capmo.de/api/v1/projects/:projectId/plans/:planId",
+            "headers": [
+              {
+                "name": "Request-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This can be used to get a single project plan."
+        },
+        {
+          "info": {
+            "name": "updateProjectPlan",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.capmo.de/api/v1/projects/:projectId/plans/:planId",
+            "headers": [
+              {
+                "name": "Request-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This can be used to update a specific project plan by its ID."
+        },
+        {
+          "info": {
+            "name": "deletePlan",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.capmo.de/api/v1/projects/:projectId/plans/:planId",
+            "headers": [
+              {
+                "name": "Request-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This can be used to delete a specific project plan by its ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

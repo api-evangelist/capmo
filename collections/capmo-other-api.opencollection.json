@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Capmo REST Organisation Companies Other API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Other",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "validate",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.capmo.de/api/v1/validate",
+            "headers": [
+              {
+                "name": "Request-Id",
+                "value": ""
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This can be used to validate the API Key. If valid, it will return the associated user ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

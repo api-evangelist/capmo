@@ -1,0 +1,215 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Capmo REST Organisation Companies Project Tickets API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Project Tickets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getProjectTicketsPaginated",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.capmo.de/api/v1/projects/:projectId/tickets",
+            "headers": [
+              {
+                "name": "Request-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query",
+                "description": "Field to order by. It can be any field of the entity."
+              },
+              {
+                "name": "order_direction",
+                "value": "",
+                "type": "query",
+                "description": "Order direction of the `order_by` field. It can be `asc` or `desc`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "The last element from the previous page. This is a cursor. It will be returned in the output to be used in the next request. When it is not present, the first page is returned. When it is `null`, there are no more pages."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "How many items should be in the output."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This can be used to list all project tickets in a paginated response."
+        },
+        {
+          "info": {
+            "name": "createProjectTicket",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.capmo.de/api/v1/projects/:projectId/tickets",
+            "headers": [
+              {
+                "name": "Request-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This can be used to create a new project ticket.\n\n Please note:\n - Project ticket categories, tags, types, etc. have their own endpoints to be managed. They can be added on ticket creation if they already exist."
+        },
+        {
+          "info": {
+            "name": "getProjectTicket",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.capmo.de/api/v1/projects/:projectId/tickets/:ticketId",
+            "headers": [
+              {
+                "name": "Request-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ticketId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This can be used to get a specific project ticket by its id."
+        },
+        {
+          "info": {
+            "name": "updateProjectTicket",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.capmo.de/api/v1/projects/:projectId/tickets/:ticketId",
+            "headers": [
+              {
+                "name": "Request-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ticketId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This can be used to update a specific project ticket by its ID."
+        },
+        {
+          "info": {
+            "name": "deleteProjectTicket",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.capmo.de/api/v1/projects/:projectId/tickets/:ticketId",
+            "headers": [
+              {
+                "name": "Request-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ticketId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This can be used to delete a specific project ticket by its ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

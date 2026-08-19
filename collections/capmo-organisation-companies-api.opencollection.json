@@ -1,0 +1,194 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Capmo REST Organisation Companies API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organisation Companies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getOrganisationCompanies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.capmo.de/api/v1/organisation/companies",
+            "headers": [
+              {
+                "name": "Request-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query",
+                "description": "Field to order by."
+              },
+              {
+                "name": "order_direction",
+                "value": "",
+                "type": "query",
+                "description": "Order direction of the `order_by` field. It can be `asc` or `desc`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "The last element from the previous page. This is a cursor. It will be returned in the output to be used in the next request. When it is not present, the first page is returned. When it is `null`, there are no more pages."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "How many items should be in the output."
+              },
+              {
+                "name": "source_id",
+                "value": "",
+                "type": "query",
+                "description": "[Filtering Parameter] The unique identifier of the source. This is a user-generated string, used to link the company to a resource in an external system."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This can be used to list all organisation contact book companies in a paginated response."
+        },
+        {
+          "info": {
+            "name": "createOrganisationCompany",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.capmo.de/api/v1/organisation/companies",
+            "headers": [
+              {
+                "name": "Request-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This can be used to add a new organisation contact book company."
+        },
+        {
+          "info": {
+            "name": "getOrganisationCompany",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.capmo.de/api/v1/organisation/companies/:companyId",
+            "headers": [
+              {
+                "name": "Request-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This can be used to retrieve a specific organisation company by its ID."
+        },
+        {
+          "info": {
+            "name": "updateOrganisationCompany",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.capmo.de/api/v1/organisation/companies/:companyId",
+            "headers": [
+              {
+                "name": "Request-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This can be used to update a specific organisation contact book company by its ID."
+        },
+        {
+          "info": {
+            "name": "deleteOrganisationCompany",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.capmo.de/api/v1/organisation/companies/:companyId",
+            "headers": [
+              {
+                "name": "Request-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This can be used to delete an organisation contact book company."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

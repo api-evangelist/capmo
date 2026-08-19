@@ -1,0 +1,3632 @@
+{
+  "item": [
+    {
+      "id": "dccc3f58-7422-4fa5-964d-d8ffc93c4bcb",
+      "name": "Projects",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "aa831021-1448-46e8-8500-a9647175ae8e",
+          "name": "get Projects",
+          "request": {
+            "name": "get Projects",
+            "description": {
+              "content": "This can be used to list all projects in a paginated response.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "projects"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "order_by",
+                  "value": "server_created_at",
+                  "description": "Field to order by. It can be any field of the entity."
+                },
+                {
+                  "disabled": false,
+                  "key": "order_direction",
+                  "value": "asc",
+                  "description": "Order direction of the `order_by` field. It can be `asc` or `desc`."
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "The last element from the previous page. This is a cursor. It will be returned in the output to be used in the next request. When it is not present, the first page is returned. When it is `null`, there are no more pages."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "200",
+                  "description": "How many items should be in the output."
+                },
+                {
+                  "disabled": false,
+                  "key": "source_id",
+                  "value": "<string>",
+                  "description": "[Filtering Parameter] The unique identifier of the source. This is a user-generated string, used to link the project to a resource in an external system."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                "key": "Request-Id",
+                "value": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "005d1f6e-3dfe-4b2b-b0dc-6dbf058ddd49",
+              "name": "The projects have been successfully retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "order_by",
+                      "value": "created_at"
+                    },
+                    {
+                      "key": "order_direction",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "source_id",
+                      "value": "123e4567-e89b-12d3-a456-426614174000"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Success\",\n  \"data\": {\n    \"after\": \"string\",\n    \"count\": 1,\n    \"total\": 1,\n    \"items\": [\n      {\n        \"created_by\": \"123e4567-e89b-12d3-a456-426614174000\",\n        \"updated_by\": \"123e4567-e89b-12d3-a456-426614174000\",\n        \"created_at\": \"2021-07-01T00:00:00.000Z\",\n        \"updated_at\": \"2021-07-01T00:00:00.000Z\",\n        \"deleted_at\": \"2021-07-01T00:00:00.000Z\",\n        \"server_created_at\": \"2021-07-01T00:00:00.000Z\",\n        \"server_updated_at\": \"2021-07-01T00:00:00.000Z\",\n        \"server_deleted_at\": \"2021-07-01T00:00:00.000Z\",\n        \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n        \"name\": \"Berlin Data Center Campus (BER1)\",\n        \"owner\": \"Vantage Data Centers\",\n        \"address\": \"Brandenburg Park, Uferring 5, Ludwigsfelde, Germany\",\n        \"owner_organisation_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n        \"latitude\": 52.3220832,\n        \"longitude\": 13.2922907,\n        \"is_archived\": false,\n        \"project_key\": \"BER1\",\n        \"project_status\": \"PROJECT_PREPARATION\",\n        \"project_volume\": 500000000,\n        \"approved_additions_sum\": 50000,\n        \"owner_type\": \"FreeText\",\n        \"owner_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n        \"owner_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n        \"client\": \"Munich Construction GmbH\",\n        \"client_type\": \"FreeText\",\n        \"client_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n        \"client_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n        \"main_responsible\": \"Max Mustermann\",\n        \"responsible_contact_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n        \"project_type\": \"NEW_CONSTRUCTION\",\n        \"building_type\": \"RESIDENTIAL_BUILDINGS\",\n        \"start_date\": \"2021-07-01T00:00:00.000Z\",\n        \"end_date\": \"2021-07-01T00:00:00.000Z\",\n        \"source_id\": \"123e4567-e89b-12d3-a456-426614174000\"\n      },\n      {\n        \"created_by\": \"123e4567-e89b-12d3-a456-426614174000\",\n        \"updated_by\": \"123e4567-e89b-12d3-a456-426614174000\",\n        \"created_at\": \"2021-07-01T00:00:00.000Z\",\n        \"updated_at\": \"2021-07-01T00:00:00.000Z\",\n        \"deleted_at\": \"2021-07-01T00:00:00.000Z\",\n        \"server_created_at\": \"2021-07-01T00:00:00.000Z\",\n        \"server_updated_at\": \"2021-07-01T00:00:00.000Z\",\n        \"server_deleted_at\": \"2021-07-01T00:00:00.000Z\",\n        \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n        \"name\": \"Berlin Data Center Campus (BER1)\",\n        \"owner\": \"Vantage Data Centers\",\n        \"address\": \"Brandenburg Park, Uferring 5, Ludwigsfelde, Germany\",\n        \"owner_organisation_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n        \"latitude\": 52.3220832,\n        \"longitude\": 13.2922907,\n        \"is_archived\": false,\n        \"project_key\": \"BER1\",\n        \"project_status\": \"PROJECT_PREPARATION\",\n        \"project_volume\": 500000000,\n        \"approved_additions_sum\": 50000,\n        \"owner_type\": \"FreeText\",\n        \"owner_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n        \"owner_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n        \"client\": \"Munich Construction GmbH\",\n        \"client_type\": \"FreeText\",\n        \"client_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n        \"client_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n        \"main_responsible\": \"Max Mustermann\",\n        \"responsible_contact_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n        \"project_type\": \"NEW_CONSTRUCTION\",\n        \"building_type\": \"RESIDENTIAL_BUILDINGS\",\n        \"start_date\": \"2021-07-01T00:00:00.000Z\",\n        \"end_date\": \"2021-07-01T00:00:00.000Z\",\n        \"source_id\": \"123e4567-e89b-12d3-a456-426614174000\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d85cc607-7350-48b4-a518-8b00a8a7c10e",
+              "name": "Bad request, Invalid input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "order_by",
+                      "value": "created_at"
+                    },
+                    {
+                      "key": "order_direction",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "source_id",
+                      "value": "123e4567-e89b-12d3-a456-426614174000"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#bad-request\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"BAD_REQUEST\",\n      \"message\": \"Bad request\"\n    },\n    {\n      \"code\": \"BAD_REQUEST\",\n      \"message\": \"Bad request\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "854f1a1d-51cc-4158-b2ba-41dce079d500",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "order_by",
+                      "value": "created_at"
+                    },
+                    {
+                      "key": "order_direction",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "source_id",
+                      "value": "123e4567-e89b-12d3-a456-426614174000"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#unauthorized\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"UNAUTHORIZED\",\n      \"message\": \"Unauthorized\"\n    },\n    {\n      \"code\": \"UNAUTHORIZED\",\n      \"message\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7126a973-8cf7-4757-87a2-22498aa64958",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "order_by",
+                      "value": "created_at"
+                    },
+                    {
+                      "key": "order_direction",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "source_id",
+                      "value": "123e4567-e89b-12d3-a456-426614174000"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#forbidden\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"FORBIDDEN\",\n      \"message\": \"Forbidden\"\n    },\n    {\n      \"code\": \"FORBIDDEN\",\n      \"message\": \"Forbidden\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c2d88d1d-f264-4d21-abfd-e193865b581b",
+              "name": "Object not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "order_by",
+                      "value": "created_at"
+                    },
+                    {
+                      "key": "order_direction",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "source_id",
+                      "value": "123e4567-e89b-12d3-a456-426614174000"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#not-found\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"NOT_FOUND\",\n      \"message\": \"Object not found\"\n    },\n    {\n      \"code\": \"NOT_FOUND\",\n      \"message\": \"Object not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e1ff5ecd-ab51-427c-8e37-eebc5be6f7b1",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "order_by",
+                      "value": "created_at"
+                    },
+                    {
+                      "key": "order_direction",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "source_id",
+                      "value": "123e4567-e89b-12d3-a456-426614174000"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#conflict\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"CONFLICT\",\n      \"message\": \"Conflict\"\n    },\n    {\n      \"code\": \"CONFLICT\",\n      \"message\": \"Conflict\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "946c2cea-b4b0-4c97-9789-4e0e443830ab",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "order_by",
+                      "value": "created_at"
+                    },
+                    {
+                      "key": "order_direction",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "source_id",
+                      "value": "123e4567-e89b-12d3-a456-426614174000"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#internal-server-error\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"INTERNAL_SERVER_ERROR\",\n      \"message\": \"Internal server error\"\n    },\n    {\n      \"code\": \"INTERNAL_SERVER_ERROR\",\n      \"message\": \"Internal server error\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6b71fbf3-476c-47c4-8e53-41ece5685518",
+          "name": "create Project",
+          "request": {
+            "name": "create Project",
+            "description": {
+              "content": "This can be used to create a new project, including creating a new project from a template. If `project_template_id` is provided, the project will be created from the template, otherwise a new blank project will be created.\n\n Please note:\n - The API user will be added as project member with full access to the project.\n - Creating a project from a template can be a slow operation, as it may involve copying a lot of data. This can typically be in the order of a few seconds.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "projects"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                "key": "Request-Id",
+                "value": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"address\": \"<string>\",\n  \"project_volume\": \"<integer>\",\n  \"source_id\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"latitude\": \"<number>\",\n  \"longitude\": \"<number>\",\n  \"project_key\": \"<string>\",\n  \"project_status\": \"<string>\",\n  \"start_date\": \"<dateTime>\",\n  \"end_date\": \"<dateTime>\",\n  \"owner_person_id\": \"<uuid>\",\n  \"owner_company_id\": \"<uuid>\",\n  \"client\": \"<string>\",\n  \"client_person_id\": \"<uuid>\",\n  \"client_company_id\": \"<uuid>\",\n  \"project_type\": \"<string>\",\n  \"building_type\": \"<string>\",\n  \"project_template_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0a9b84d2-281b-4ddf-b77b-acc05daa1013",
+              "name": "The project has been successfully created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Berlin Data Center Campus (BER1)\",\n  \"address\": \"Brandenburg Park, Uferring 5, Ludwigsfelde, Germany\",\n  \"project_volume\": 500000000,\n  \"source_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"owner\": \"Vantage Data Centers\",\n  \"latitude\": 52.3220832,\n  \"longitude\": 13.2922907,\n  \"project_key\": \"BER1\",\n  \"project_status\": \"PROJECT_PREPARATION\",\n  \"start_date\": \"2021-07-01T00:00:00.000Z\",\n  \"end_date\": \"2021-07-01T00:00:00.000Z\",\n  \"owner_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"owner_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"client\": \"Munich Construction GmbH\",\n  \"client_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"client_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"project_type\": \"NEW_CONSTRUCTION\",\n  \"building_type\": \"RESIDENTIAL_BUILDINGS\",\n  \"project_template_id\": \"224b4499-1c67-4315-9749-3d928d25ce2d\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Success\",\n  \"data\": {\n    \"created_by\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"updated_by\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"created_at\": \"2021-07-01T00:00:00.000Z\",\n    \"updated_at\": \"2021-07-01T00:00:00.000Z\",\n    \"deleted_at\": \"2021-07-01T00:00:00.000Z\",\n    \"server_created_at\": \"2021-07-01T00:00:00.000Z\",\n    \"server_updated_at\": \"2021-07-01T00:00:00.000Z\",\n    \"server_deleted_at\": \"2021-07-01T00:00:00.000Z\",\n    \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"name\": \"Berlin Data Center Campus (BER1)\",\n    \"owner\": \"Vantage Data Centers\",\n    \"address\": \"Brandenburg Park, Uferring 5, Ludwigsfelde, Germany\",\n    \"owner_organisation_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"latitude\": 52.3220832,\n    \"longitude\": 13.2922907,\n    \"is_archived\": false,\n    \"project_key\": \"BER1\",\n    \"project_status\": \"PROJECT_PREPARATION\",\n    \"project_volume\": 500000000,\n    \"approved_additions_sum\": 50000,\n    \"owner_type\": \"FreeText\",\n    \"owner_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"owner_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"client\": \"Munich Construction GmbH\",\n    \"client_type\": \"FreeText\",\n    \"client_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"client_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"main_responsible\": \"Max Mustermann\",\n    \"responsible_contact_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"project_type\": \"NEW_CONSTRUCTION\",\n    \"building_type\": \"RESIDENTIAL_BUILDINGS\",\n    \"start_date\": \"2021-07-01T00:00:00.000Z\",\n    \"end_date\": \"2021-07-01T00:00:00.000Z\",\n    \"source_id\": \"123e4567-e89b-12d3-a456-426614174000\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7efbeb06-3f14-4ad8-8285-fabfc565487c",
+              "name": "Bad request, Invalid input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Berlin Data Center Campus (BER1)\",\n  \"address\": \"Brandenburg Park, Uferring 5, Ludwigsfelde, Germany\",\n  \"project_volume\": 500000000,\n  \"source_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"owner\": \"Vantage Data Centers\",\n  \"latitude\": 52.3220832,\n  \"longitude\": 13.2922907,\n  \"project_key\": \"BER1\",\n  \"project_status\": \"PROJECT_PREPARATION\",\n  \"start_date\": \"2021-07-01T00:00:00.000Z\",\n  \"end_date\": \"2021-07-01T00:00:00.000Z\",\n  \"owner_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"owner_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"client\": \"Munich Construction GmbH\",\n  \"client_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"client_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"project_type\": \"NEW_CONSTRUCTION\",\n  \"building_type\": \"RESIDENTIAL_BUILDINGS\",\n  \"project_template_id\": \"224b4499-1c67-4315-9749-3d928d25ce2d\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#bad-request\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"BAD_REQUEST\",\n      \"message\": \"Bad request\"\n    },\n    {\n      \"code\": \"BAD_REQUEST\",\n      \"message\": \"Bad request\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9fe7ff31-5b1d-48da-8713-617da98c383f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Berlin Data Center Campus (BER1)\",\n  \"address\": \"Brandenburg Park, Uferring 5, Ludwigsfelde, Germany\",\n  \"project_volume\": 500000000,\n  \"source_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"owner\": \"Vantage Data Centers\",\n  \"latitude\": 52.3220832,\n  \"longitude\": 13.2922907,\n  \"project_key\": \"BER1\",\n  \"project_status\": \"PROJECT_PREPARATION\",\n  \"start_date\": \"2021-07-01T00:00:00.000Z\",\n  \"end_date\": \"2021-07-01T00:00:00.000Z\",\n  \"owner_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"owner_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"client\": \"Munich Construction GmbH\",\n  \"client_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"client_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"project_type\": \"NEW_CONSTRUCTION\",\n  \"building_type\": \"RESIDENTIAL_BUILDINGS\",\n  \"project_template_id\": \"224b4499-1c67-4315-9749-3d928d25ce2d\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#unauthorized\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"UNAUTHORIZED\",\n      \"message\": \"Unauthorized\"\n    },\n    {\n      \"code\": \"UNAUTHORIZED\",\n      \"message\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0c9d4411-2b33-47a7-92ae-a4149abf3398",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Berlin Data Center Campus (BER1)\",\n  \"address\": \"Brandenburg Park, Uferring 5, Ludwigsfelde, Germany\",\n  \"project_volume\": 500000000,\n  \"source_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"owner\": \"Vantage Data Centers\",\n  \"latitude\": 52.3220832,\n  \"longitude\": 13.2922907,\n  \"project_key\": \"BER1\",\n  \"project_status\": \"PROJECT_PREPARATION\",\n  \"start_date\": \"2021-07-01T00:00:00.000Z\",\n  \"end_date\": \"2021-07-01T00:00:00.000Z\",\n  \"owner_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"owner_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"client\": \"Munich Construction GmbH\",\n  \"client_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"client_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"project_type\": \"NEW_CONSTRUCTION\",\n  \"building_type\": \"RESIDENTIAL_BUILDINGS\",\n  \"project_template_id\": \"224b4499-1c67-4315-9749-3d928d25ce2d\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#forbidden\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"FORBIDDEN\",\n      \"message\": \"Forbidden\"\n    },\n    {\n      \"code\": \"FORBIDDEN\",\n      \"message\": \"Forbidden\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "21bb9a09-7126-40fb-b5f4-2bd622a99ce2",
+              "name": "Object not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Berlin Data Center Campus (BER1)\",\n  \"address\": \"Brandenburg Park, Uferring 5, Ludwigsfelde, Germany\",\n  \"project_volume\": 500000000,\n  \"source_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"owner\": \"Vantage Data Centers\",\n  \"latitude\": 52.3220832,\n  \"longitude\": 13.2922907,\n  \"project_key\": \"BER1\",\n  \"project_status\": \"PROJECT_PREPARATION\",\n  \"start_date\": \"2021-07-01T00:00:00.000Z\",\n  \"end_date\": \"2021-07-01T00:00:00.000Z\",\n  \"owner_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"owner_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"client\": \"Munich Construction GmbH\",\n  \"client_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"client_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"project_type\": \"NEW_CONSTRUCTION\",\n  \"building_type\": \"RESIDENTIAL_BUILDINGS\",\n  \"project_template_id\": \"224b4499-1c67-4315-9749-3d928d25ce2d\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#not-found\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"NOT_FOUND\",\n      \"message\": \"Object not found\"\n    },\n    {\n      \"code\": \"NOT_FOUND\",\n      \"message\": \"Object not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6bbec3bf-cad6-4642-9ed5-39c3881442d2",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Berlin Data Center Campus (BER1)\",\n  \"address\": \"Brandenburg Park, Uferring 5, Ludwigsfelde, Germany\",\n  \"project_volume\": 500000000,\n  \"source_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"owner\": \"Vantage Data Centers\",\n  \"latitude\": 52.3220832,\n  \"longitude\": 13.2922907,\n  \"project_key\": \"BER1\",\n  \"project_status\": \"PROJECT_PREPARATION\",\n  \"start_date\": \"2021-07-01T00:00:00.000Z\",\n  \"end_date\": \"2021-07-01T00:00:00.000Z\",\n  \"owner_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"owner_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"client\": \"Munich Construction GmbH\",\n  \"client_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"client_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"project_type\": \"NEW_CONSTRUCTION\",\n  \"building_type\": \"RESIDENTIAL_BUILDINGS\",\n  \"project_template_id\": \"224b4499-1c67-4315-9749-3d928d25ce2d\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#conflict\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"CONFLICT\",\n      \"message\": \"Conflict\"\n    },\n    {\n      \"code\": \"CONFLICT\",\n      \"message\": \"Conflict\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "78824e31-f809-440d-a06a-b0e46e26c915",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Berlin Data Center Campus (BER1)\",\n  \"address\": \"Brandenburg Park, Uferring 5, Ludwigsfelde, Germany\",\n  \"project_volume\": 500000000,\n  \"source_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"owner\": \"Vantage Data Centers\",\n  \"latitude\": 52.3220832,\n  \"longitude\": 13.2922907,\n  \"project_key\": \"BER1\",\n  \"project_status\": \"PROJECT_PREPARATION\",\n  \"start_date\": \"2021-07-01T00:00:00.000Z\",\n  \"end_date\": \"2021-07-01T00:00:00.000Z\",\n  \"owner_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"owner_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"client\": \"Munich Construction GmbH\",\n  \"client_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"client_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"project_type\": \"NEW_CONSTRUCTION\",\n  \"building_type\": \"RESIDENTIAL_BUILDINGS\",\n  \"project_template_id\": \"224b4499-1c67-4315-9749-3d928d25ce2d\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#internal-server-error\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"INTERNAL_SERVER_ERROR\",\n      \"message\": \"Internal server error\"\n    },\n    {\n      \"code\": \"INTERNAL_SERVER_ERROR\",\n      \"message\": \"Internal server error\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d20a9333-452c-476c-a5c2-5324e18b977e",
+          "name": "get Project",
+          "request": {
+            "name": "get Project",
+            "description": {
+              "content": "This can be used to retrieve a specific project by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "projects",
+                ":projectId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                "key": "Request-Id",
+                "value": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "37fb8e3a-15d4-46df-976f-74f0556e4328",
+              "name": "The project has been successfully retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Success\",\n  \"data\": {\n    \"created_by\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"updated_by\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"created_at\": \"2021-07-01T00:00:00.000Z\",\n    \"updated_at\": \"2021-07-01T00:00:00.000Z\",\n    \"deleted_at\": \"2021-07-01T00:00:00.000Z\",\n    \"server_created_at\": \"2021-07-01T00:00:00.000Z\",\n    \"server_updated_at\": \"2021-07-01T00:00:00.000Z\",\n    \"server_deleted_at\": \"2021-07-01T00:00:00.000Z\",\n    \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"name\": \"Berlin Data Center Campus (BER1)\",\n    \"owner\": \"Vantage Data Centers\",\n    \"address\": \"Brandenburg Park, Uferring 5, Ludwigsfelde, Germany\",\n    \"owner_organisation_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"latitude\": 52.3220832,\n    \"longitude\": 13.2922907,\n    \"is_archived\": false,\n    \"project_key\": \"BER1\",\n    \"project_status\": \"PROJECT_PREPARATION\",\n    \"project_volume\": 500000000,\n    \"approved_additions_sum\": 50000,\n    \"owner_type\": \"FreeText\",\n    \"owner_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"owner_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"client\": \"Munich Construction GmbH\",\n    \"client_type\": \"FreeText\",\n    \"client_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"client_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"main_responsible\": \"Max Mustermann\",\n    \"responsible_contact_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"project_type\": \"NEW_CONSTRUCTION\",\n    \"building_type\": \"RESIDENTIAL_BUILDINGS\",\n    \"start_date\": \"2021-07-01T00:00:00.000Z\",\n    \"end_date\": \"2021-07-01T00:00:00.000Z\",\n    \"source_id\": \"123e4567-e89b-12d3-a456-426614174000\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bd4f1930-dcc3-4330-8e0c-c1741fe208b3",
+              "name": "Bad request, Invalid input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#bad-request\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"BAD_REQUEST\",\n      \"message\": \"Bad request\"\n    },\n    {\n      \"code\": \"BAD_REQUEST\",\n      \"message\": \"Bad request\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b61f96a7-121f-42a6-8d7f-860808ff9046",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#unauthorized\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"UNAUTHORIZED\",\n      \"message\": \"Unauthorized\"\n    },\n    {\n      \"code\": \"UNAUTHORIZED\",\n      \"message\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "040672fd-56b5-418d-ae7b-745ccf27d666",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#forbidden\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"FORBIDDEN\",\n      \"message\": \"Forbidden\"\n    },\n    {\n      \"code\": \"FORBIDDEN\",\n      \"message\": \"Forbidden\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b99b73a8-664e-4571-bf4d-162c7aa6ff45",
+              "name": "Object not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#not-found\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"NOT_FOUND\",\n      \"message\": \"Object not found\"\n    },\n    {\n      \"code\": \"NOT_FOUND\",\n      \"message\": \"Object not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f5592cbd-d347-48d7-b92b-e5d291cbbddf",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#conflict\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"CONFLICT\",\n      \"message\": \"Conflict\"\n    },\n    {\n      \"code\": \"CONFLICT\",\n      \"message\": \"Conflict\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1974c7b8-f66b-4d5c-ba5d-9dd6509aab0b",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#internal-server-error\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"INTERNAL_SERVER_ERROR\",\n      \"message\": \"Internal server error\"\n    },\n    {\n      \"code\": \"INTERNAL_SERVER_ERROR\",\n      \"message\": \"Internal server error\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5de13bcb-b420-4e2f-8b3b-7cdd0fda82b5",
+          "name": "update Project",
+          "request": {
+            "name": "update Project",
+            "description": {
+              "content": "This can be used to update a specific project by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "projects",
+                ":projectId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                "key": "Request-Id",
+                "value": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"source_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"address\": \"<string>\",\n  \"latitude\": \"<number>\",\n  \"longitude\": \"<number>\",\n  \"project_key\": \"<string>\",\n  \"project_volume\": \"<integer>\",\n  \"project_status\": \"<string>\",\n  \"start_date\": \"<dateTime>\",\n  \"end_date\": \"<dateTime>\",\n  \"owner_person_id\": \"<uuid>\",\n  \"owner_company_id\": \"<uuid>\",\n  \"client\": \"<string>\",\n  \"client_person_id\": \"<uuid>\",\n  \"client_company_id\": \"<uuid>\",\n  \"project_type\": \"<string>\",\n  \"building_type\": \"<string>\",\n  \"responsible_contact_id\": \"<uuid>\",\n  \"approved_additions_sum\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b3d9a3b1-8ae7-484b-b7ab-0798f212cbba",
+              "name": "The project has been successfully updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"name\": \"Berlin Data Center Campus (BER1)\",\n  \"owner\": \"Vantage Data Centers\",\n  \"address\": \"Brandenburg Park, Uferring 5, Ludwigsfelde, Germany\",\n  \"latitude\": 52.3220832,\n  \"longitude\": 13.2922907,\n  \"project_key\": \"BER1\",\n  \"project_volume\": 500000000,\n  \"project_status\": \"PROJECT_PREPARATION\",\n  \"start_date\": \"2021-07-01T00:00:00.000Z\",\n  \"end_date\": \"2021-07-01T00:00:00.000Z\",\n  \"owner_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"owner_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"client\": \"Munich Construction GmbH\",\n  \"client_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"client_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"project_type\": \"NEW_CONSTRUCTION\",\n  \"building_type\": \"RESIDENTIAL_BUILDINGS\",\n  \"responsible_contact_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"approved_additions_sum\": 50000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Success\",\n  \"data\": {\n    \"created_by\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"updated_by\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"created_at\": \"2021-07-01T00:00:00.000Z\",\n    \"updated_at\": \"2021-07-01T00:00:00.000Z\",\n    \"deleted_at\": \"2021-07-01T00:00:00.000Z\",\n    \"server_created_at\": \"2021-07-01T00:00:00.000Z\",\n    \"server_updated_at\": \"2021-07-01T00:00:00.000Z\",\n    \"server_deleted_at\": \"2021-07-01T00:00:00.000Z\",\n    \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"name\": \"Berlin Data Center Campus (BER1)\",\n    \"owner\": \"Vantage Data Centers\",\n    \"address\": \"Brandenburg Park, Uferring 5, Ludwigsfelde, Germany\",\n    \"owner_organisation_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"latitude\": 52.3220832,\n    \"longitude\": 13.2922907,\n    \"is_archived\": false,\n    \"project_key\": \"BER1\",\n    \"project_status\": \"PROJECT_PREPARATION\",\n    \"project_volume\": 500000000,\n    \"approved_additions_sum\": 50000,\n    \"owner_type\": \"FreeText\",\n    \"owner_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"owner_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"client\": \"Munich Construction GmbH\",\n    \"client_type\": \"FreeText\",\n    \"client_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"client_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"main_responsible\": \"Max Mustermann\",\n    \"responsible_contact_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"project_type\": \"NEW_CONSTRUCTION\",\n    \"building_type\": \"RESIDENTIAL_BUILDINGS\",\n    \"start_date\": \"2021-07-01T00:00:00.000Z\",\n    \"end_date\": \"2021-07-01T00:00:00.000Z\",\n    \"source_id\": \"123e4567-e89b-12d3-a456-426614174000\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc11b5ec-c668-4f89-a297-6a68cec7a39e",
+              "name": "Bad request, Invalid input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"name\": \"Berlin Data Center Campus (BER1)\",\n  \"owner\": \"Vantage Data Centers\",\n  \"address\": \"Brandenburg Park, Uferring 5, Ludwigsfelde, Germany\",\n  \"latitude\": 52.3220832,\n  \"longitude\": 13.2922907,\n  \"project_key\": \"BER1\",\n  \"project_volume\": 500000000,\n  \"project_status\": \"PROJECT_PREPARATION\",\n  \"start_date\": \"2021-07-01T00:00:00.000Z\",\n  \"end_date\": \"2021-07-01T00:00:00.000Z\",\n  \"owner_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"owner_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"client\": \"Munich Construction GmbH\",\n  \"client_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"client_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"project_type\": \"NEW_CONSTRUCTION\",\n  \"building_type\": \"RESIDENTIAL_BUILDINGS\",\n  \"responsible_contact_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"approved_additions_sum\": 50000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#bad-request\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"BAD_REQUEST\",\n      \"message\": \"Bad request\"\n    },\n    {\n      \"code\": \"BAD_REQUEST\",\n      \"message\": \"Bad request\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cd901103-b30a-4ce5-b07f-01c3cb325d5f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"name\": \"Berlin Data Center Campus (BER1)\",\n  \"owner\": \"Vantage Data Centers\",\n  \"address\": \"Brandenburg Park, Uferring 5, Ludwigsfelde, Germany\",\n  \"latitude\": 52.3220832,\n  \"longitude\": 13.2922907,\n  \"project_key\": \"BER1\",\n  \"project_volume\": 500000000,\n  \"project_status\": \"PROJECT_PREPARATION\",\n  \"start_date\": \"2021-07-01T00:00:00.000Z\",\n  \"end_date\": \"2021-07-01T00:00:00.000Z\",\n  \"owner_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"owner_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"client\": \"Munich Construction GmbH\",\n  \"client_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"client_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"project_type\": \"NEW_CONSTRUCTION\",\n  \"building_type\": \"RESIDENTIAL_BUILDINGS\",\n  \"responsible_contact_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"approved_additions_sum\": 50000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#unauthorized\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"UNAUTHORIZED\",\n      \"message\": \"Unauthorized\"\n    },\n    {\n      \"code\": \"UNAUTHORIZED\",\n      \"message\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fe8414bd-d598-4ab0-a883-9ded4aa4b555",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"name\": \"Berlin Data Center Campus (BER1)\",\n  \"owner\": \"Vantage Data Centers\",\n  \"address\": \"Brandenburg Park, Uferring 5, Ludwigsfelde, Germany\",\n  \"latitude\": 52.3220832,\n  \"longitude\": 13.2922907,\n  \"project_key\": \"BER1\",\n  \"project_volume\": 500000000,\n  \"project_status\": \"PROJECT_PREPARATION\",\n  \"start_date\": \"2021-07-01T00:00:00.000Z\",\n  \"end_date\": \"2021-07-01T00:00:00.000Z\",\n  \"owner_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"owner_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"client\": \"Munich Construction GmbH\",\n  \"client_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"client_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"project_type\": \"NEW_CONSTRUCTION\",\n  \"building_type\": \"RESIDENTIAL_BUILDINGS\",\n  \"responsible_contact_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"approved_additions_sum\": 50000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#forbidden\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"FORBIDDEN\",\n      \"message\": \"Forbidden\"\n    },\n    {\n      \"code\": \"FORBIDDEN\",\n      \"message\": \"Forbidden\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aaebe67f-629c-4fec-a525-97e3fe591f10",
+              "name": "Object not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"name\": \"Berlin Data Center Campus (BER1)\",\n  \"owner\": \"Vantage Data Centers\",\n  \"address\": \"Brandenburg Park, Uferring 5, Ludwigsfelde, Germany\",\n  \"latitude\": 52.3220832,\n  \"longitude\": 13.2922907,\n  \"project_key\": \"BER1\",\n  \"project_volume\": 500000000,\n  \"project_status\": \"PROJECT_PREPARATION\",\n  \"start_date\": \"2021-07-01T00:00:00.000Z\",\n  \"end_date\": \"2021-07-01T00:00:00.000Z\",\n  \"owner_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"owner_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"client\": \"Munich Construction GmbH\",\n  \"client_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"client_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"project_type\": \"NEW_CONSTRUCTION\",\n  \"building_type\": \"RESIDENTIAL_BUILDINGS\",\n  \"responsible_contact_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"approved_additions_sum\": 50000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#not-found\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"NOT_FOUND\",\n      \"message\": \"Object not found\"\n    },\n    {\n      \"code\": \"NOT_FOUND\",\n      \"message\": \"Object not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2c287223-1877-4918-8c0e-6c4fc3d65404",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"name\": \"Berlin Data Center Campus (BER1)\",\n  \"owner\": \"Vantage Data Centers\",\n  \"address\": \"Brandenburg Park, Uferring 5, Ludwigsfelde, Germany\",\n  \"latitude\": 52.3220832,\n  \"longitude\": 13.2922907,\n  \"project_key\": \"BER1\",\n  \"project_volume\": 500000000,\n  \"project_status\": \"PROJECT_PREPARATION\",\n  \"start_date\": \"2021-07-01T00:00:00.000Z\",\n  \"end_date\": \"2021-07-01T00:00:00.000Z\",\n  \"owner_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"owner_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"client\": \"Munich Construction GmbH\",\n  \"client_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"client_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"project_type\": \"NEW_CONSTRUCTION\",\n  \"building_type\": \"RESIDENTIAL_BUILDINGS\",\n  \"responsible_contact_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"approved_additions_sum\": 50000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#conflict\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"CONFLICT\",\n      \"message\": \"Conflict\"\n    },\n    {\n      \"code\": \"CONFLICT\",\n      \"message\": \"Conflict\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0b5d9ad1-3dee-48e5-ae2b-61f7974f9b9c",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"name\": \"Berlin Data Center Campus (BER1)\",\n  \"owner\": \"Vantage Data Centers\",\n  \"address\": \"Brandenburg Park, Uferring 5, Ludwigsfelde, Germany\",\n  \"latitude\": 52.3220832,\n  \"longitude\": 13.2922907,\n  \"project_key\": \"BER1\",\n  \"project_volume\": 500000000,\n  \"project_status\": \"PROJECT_PREPARATION\",\n  \"start_date\": \"2021-07-01T00:00:00.000Z\",\n  \"end_date\": \"2021-07-01T00:00:00.000Z\",\n  \"owner_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"owner_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"client\": \"Munich Construction GmbH\",\n  \"client_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"client_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"project_type\": \"NEW_CONSTRUCTION\",\n  \"building_type\": \"RESIDENTIAL_BUILDINGS\",\n  \"responsible_contact_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"approved_additions_sum\": 50000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#internal-server-error\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"INTERNAL_SERVER_ERROR\",\n      \"message\": \"Internal server error\"\n    },\n    {\n      \"code\": \"INTERNAL_SERVER_ERROR\",\n      \"message\": \"Internal server error\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "80f30708-1214-4583-ba8d-8427ef3487c3",
+          "name": "delete Project",
+          "request": {
+            "name": "delete Project",
+            "description": {
+              "content": "This can be used to delete a specific project by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "projects",
+                ":projectId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                "key": "Request-Id",
+                "value": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "295cda3e-acf9-41fc-837a-1937ad1dab86",
+              "name": "The project has been successfully deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4eba609e-1d68-4447-b01c-78b1142a4e05",
+              "name": "Bad request, Invalid input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#bad-request\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"BAD_REQUEST\",\n      \"message\": \"Bad request\"\n    },\n    {\n      \"code\": \"BAD_REQUEST\",\n      \"message\": \"Bad request\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6698d256-114e-4d62-916e-353f1b99809e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#unauthorized\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"UNAUTHORIZED\",\n      \"message\": \"Unauthorized\"\n    },\n    {\n      \"code\": \"UNAUTHORIZED\",\n      \"message\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a2c18eb-bf49-4594-bc7f-2a7efd89971a",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#forbidden\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"FORBIDDEN\",\n      \"message\": \"Forbidden\"\n    },\n    {\n      \"code\": \"FORBIDDEN\",\n      \"message\": \"Forbidden\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "221f17f9-3076-4829-9096-dadbdafb2d57",
+              "name": "Object not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#not-found\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"NOT_FOUND\",\n      \"message\": \"Object not found\"\n    },\n    {\n      \"code\": \"NOT_FOUND\",\n      \"message\": \"Object not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8117938d-5661-4828-a329-8e8bdc41051a",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#conflict\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"CONFLICT\",\n      \"message\": \"Conflict\"\n    },\n    {\n      \"code\": \"CONFLICT\",\n      \"message\": \"Conflict\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d017d2db-a264-4a89-9c9b-bdb28b29c623",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#internal-server-error\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"INTERNAL_SERVER_ERROR\",\n      \"message\": \"Internal server error\"\n    },\n    {\n      \"code\": \"INTERNAL_SERVER_ERROR\",\n      \"message\": \"Internal server error\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ac3f0c03-cb40-4e45-b64b-2f8593881c4e",
+          "name": "archive Project",
+          "request": {
+            "name": "archive Project",
+            "description": {
+              "content": "This can be used to archive a specific project by its ID. Archiving a project will also remove all pins associated with the project for the authenticated user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "projects",
+                ":projectId",
+                "archived"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                "key": "Request-Id",
+                "value": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "30ebe852-61eb-4287-9b8f-aa20ec7cc949",
+              "name": "The project has been successfully archived.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "archived"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Success\",\n  \"data\": {\n    \"created_by\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"updated_by\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"created_at\": \"2021-07-01T00:00:00.000Z\",\n    \"updated_at\": \"2021-07-01T00:00:00.000Z\",\n    \"deleted_at\": \"2021-07-01T00:00:00.000Z\",\n    \"server_created_at\": \"2021-07-01T00:00:00.000Z\",\n    \"server_updated_at\": \"2021-07-01T00:00:00.000Z\",\n    \"server_deleted_at\": \"2021-07-01T00:00:00.000Z\",\n    \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"name\": \"Berlin Data Center Campus (BER1)\",\n    \"owner\": \"Vantage Data Centers\",\n    \"address\": \"Brandenburg Park, Uferring 5, Ludwigsfelde, Germany\",\n    \"owner_organisation_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"latitude\": 52.3220832,\n    \"longitude\": 13.2922907,\n    \"is_archived\": false,\n    \"project_key\": \"BER1\",\n    \"project_status\": \"PROJECT_PREPARATION\",\n    \"project_volume\": 500000000,\n    \"approved_additions_sum\": 50000,\n    \"owner_type\": \"FreeText\",\n    \"owner_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"owner_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"client\": \"Munich Construction GmbH\",\n    \"client_type\": \"FreeText\",\n    \"client_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"client_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"main_responsible\": \"Max Mustermann\",\n    \"responsible_contact_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"project_type\": \"NEW_CONSTRUCTION\",\n    \"building_type\": \"RESIDENTIAL_BUILDINGS\",\n    \"start_date\": \"2021-07-01T00:00:00.000Z\",\n    \"end_date\": \"2021-07-01T00:00:00.000Z\",\n    \"source_id\": \"123e4567-e89b-12d3-a456-426614174000\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5a360378-e6ec-4cef-abfc-94ee0edc1f59",
+              "name": "Bad request, Invalid input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "archived"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#bad-request\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"BAD_REQUEST\",\n      \"message\": \"Bad request\"\n    },\n    {\n      \"code\": \"BAD_REQUEST\",\n      \"message\": \"Bad request\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "26c28caf-036b-4738-90ca-1da6901357a9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "archived"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#unauthorized\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"UNAUTHORIZED\",\n      \"message\": \"Unauthorized\"\n    },\n    {\n      \"code\": \"UNAUTHORIZED\",\n      \"message\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "50bad717-bde3-48ad-9087-73abb438e12b",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "archived"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#forbidden\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"FORBIDDEN\",\n      \"message\": \"Forbidden\"\n    },\n    {\n      \"code\": \"FORBIDDEN\",\n      \"message\": \"Forbidden\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d92702bb-b560-4317-b73d-516cbbefe601",
+              "name": "Object not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "archived"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#not-found\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"NOT_FOUND\",\n      \"message\": \"Object not found\"\n    },\n    {\n      \"code\": \"NOT_FOUND\",\n      \"message\": \"Object not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b3266c6-7f8a-4706-ba75-73421e259e02",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "archived"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#conflict\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"CONFLICT\",\n      \"message\": \"Conflict\"\n    },\n    {\n      \"code\": \"CONFLICT\",\n      \"message\": \"Conflict\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f88d9283-cea4-4e35-acd2-66dc91caa023",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "archived"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#internal-server-error\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"INTERNAL_SERVER_ERROR\",\n      \"message\": \"Internal server error\"\n    },\n    {\n      \"code\": \"INTERNAL_SERVER_ERROR\",\n      \"message\": \"Internal server error\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4fdc2efb-4e65-48d4-b16e-81d44a53d020",
+          "name": "unarchive Project",
+          "request": {
+            "name": "unarchive Project",
+            "description": {
+              "content": "This can be used to unarchive a specific project by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "projects",
+                ":projectId",
+                "archived"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                "key": "Request-Id",
+                "value": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "523e8fd4-bb57-446f-a6d6-ee5360d3ebd0",
+              "name": "The project has been successfully unarchived.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "archived"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Success\",\n  \"data\": {\n    \"created_by\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"updated_by\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"created_at\": \"2021-07-01T00:00:00.000Z\",\n    \"updated_at\": \"2021-07-01T00:00:00.000Z\",\n    \"deleted_at\": \"2021-07-01T00:00:00.000Z\",\n    \"server_created_at\": \"2021-07-01T00:00:00.000Z\",\n    \"server_updated_at\": \"2021-07-01T00:00:00.000Z\",\n    \"server_deleted_at\": \"2021-07-01T00:00:00.000Z\",\n    \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"name\": \"Berlin Data Center Campus (BER1)\",\n    \"owner\": \"Vantage Data Centers\",\n    \"address\": \"Brandenburg Park, Uferring 5, Ludwigsfelde, Germany\",\n    \"owner_organisation_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"latitude\": 52.3220832,\n    \"longitude\": 13.2922907,\n    \"is_archived\": false,\n    \"project_key\": \"BER1\",\n    \"project_status\": \"PROJECT_PREPARATION\",\n    \"project_volume\": 500000000,\n    \"approved_additions_sum\": 50000,\n    \"owner_type\": \"FreeText\",\n    \"owner_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"owner_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"client\": \"Munich Construction GmbH\",\n    \"client_type\": \"FreeText\",\n    \"client_person_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"client_company_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"main_responsible\": \"Max Mustermann\",\n    \"responsible_contact_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"project_type\": \"NEW_CONSTRUCTION\",\n    \"building_type\": \"RESIDENTIAL_BUILDINGS\",\n    \"start_date\": \"2021-07-01T00:00:00.000Z\",\n    \"end_date\": \"2021-07-01T00:00:00.000Z\",\n    \"source_id\": \"123e4567-e89b-12d3-a456-426614174000\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8259a6a-e8f9-4f41-86f2-5cb492c5e3bb",
+              "name": "Bad request, Invalid input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "archived"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#bad-request\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"BAD_REQUEST\",\n      \"message\": \"Bad request\"\n    },\n    {\n      \"code\": \"BAD_REQUEST\",\n      \"message\": \"Bad request\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cca1b380-bd66-48f4-a703-53a4cc93b8a9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "archived"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#unauthorized\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"UNAUTHORIZED\",\n      \"message\": \"Unauthorized\"\n    },\n    {\n      \"code\": \"UNAUTHORIZED\",\n      \"message\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a5b41e5a-475f-4146-9d04-ba2492c6008d",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "archived"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#forbidden\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"FORBIDDEN\",\n      \"message\": \"Forbidden\"\n    },\n    {\n      \"code\": \"FORBIDDEN\",\n      \"message\": \"Forbidden\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc9d6daf-7846-42b8-a8b9-6e5579d4e508",
+              "name": "Object not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "archived"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#not-found\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"NOT_FOUND\",\n      \"message\": \"Object not found\"\n    },\n    {\n      \"code\": \"NOT_FOUND\",\n      \"message\": \"Object not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c4bd07d0-f538-4cb0-9a01-5d54a0c07a3c",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "archived"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#conflict\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"CONFLICT\",\n      \"message\": \"Conflict\"\n    },\n    {\n      \"code\": \"CONFLICT\",\n      \"message\": \"Conflict\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da812bc7-69da-4671-a986-2dbace1c1ab1",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "archived"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The HTTP `Request-Id` request header is an optional and unofficial HTTP header, used to trace individual HTTP requests from the client to the server and back again. It allows the client and server to correlate each HTTP request. If not provided by the client, the server should generate a unique request ID and include it in the response.",
+                    "key": "Request-Id",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://capmoapi.readme.io/reference/errors#internal-server-error\",\n  \"message\": \"An error occurred\",\n  \"errors\": [\n    {\n      \"code\": \"INTERNAL_SERVER_ERROR\",\n      \"message\": \"Internal server error\"\n    },\n    {\n      \"code\": \"INTERNAL_SERVER_ERROR\",\n      \"message\": \"Internal server error\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.capmo.de",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1818dcc0-e14b-4f08-bfef-82ad115c1ee1",
+    "name": "Capmo REST Organisation Companies Projects API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "External REST API Documentation for Capmo",
+      "type": "text/plain"
+    }
+  }
+}

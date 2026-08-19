@@ -1,0 +1,65 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Capmo REST Organisation Companies Project Ticket Comments API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Project Ticket Comments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getProjectTicketCommentsPaginated",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.capmo.de/api/v1/projects/:projectId/tickets/:ticketId/comments",
+            "headers": [
+              {
+                "name": "Request-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ticketId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "The last element from the previous page. This is a cursor. It will be returned in the output to be used in the next request. When it is not present, the first page is returned. When it is `null`, there are no more pages."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "How many items should be in the output."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This can be used to list all project tickets comments in a paginated response.\n\n Please note:\n - The pagination system works slightly differently for the project tickets' comments.\n - Because of the way our system is designed, we cannot offer the exact same pagination system as for the other entities.\n - In this case, we cannot offer the total number of items in the collection, only the next page token (referred to as `after`).\n - `limit` is only used in conjunction with `after` to fetch the nex"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

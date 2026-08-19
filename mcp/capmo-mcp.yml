@@ -300,3 +300,9 @@ tools:
 - name: deleteChangeOrder
   description: This can be used to delete a specific project change order by its ID.
   source_operation: openapi/capmo-rest-api-openapi-original.json#deleteChangeOrder
+deployment:
+  mode: none
+  verified: derived
+  tools: 92
+  checked: '2026-08-12'
+  source: catalog MCP census
