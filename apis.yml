@@ -116,7 +116,8 @@ apis:
   description: The Other API from Capmo — 1 operation(s) for other.
   humanURL: https://capmoapi.readme.io/reference/where-to-start
   baseURL: https://api.capmo.de/api/v1
-  tags:
+  tags: []
+  tags_raw:
   - Other
   properties:
   - type: OpenAPI
@@ -391,6 +392,8 @@ apis:
   humanURL: https://capmoapi.readme.io/reference/where-to-start
   baseURL: https://api.capmo.de/api/v1
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
