@@ -1,0 +1,56 @@
+slug: capmo
+provider: Capmo
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Engineering Services
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 4
+edges:
+- tag: Project Site Journals
+  spec_file: capmo-project-site-journals-api-openapi.yml
+  capability_id: BC-1150.30
+  capability_id_l1: BC-1150
+  capability_name: Construction Supervision Management
+  confidence: 0.82
+  evidence: POST /api/v1/projects/{projectId}/site-journals createSiteJournal; schemas SiteJournalCompanyAttendanceDto,
+    SiteJournalWorkerEntryDto, SiteJournalVisitDto
+  reason: Site journals (Bautagebuch) recording daily worker entries, company attendance and site visits
+    are the classic record of daily site supervision, matching Construction Supervision Management.
+- tag: Organisation Memberships
+  spec_file: capmo-organisation-memberships-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: POST /api/v1/organisation/memberships — inviteOrganisationPerson; DELETE — revokeOrganisationMembership;
+    schemas OrganisationMembershipType, RequestStatus
+  reason: Inviting people into the organisation and revoking their membership with a membership type is
+    user access provisioning/deprovisioning for the platform, i.e. identity and access management.
+- tag: Project Plans
+  spec_file: capmo-project-plans-api-openapi.yml
+  capability_id: BC-1130.20
+  capability_id_l1: BC-1130
+  capability_name: Drawing Management
+  confidence: 0.7
+  evidence: POST /api/v1/projects/{projectId}/plans createProjectPlan; CreatePlanFromDocumentDto, PlanRenderingStatus,
+    ReadPlanWithSignedUrlDto
+  reason: 'In this DACH construction context ''Plans'' (Pläne) are construction drawings: they are created
+    from files/documents, rendered, foldered and versioned for distribution — drawing lifecycle management.
+    Some residual risk that ''plan'' means schedule, but the file/rendering schemas point clearly to drawings.'
+- tag: Projects
+  spec_file: capmo-projects-api-openapi.yml
+  capability_id: BC-900.30
+  capability_id_l1: BC-900
+  capability_name: Project Management
+  confidence: 0.7
+  evidence: POST /api/v1/projects createProject; schemas ProjectType, BuildingType, ProjectStatus, archiveProject
+  reason: Full lifecycle CRUD plus archive/unarchive over construction project records with type, building
+    type and status. This is project record and execution management for a construction PM platform; L2
+    Project Management fits the record-level scope.

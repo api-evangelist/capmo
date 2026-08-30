@@ -433,6 +433,9 @@ apis:
   - type: Webhooks
     url: openapi/capmo-webhook-api-openapi-original.json
 common:
+- type: CapabilityMap
+  url: capabilities/capmo-capability-edges.yml
+  name: Capmo Business Capability Map
 - type: Website
   url: https://www.capmo.com/en/
 - type: DeveloperPortal
