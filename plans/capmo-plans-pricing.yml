@@ -10,6 +10,10 @@ provenance:
   grounding: every price_text was found verbatim in the fetched page text
 audience: business-product
 pricing_basis: negotiated
+delivery:
+  delivery: managed
+  method: page
+  read: '2026-09-20'
 published: false
 note: No numeric price is published on the pricing page; Page states pricing depends on construction/fee
   volume of projects, not users; entry packages described as 'im mittleren vierstelligen Bereich' with
