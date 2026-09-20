@@ -443,6 +443,8 @@ apis:
   - type: Webhooks
     url: openapi/capmo-webhook-api-openapi-original.json
 common:
+- type: Plans
+  url: plans/capmo-plans-pricing.yml
 - type: CapabilityMap
   url: capabilities/capmo-capability-edges.yml
   name: Capmo Business Capability Map

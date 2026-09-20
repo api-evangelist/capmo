@@ -1,0 +1,24 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://www.capmo.com/en/preise
+sources:
+- https://www.capmo.com/en/preise
+provenance:
+  tool: planning/api-economics/harvest_pricing.py
+  run: 20260920T120546
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: negotiated
+published: false
+note: No numeric price is published on the pricing page; Page states pricing depends on construction/fee
+  volume of projects, not users; entry packages described as 'im mittleren vierstelligen Bereich' with
+  no explicit figure. 14-day free trial mentioned. No numeric price published.
+plan_count: 1
+plans:
+- name: Individuelles Angebot (volumenbasiert)
+  price_text: Jetzt 10-minütiges Erstgespräch buchen
+  period: none
+  unit: Bau- bzw. Honorarvolumen
+  included_quota: Unbegrenzte interne und externe Nutzer, Datenzugriff auf allen Geräten, kostenlose Updates
+    und neuste KI Funktionen, deutschsprachiger Kundenservice, Implementierung & Change Management Unterstützung
