@@ -1,29 +1,7 @@
 {
   "provider": "capmo",
   "sources": [
-    "capmo-organisation-companies-api-openapi.yml",
-    "capmo-organisation-memberships-api-openapi.yml",
-    "capmo-organisation-people-api-openapi.yml",
-    "capmo-organisation-projects-api-openapi.yml",
-    "capmo-other-api-openapi.yml",
-    "capmo-project-change-orders-api-openapi.yml",
-    "capmo-project-companies-api-openapi.yml",
-    "capmo-project-documents-api-openapi.yml",
-    "capmo-project-memberships-api-openapi.yml",
-    "capmo-project-people-api-openapi.yml",
-    "capmo-project-permission-sets-api-openapi.yml",
-    "capmo-project-plans-api-openapi.yml",
-    "capmo-project-room-listings-api-openapi.yml",
-    "capmo-project-site-journals-api-openapi.yml",
-    "capmo-project-templates-api-openapi.yml",
-    "capmo-project-ticket-attachments-api-openapi.yml",
-    "capmo-project-ticket-categories-api-openapi.yml",
-    "capmo-project-ticket-comments-api-openapi.yml",
-    "capmo-project-ticket-tags-api-openapi.yml",
-    "capmo-project-ticket-types-api-openapi.yml",
-    "capmo-project-tickets-api-openapi.yml",
-    "capmo-projects-api-openapi.yml",
-    "capmo-uploads-api-openapi.yml"
+    "_original/capmo-rest-api-openapi-original.json"
   ],
   "outputs": [
     "capmo-organisation-companies-api-openapi.yml",
@@ -53,6 +31,34 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "capmo-rest-api-openapi-original.json: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "capmo-organisation-companies-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "capmo-organisation-memberships-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "capmo-organisation-people-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "capmo-organisation-projects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "capmo-other-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "capmo-project-change-orders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "capmo-project-companies-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "capmo-project-documents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "capmo-project-memberships-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "capmo-project-people-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "capmo-project-permission-sets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "capmo-project-plans-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "capmo-project-room-listings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "capmo-project-site-journals-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "capmo-project-templates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "capmo-project-ticket-attachments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "capmo-project-ticket-categories-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "capmo-project-ticket-comments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "capmo-project-ticket-tags-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "capmo-project-ticket-types-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "capmo-project-tickets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "capmo-projects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "capmo-uploads-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

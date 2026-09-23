@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Capmo REST Organisation Companies Project Ticket Tags API
+  title: Capmo REST Project Ticket Tags API
   description: External REST API Documentation for Capmo
   version: '1.0'
   contact: {}
@@ -225,9 +225,10 @@ paths:
                           example: Internal server error
       security:
       - CapmoAuth: []
-      summary: ''
+      summary: Get project ticket tags
       tags:
       - Project Ticket Tags
+      x-summary-source: derived
 components:
   schemas:
     PaginatedOutputDto:
@@ -260,8 +261,9 @@ components:
           example: '2021-07-01T00:00:00.000Z'
           description: The date when the entity was last updated (on the client).
         deleted_at:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           format: date-time
           example: '2021-07-01T00:00:00.000Z'
           description: The date when the entity was deleted (on the client).
@@ -276,8 +278,9 @@ components:
           example: '2021-07-01T00:00:00.000Z'
           description: The date when the entity was last updated (on the server).
         server_deleted_at:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           format: date-time
           example: '2021-07-01T00:00:00.000Z'
           description: The date when the entity was deleted (on the server).

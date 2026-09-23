@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Capmo REST Organisation Companies Uploads API
+  title: Capmo REST Uploads API
   description: External REST API Documentation for Capmo
   version: '1.0'
   contact: {}
@@ -190,9 +190,10 @@ paths:
                           example: Internal server error
       security:
       - CapmoAuth: []
-      summary: ''
+      summary: Get document upload url
       tags:
       - Uploads
+      x-summary-source: derived
   /api/v1/upload/plans:
     post:
       description: This can be used to obtain an upload URL for a new plan file.
@@ -367,9 +368,10 @@ paths:
                           example: Internal server error
       security:
       - CapmoAuth: []
-      summary: ''
+      summary: Get plan upload url
       tags:
       - Uploads
+      x-summary-source: derived
   /api/v1/upload/ticket-attachments:
     post:
       description: This can be used to obtain an upload URL for a new ticket attachment.
@@ -544,12 +546,13 @@ paths:
                           example: Internal server error
       security:
       - CapmoAuth: []
-      summary: ''
+      summary: Get ticket attachment upload url
       tags:
       - Uploads
+      x-summary-source: derived
 components:
   schemas:
-    WritePlanFileUploadDto:
+    WriteTicketAttachmentUploadDto:
       type: object
       properties:
         name:
@@ -624,6 +627,26 @@ components:
       - data_path
       - expires
       - fields
+    WritePlanFileUploadDto:
+      type: object
+      properties:
+        name:
+          type: string
+          example: A-2-EG2.pdf
+          description: The name of the file, including the file extension.
+      required:
+      - name
+    WriteDocumentFileUploadDto:
+      type: object
+      properties:
+        mime_type:
+          type:
+          - string
+          - 'null'
+          description: The mime type of the file.
+          example: application/pdf
+      required:
+      - mime_type
     ReadTicketAttachmentUploadDto:
       type: object
       properties:
@@ -657,25 +680,6 @@ components:
       - data_path
       - expires
       - fields
-    WriteTicketAttachmentUploadDto:
-      type: object
-      properties:
-        name:
-          type: string
-          example: A-2-EG2.pdf
-          description: The name of the file, including the file extension.
-      required:
-      - name
-    WriteDocumentFileUploadDto:
-      type: object
-      properties:
-        mime_type:
-          type: string
-          nullable: true
-          description: The mime type of the file.
-          example: application/pdf
-      required:
-      - mime_type
   securitySchemes:
     CapmoAuth:
       type: apiKey

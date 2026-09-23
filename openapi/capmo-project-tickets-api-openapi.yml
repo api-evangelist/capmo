@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Capmo REST Organisation Companies Project Tickets API
+  title: Capmo REST Project Tickets API
   description: External REST API Documentation for Capmo
   version: '1.0'
   contact: {}
@@ -225,11 +225,17 @@ paths:
                           example: Internal server error
       security:
       - CapmoAuth: []
-      summary: ''
+      summary: Get project tickets paginated
       tags:
       - Project Tickets
+      x-summary-source: derived
     post:
-      description: "This can be used to create a new project ticket.\n\n Please note:\n - Project ticket categories, tags, types, etc. have their own endpoints to be managed. They can be added on ticket creation if they already exist."
+      description: 'This can be used to create a new project ticket.
+
+
+        Please note:
+
+        - Project ticket categories, tags, types, etc. have their own endpoints to be managed. They can be added on ticket creation if they already exist.'
       operationId: createProjectTicket
       parameters:
       - name: projectId
@@ -412,9 +418,10 @@ paths:
                           example: Internal server error
       security:
       - CapmoAuth: []
-      summary: ''
+      summary: Create project ticket
       tags:
       - Project Tickets
+      x-summary-source: derived
   /api/v1/projects/{projectId}/tickets/{ticketId}:
     get:
       description: This can be used to get a specific project ticket by its id.
@@ -593,9 +600,10 @@ paths:
                           example: Internal server error
       security:
       - CapmoAuth: []
-      summary: ''
+      summary: Get project ticket
       tags:
       - Project Tickets
+      x-summary-source: derived
     patch:
       description: This can be used to update a specific project ticket by its ID.
       operationId: updateProjectTicket
@@ -779,9 +787,10 @@ paths:
                           example: Internal server error
       security:
       - CapmoAuth: []
-      summary: ''
+      summary: Update project ticket
       tags:
       - Project Tickets
+      x-summary-source: derived
     delete:
       description: This can be used to delete a specific project ticket by its ID.
       operationId: deleteProjectTicket
@@ -949,11 +958,184 @@ paths:
                           example: Internal server error
       security:
       - CapmoAuth: []
-      summary: ''
+      summary: Delete project ticket
       tags:
       - Project Tickets
+      x-summary-source: derived
 components:
   schemas:
+    CreateProjectTicketDto:
+      type: object
+      properties:
+        source_id:
+          type: string
+          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
+          example: 123e4567-e89b-12d3-a456-426614174000
+        name:
+          type:
+          - string
+          - 'null'
+          example: Fix the leaking pipe
+          description: The name of the ticket. Usually a short description of the issue.
+        description:
+          type:
+          - string
+          - 'null'
+          example: The pipe on the 2nd floor is leaking and needs repair.
+          description: The description of the ticket. A more detailed description of the issue.
+        category_id:
+          type:
+          - string
+          - 'null'
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: Unique ID of the category this ticket belongs to. If not provided, the ticket will be uncategorised.
+        status:
+          example: IN_PROGRESS
+          description: The status of the ticket. Defaults to OPEN.
+          allOf:
+          - $ref: '#/components/schemas/TicketStatus'
+        tag_ids:
+          example:
+          - 123e4567-e89b-12d3-a456-426614174000
+          - 123e4567-e89b-12d3-a456-426614174001
+          - 123e4567-e89b-12d3-a456-426614174002
+          description: List of the unique IDs of tags associated with this ticket. If not provided, the ticket will be untagged.
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        type_id:
+          type:
+          - string
+          - 'null'
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: ID of the ticket type. If not provided, the ticket will be uncategorised.
+        deadline:
+          type:
+          - string
+          - 'null'
+          example: '2024-05-01T00:00:00Z'
+          description: The deadline for resolving the ticket. Can be as simple as a date or a full timestamp.
+        company_id:
+          type:
+          - string
+          - 'null'
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: Unique ID of the project company responsible for this ticket. This can be obtained from the project contact book.
+        responsible_ids:
+          example:
+          - 123e4567-e89b-12d3-a456-426614174000
+          - 123e4567-e89b-12d3-a456-426614174001
+          - 123e4567-e89b-12d3-a456-426614174002
+          description: List of the unique IDs of the responsible users for this ticket. These are not the IDs of the people in the project contact book. Instead, these are their user IDs as registered in our platform.
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        cost:
+          type:
+          - number
+          - 'null'
+          example: 500
+          description: The estimated cost associated with the ticket in Euros.
+        room_listing_id:
+          type:
+          - string
+          - 'null'
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: ID of the room listing to associate with this ticket.
+    UpdateProjectTicketDto:
+      type: object
+      properties:
+        source_id:
+          type: string
+          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
+          example: 123e4567-e89b-12d3-a456-426614174000
+        name:
+          type:
+          - string
+          - 'null'
+          example: Fix the leaking pipe
+          description: The name of the ticket. Usually a short description of the issue.
+        description:
+          type:
+          - string
+          - 'null'
+          example: The pipe on the 2nd floor is leaking and needs repair.
+          description: The description of the ticket. A more detailed description of the issue.
+        category_id:
+          type:
+          - string
+          - 'null'
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: Unique ID of the category this ticket belongs to. If not provided, the ticket will be uncategorised.
+        status:
+          example: IN_PROGRESS
+          description: The status of the ticket. Defaults to OPEN.
+          allOf:
+          - $ref: '#/components/schemas/TicketStatus'
+        tag_ids:
+          example:
+          - 123e4567-e89b-12d3-a456-426614174000
+          - 123e4567-e89b-12d3-a456-426614174001
+          - 123e4567-e89b-12d3-a456-426614174002
+          description: List of the unique IDs of tags associated with this ticket. If not provided, the ticket will be untagged.
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        type_id:
+          type:
+          - string
+          - 'null'
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: ID of the ticket type. If not provided, the ticket will be uncategorised.
+        deadline:
+          type:
+          - string
+          - 'null'
+          example: '2024-05-01T00:00:00Z'
+          description: The deadline for resolving the ticket. Can be as simple as a date or a full timestamp.
+        company_id:
+          type:
+          - string
+          - 'null'
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: Unique ID of the project company responsible for this ticket. This can be obtained from the project contact book.
+        responsible_ids:
+          example:
+          - 123e4567-e89b-12d3-a456-426614174000
+          - 123e4567-e89b-12d3-a456-426614174001
+          - 123e4567-e89b-12d3-a456-426614174002
+          description: List of the unique IDs of the responsible users for this ticket. These are not the IDs of the people in the project contact book. Instead, these are their user IDs as registered in our platform.
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        cost:
+          type:
+          - number
+          - 'null'
+          example: 500
+          description: The estimated cost associated with the ticket in Euros.
+        room_listing_id:
+          type:
+          - string
+          - 'null'
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: ID of the room listing to associate with this ticket.
+    TicketStatus:
+      type: string
+      enum:
+      - OPEN
+      - IN_PROGRESS
+      - SIGNED_OFF
+      - CLOSED
+      description: The status of the ticket.
     PaginatedOutputDto:
       type: object
       properties:
@@ -970,79 +1152,6 @@ components:
       - after
       - count
       - total
-    CreateProjectTicketDto:
-      type: object
-      properties:
-        source_id:
-          type: string
-          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
-          example: 123e4567-e89b-12d3-a456-426614174000
-        name:
-          type: string
-          nullable: true
-          example: Fix the leaking pipe
-          description: The name of the ticket. Usually a short description of the issue.
-        description:
-          type: string
-          nullable: true
-          example: The pipe on the 2nd floor is leaking and needs repair.
-          description: The description of the ticket. A more detailed description of the issue.
-        category_id:
-          type: string
-          nullable: true
-          example: 123e4567-e89b-12d3-a456-426614174000
-          description: Unique ID of the category this ticket belongs to. If not provided, the ticket will be uncategorised.
-        status:
-          nullable: true
-          example: IN_PROGRESS
-          description: The status of the ticket. Defaults to OPEN.
-          allOf:
-          - $ref: '#/components/schemas/TicketStatus'
-        tag_ids:
-          nullable: true
-          example:
-          - 123e4567-e89b-12d3-a456-426614174000
-          - 123e4567-e89b-12d3-a456-426614174001
-          - 123e4567-e89b-12d3-a456-426614174002
-          description: List of the unique IDs of tags associated with this ticket. If not provided, the ticket will be untagged.
-          type: array
-          items:
-            type: string
-        type_id:
-          type: string
-          nullable: true
-          example: 123e4567-e89b-12d3-a456-426614174000
-          description: ID of the ticket type. If not provided, the ticket will be uncategorised.
-        deadline:
-          type: string
-          nullable: true
-          example: '2024-05-01T00:00:00Z'
-          description: The deadline for resolving the ticket. Can be as simple as a date or a full timestamp.
-        company_id:
-          type: string
-          nullable: true
-          example: 123e4567-e89b-12d3-a456-426614174000
-          description: Unique ID of the project company responsible for this ticket. This can be obtained from the project contact book.
-        responsible_ids:
-          nullable: true
-          example:
-          - 123e4567-e89b-12d3-a456-426614174000
-          - 123e4567-e89b-12d3-a456-426614174001
-          - 123e4567-e89b-12d3-a456-426614174002
-          description: List of the unique IDs of the responsible users for this ticket. These are not the IDs of the people in the project contact book. Instead, these are their user IDs as registered in our platform.
-          type: array
-          items:
-            type: string
-        cost:
-          type: number
-          nullable: true
-          example: 500
-          description: The estimated cost associated with the ticket in Euros.
-        room_listing_id:
-          type: string
-          nullable: true
-          example: 123e4567-e89b-12d3-a456-426614174000
-          description: ID of the room listing to associate with this ticket.
     ReadProjectTicketDto:
       type: object
       properties:
@@ -1051,14 +1160,16 @@ components:
           description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
           example: 123e4567-e89b-12d3-a456-426614174000
         created_by:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: 123e4567-e89b-12d3-a456-426614174000
           description: The unique identifier of the creator of the entity.
         updated_by:
-          type: string
+          type:
+          - string
+          - 'null'
           example: 123e4567-e89b-12d3-a456-426614174000
-          nullable: true
           description: The unique identifier of the last user who updated the entity.
         created_at:
           type: string
@@ -1071,8 +1182,9 @@ components:
           example: '2021-07-01T00:00:00.000Z'
           description: The date when the entity was last updated (on the client).
         deleted_at:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           format: date-time
           example: '2021-07-01T00:00:00.000Z'
           description: The date when the entity was deleted (on the client).
@@ -1087,8 +1199,9 @@ components:
           example: '2021-07-01T00:00:00.000Z'
           description: The date when the entity was last updated (on the server).
         server_deleted_at:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           format: date-time
           example: '2021-07-01T00:00:00.000Z'
           description: The date when the entity was deleted (on the server).
@@ -1101,18 +1214,21 @@ components:
           example: TICKET-12345
           description: The key or identifier of the ticket, It is the project key + unique number.
         type_id:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: 123e4567-e89b-12d3-a456-426614174000
           description: The id of the ticket type.
         category_id:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: 123e4567-e89b-12d3-a456-426614174000
           description: The id of the ticket category.
         company_id:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: 123e4567-e89b-12d3-a456-426614174000
           description: The ID of the company responsible for this ticket.
         responsible_ids:
@@ -1125,13 +1241,15 @@ components:
           example: Heating
           description: The name of the ticket.
         description:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: Fix the heating system
           description: The description of the ticket.
         ticket_number:
-          type: number
-          nullable: true
+          type:
+          - number
+          - 'null'
           example: 12345
           description: A unique sequential number assigned to the ticket. It is unique within a project
         tags:
@@ -1140,8 +1258,9 @@ components:
             type: string
           description: List of tag ids associated with the ticket.
         cost:
-          type: number
-          nullable: true
+          type:
+          - number
+          - 'null'
           example: 500
           description: The estimated cost associated with the ticket in Euros.
         status:
@@ -1150,29 +1269,34 @@ components:
           allOf:
           - $ref: '#/components/schemas/TicketStatus'
         deadline:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           format: date-time
           example: '2021-07-01T00:00:00.000Z'
           description: The deadline for resolving the ticket.
         room_listing_id:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: 123e4567-e89b-12d3-a456-426614174000
           description: The ID of the room listing associated with this ticket.
         plan_id:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: 123e4567-e89b-12d3-a456-426614174000
           description: The ID of the plan this ticket is pinned to. Only set when the ticket has a location on a plan.
         location_x:
-          type: number
-          nullable: true
+          type:
+          - number
+          - 'null'
           example: 0.5
           description: X coordinate of the ticket on the linked plan PDF. Normalized to [0, 1] with origin (0, 0) in the top left corner. Multiply by the width of the plan to get the absolute X coordinate. Only set together with plan_id and location_y.
         location_y:
-          type: number
-          nullable: true
+          type:
+          - number
+          - 'null'
           example: 0.25
           description: Y coordinate of the ticket on the linked plan PDF. Normalized to [0, 1] with origin (0, 0) in the top left corner. Multiply by the height of the plan to get the absolute Y coordinate. Only set together with plan_id and location_x.
       required:
@@ -1201,87 +1325,6 @@ components:
       - plan_id
       - location_x
       - location_y
-    UpdateProjectTicketDto:
-      type: object
-      properties:
-        source_id:
-          type: string
-          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
-          example: 123e4567-e89b-12d3-a456-426614174000
-        name:
-          type: string
-          nullable: true
-          example: Fix the leaking pipe
-          description: The name of the ticket. Usually a short description of the issue.
-        description:
-          type: string
-          nullable: true
-          example: The pipe on the 2nd floor is leaking and needs repair.
-          description: The description of the ticket. A more detailed description of the issue.
-        category_id:
-          type: string
-          nullable: true
-          example: 123e4567-e89b-12d3-a456-426614174000
-          description: Unique ID of the category this ticket belongs to. If not provided, the ticket will be uncategorised.
-        status:
-          nullable: true
-          example: IN_PROGRESS
-          description: The status of the ticket. Defaults to OPEN.
-          allOf:
-          - $ref: '#/components/schemas/TicketStatus'
-        tag_ids:
-          nullable: true
-          example:
-          - 123e4567-e89b-12d3-a456-426614174000
-          - 123e4567-e89b-12d3-a456-426614174001
-          - 123e4567-e89b-12d3-a456-426614174002
-          description: List of the unique IDs of tags associated with this ticket. If not provided, the ticket will be untagged.
-          type: array
-          items:
-            type: string
-        type_id:
-          type: string
-          nullable: true
-          example: 123e4567-e89b-12d3-a456-426614174000
-          description: ID of the ticket type. If not provided, the ticket will be uncategorised.
-        deadline:
-          type: string
-          nullable: true
-          example: '2024-05-01T00:00:00Z'
-          description: The deadline for resolving the ticket. Can be as simple as a date or a full timestamp.
-        company_id:
-          type: string
-          nullable: true
-          example: 123e4567-e89b-12d3-a456-426614174000
-          description: Unique ID of the project company responsible for this ticket. This can be obtained from the project contact book.
-        responsible_ids:
-          nullable: true
-          example:
-          - 123e4567-e89b-12d3-a456-426614174000
-          - 123e4567-e89b-12d3-a456-426614174001
-          - 123e4567-e89b-12d3-a456-426614174002
-          description: List of the unique IDs of the responsible users for this ticket. These are not the IDs of the people in the project contact book. Instead, these are their user IDs as registered in our platform.
-          type: array
-          items:
-            type: string
-        cost:
-          type: number
-          nullable: true
-          example: 500
-          description: The estimated cost associated with the ticket in Euros.
-        room_listing_id:
-          type: string
-          nullable: true
-          example: 123e4567-e89b-12d3-a456-426614174000
-          description: ID of the room listing to associate with this ticket.
-    TicketStatus:
-      type: string
-      enum:
-      - OPEN
-      - IN_PROGRESS
-      - SIGNED_OFF
-      - CLOSED
-      description: The status of the ticket.
   securitySchemes:
     CapmoAuth:
       type: apiKey

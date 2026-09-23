@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Capmo REST Organisation Companies Project Ticket Attachments API
+  title: Capmo REST Project Ticket Attachments API
   description: External REST API Documentation for Capmo
   version: '1.0'
   contact: {}
@@ -230,9 +230,10 @@ paths:
                           example: Internal server error
       security:
       - CapmoAuth: []
-      summary: ''
+      summary: Get project ticket attachments
       tags:
       - Project Ticket Attachments
+      x-summary-source: derived
     post:
       description: This can be used to create a project ticket attachment.
       operationId: createProjectTicketAttachment
@@ -416,9 +417,10 @@ paths:
                           example: Internal server error
       security:
       - CapmoAuth: []
-      summary: ''
+      summary: Create project ticket attachment
       tags:
       - Project Ticket Attachments
+      x-summary-source: derived
   /api/v1/projects/{projectId}/tickets/{ticketId}/attachments/{attachmentId}:
     get:
       description: This can be used to get a specific project ticket attachment by its ID.
@@ -602,9 +604,10 @@ paths:
                           example: Internal server error
       security:
       - CapmoAuth: []
-      summary: ''
+      summary: Get project ticket attachment
       tags:
       - Project Ticket Attachments
+      x-summary-source: derived
     delete:
       description: This can be used to delete a specific project ticket attachment by its ID.
       operationId: deleteProjectTicketAttachment
@@ -777,33 +780,51 @@ paths:
                           example: Internal server error
       security:
       - CapmoAuth: []
-      summary: ''
+      summary: Delete project ticket attachment
       tags:
       - Project Ticket Attachments
+      x-summary-source: derived
 components:
   schemas:
-    CreateAttachmentInputDto:
+    PaginatedOutputDto:
       type: object
       properties:
-        source_id:
+        after:
           type: string
-          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
-          example: 123e4567-e89b-12d3-a456-426614174000
-        name:
-          type: string
-          description: The name of the file after initial upload.
-          example: Report_2024.pdf
-        data_path:
-          type: string
-          description: The data path of the file.
-          example: 9357781c-05da-11ef-9539-7b47b1fda975/Report_2024.pdf
-        mime_type:
-          type: string
-          description: The mime type of the file.
-          example: application/pdf
+          example: null
+        count:
+          type: number
+          example: 1
+        total:
+          type: number
+          example: 1
       required:
+      - after
+      - count
+      - total
+    ReadAttachmentFileDto:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+          example: image/png
+          description: The type of the file.
+        name:
+          type:
+          - string
+          - 'null'
+          example: file.png
+          description: The file name
+        signed_download_url:
+          type: string
+          example: https://example.com/download/file.png
+          description: The file signed URL.
+      required:
+      - type
       - name
-      - data_path
+      - signed_download_url
     ReadTicketAttachmentDto:
       type: object
       properties:
@@ -812,8 +833,9 @@ components:
           description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
           example: 123e4567-e89b-12d3-a456-426614174000
         created_by:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: 123e4567-e89b-12d3-a456-426614174000
           description: The unique identifier of the creator of the entity.
         created_at:
@@ -827,8 +849,9 @@ components:
           example: '2021-07-01T00:00:00.000Z'
           description: The date when the entity was last updated (on the client).
         deleted_at:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           format: date-time
           example: '2021-07-01T00:00:00.000Z'
           description: The date when the entity was deleted (on the client).
@@ -843,8 +866,9 @@ components:
           example: '2021-07-01T00:00:00.000Z'
           description: The date when the entity was last updated (on the server).
         server_deleted_at:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           format: date-time
           example: '2021-07-01T00:00:00.000Z'
           description: The date when the entity was deleted (on the server).
@@ -879,43 +903,28 @@ components:
       - ticket_id
       - project_id
       - file
-    ReadAttachmentFileDto:
+    CreateAttachmentInputDto:
       type: object
       properties:
-        type:
+        source_id:
           type: string
-          example: image/png
-          description: The type of the file.
-          nullable: true
+          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
+          example: 123e4567-e89b-12d3-a456-426614174000
         name:
           type: string
-          example: file.png
-          description: The file name
-          nullable: true
-        signed_download_url:
+          description: The name of the file after initial upload.
+          example: Report_2024.pdf
+        data_path:
           type: string
-          example: https://example.com/download/file.png
-          description: The file signed URL.
+          description: The data path of the file.
+          example: 9357781c-05da-11ef-9539-7b47b1fda975/Report_2024.pdf
+        mime_type:
+          type: string
+          description: The mime type of the file.
+          example: application/pdf
       required:
-      - type
       - name
-      - signed_download_url
-    PaginatedOutputDto:
-      type: object
-      properties:
-        after:
-          type: string
-          example: null
-        count:
-          type: number
-          example: 1
-        total:
-          type: number
-          example: 1
-      required:
-      - after
-      - count
-      - total
+      - data_path
   securitySchemes:
     CapmoAuth:
       type: apiKey

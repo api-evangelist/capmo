@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Capmo REST Organisation Companies Project People API
+  title: Capmo REST Project People API
   description: External REST API Documentation for Capmo
   version: '1.0'
   contact: {}
@@ -233,9 +233,10 @@ paths:
                           example: Internal server error
       security:
       - CapmoAuth: []
-      summary: ''
+      summary: Get project people
       tags:
       - Project People
+      x-summary-source: derived
     post:
       description: This can be used to add a new project contact book person.
       operationId: createProjectPerson
@@ -414,9 +415,10 @@ paths:
                           example: Internal server error
       security:
       - CapmoAuth: []
-      summary: ''
+      summary: Create project person
       tags:
       - Project People
+      x-summary-source: derived
   /api/v1/projects/{projectId}/people/{personId}:
     get:
       description: This can be used to retrieve a specific project person by its ID.
@@ -595,9 +597,10 @@ paths:
                           example: Internal server error
       security:
       - CapmoAuth: []
-      summary: ''
+      summary: Get project person
       tags:
       - Project People
+      x-summary-source: derived
     patch:
       description: This can be used to update a project contact book person.
       operationId: updateProjectPerson
@@ -781,9 +784,10 @@ paths:
                           example: Internal server error
       security:
       - CapmoAuth: []
-      summary: ''
+      summary: Update project person
       tags:
       - Project People
+      x-summary-source: derived
     delete:
       description: This can be used to delete a project contact book person. If the person is a member of the project, their membership will be deleted as well.
       operationId: deleteProjectPerson
@@ -951,9 +955,10 @@ paths:
                           example: Internal server error
       security:
       - CapmoAuth: []
-      summary: ''
+      summary: Delete project person
       tags:
       - Project People
+      x-summary-source: derived
   /api/v1/projects/{projectId}/people-from-organisation:
     post:
       description: This can be used to add an organisation contact book person to a project.
@@ -1133,9 +1138,10 @@ paths:
                           example: Internal server error
       security:
       - CapmoAuth: []
-      summary: ''
+      summary: Create project person from organisation
       tags:
       - Project People
+      x-summary-source: derived
 components:
   schemas:
     ReadProjectPersonDto:
@@ -1146,14 +1152,16 @@ components:
           description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
           example: 123e4567-e89b-12d3-a456-426614174000
         created_by:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: 123e4567-e89b-12d3-a456-426614174000
           description: The unique identifier of the creator of the entity.
         updated_by:
-          type: string
+          type:
+          - string
+          - 'null'
           example: 123e4567-e89b-12d3-a456-426614174000
-          nullable: true
           description: The unique identifier of the last user who updated the entity.
         created_at:
           type: string
@@ -1166,8 +1174,9 @@ components:
           example: '2021-07-01T00:00:00.000Z'
           description: The date when the entity was last updated (on the client).
         deleted_at:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           format: date-time
           example: '2021-07-01T00:00:00.000Z'
           description: The date when the entity was deleted (on the client).
@@ -1182,8 +1191,9 @@ components:
           example: '2021-07-01T00:00:00.000Z'
           description: The date when the entity was last updated (on the server).
         server_deleted_at:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           format: date-time
           example: '2021-07-01T00:00:00.000Z'
           description: The date when the entity was deleted (on the server).
@@ -1204,28 +1214,33 @@ components:
           example: john.doe@example.com
           description: The email address of the person.
         position:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: accountant
           description: The position of the person.
         phone_number:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: '+491764445566'
           description: The phone number of the person. It consists of between 1 and 15 digits and an optional leading "+" character.
         company_id:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: 123e4567-e89b-12d3-a456-426614174000
           description: The company ID assigned to the person.
         created_from_id:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: 123e4567-e89b-12d3-a456-426614174000
           description: The unique identifier of the organisation person that has been used to create the project person. If null, the person has been created manually on the project level.
         membership_id:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: 123e4567-e89b-12d3-a456-426614174000
           description: The project membership ID of to the person. If given, the person is a member of the project.
       required:
@@ -1271,41 +1286,6 @@ components:
           description: The unique identifier of the organisation contact book person that should be added to the project.
       required:
       - person_id
-    UpdateProjectPersonDto:
-      type: object
-      properties:
-        source_id:
-          type: string
-          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
-          example: 123e4567-e89b-12d3-a456-426614174000
-        first_name:
-          type: string
-          description: The first name of the person.
-          example: John
-          maxLength: 255
-        last_name:
-          type: string
-          description: The last name of the person.
-          example: Doe
-          maxLength: 255
-        email:
-          type: string
-          description: The email address of the person.
-          example: john.doe@example.com
-          maxLength: 255
-        position:
-          type: string
-          description: The position of the person.
-          example: accountant
-          maxLength: 255
-        phone_number:
-          type: string
-          description: The phone number of the person. It must consist of between 1 and 15 digits and an optional leading "+" character.
-          example: '+491764445566'
-        company_id:
-          type: string
-          description: The company ID assigned to the person.
-          example: 123e4567-e89b-12d3-a456-426614174000
     CreateProjectPersonDto:
       type: object
       properties:
@@ -1345,6 +1325,41 @@ components:
       - first_name
       - last_name
       - email
+    UpdateProjectPersonDto:
+      type: object
+      properties:
+        source_id:
+          type: string
+          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
+          example: 123e4567-e89b-12d3-a456-426614174000
+        first_name:
+          type: string
+          description: The first name of the person.
+          example: John
+          maxLength: 255
+        last_name:
+          type: string
+          description: The last name of the person.
+          example: Doe
+          maxLength: 255
+        email:
+          type: string
+          description: The email address of the person.
+          example: john.doe@example.com
+          maxLength: 255
+        position:
+          type: string
+          description: The position of the person.
+          example: accountant
+          maxLength: 255
+        phone_number:
+          type: string
+          description: The phone number of the person. It must consist of between 1 and 15 digits and an optional leading "+" character.
+          example: '+491764445566'
+        company_id:
+          type: string
+          description: The company ID assigned to the person.
+          example: 123e4567-e89b-12d3-a456-426614174000
   securitySchemes:
     CapmoAuth:
       type: apiKey

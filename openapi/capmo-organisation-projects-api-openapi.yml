@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Capmo REST Organisation Companies Organisation Projects API
+  title: Capmo REST Organisation Projects API
   description: External REST API Documentation for Capmo
   version: '1.0'
   contact: {}
@@ -220,9 +220,10 @@ paths:
                           example: Internal server error
       security:
       - CapmoAuth: []
-      summary: ''
+      summary: Get organisation projects
       tags:
       - Organisation Projects
+      x-summary-source: derived
   /api/v1/organisation/projects/{projectId}/membership:
     post:
       description: This can be used to join an organisation project. The API-key user must be an organisation admin, and the project must be owned by the user's organisation. If the user previously left the project (soft-deleted membership), a new membership is created.
@@ -386,9 +387,10 @@ paths:
                           example: Internal server error
       security:
       - CapmoAuth: []
-      summary: ''
+      summary: Join own organisation project
       tags:
       - Organisation Projects
+      x-summary-source: derived
     delete:
       description: This can be used to leave an organisation project. The API-key user must be an organisation admin, and the project must be owned by the user's organisation. The user's project membership and associated project contact are removed.
       operationId: leaveOwnOrganisationProject
@@ -551,11 +553,61 @@ paths:
                           example: Internal server error
       security:
       - CapmoAuth: []
-      summary: ''
+      summary: Leave own organisation project
       tags:
       - Organisation Projects
+      x-summary-source: derived
 components:
   schemas:
+    BuildingType:
+      type: string
+      enum:
+      - RESIDENTIAL_BUILDINGS
+      - OFFICE_BUILDINGS
+      - COMMERCIAL_RETAIL
+      - INDUSTRIAL_MANUFACTURING
+      - LOGISTICS_WAREHOUSING
+      - HOTELS_HOSPITALITY
+      - HEALTHCARE_NURSING
+      - EDUCATION
+      - PUBLIC_BUILDINGS
+      - MIXED_USE
+      - OTHER_SPECIAL_STRUCTURES
+      description: The type of building being constructed.
+    ProjectType:
+      type: string
+      enum:
+      - NEW_CONSTRUCTION
+      - ALTERATION
+      - REFURBISHMENT
+      description: The type of construction project.
+    PaginatedOutputDto:
+      type: object
+      properties:
+        after:
+          type: string
+          example: null
+        count:
+          type: number
+          example: 1
+        total:
+          type: number
+          example: 1
+      required:
+      - after
+      - count
+      - total
+    ProjectStatus:
+      type: string
+      enum:
+      - PROJECT_PREPARATION
+      - PLANNING
+      - EXECUTION_PREPARATION
+      - EXECUTION
+      - PROJECT_COMPLETION
+      - COMPLETED
+      - DEFECTS_LIABILITY
+      description: The phase of the project.
     ReadProjectDto:
       type: object
       properties:
@@ -564,14 +616,16 @@ components:
           description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
           example: 123e4567-e89b-12d3-a456-426614174000
         created_by:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: 123e4567-e89b-12d3-a456-426614174000
           description: The unique identifier of the creator of the entity.
         updated_by:
-          type: string
+          type:
+          - string
+          - 'null'
           example: 123e4567-e89b-12d3-a456-426614174000
-          nullable: true
           description: The unique identifier of the last user who updated the entity.
         created_at:
           type: string
@@ -584,8 +638,9 @@ components:
           example: '2021-07-01T00:00:00.000Z'
           description: The date when the entity was last updated (on the client).
         deleted_at:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           format: date-time
           example: '2021-07-01T00:00:00.000Z'
           description: The date when the entity was deleted (on the client).
@@ -600,8 +655,9 @@ components:
           example: '2021-07-01T00:00:00.000Z'
           description: The date when the entity was last updated (on the server).
         server_deleted_at:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           format: date-time
           example: '2021-07-01T00:00:00.000Z'
           description: The date when the entity was deleted (on the server).
@@ -614,8 +670,9 @@ components:
           example: Berlin Data Center Campus (BER1)
           description: The name of the project.
         owner:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: Vantage Data Centers
           description: The owner of the project.
         address:
@@ -627,13 +684,15 @@ components:
           example: 123e4567-e89b-12d3-a456-426614174000
           description: The unique identifier of the owner organisation.
         latitude:
-          type: number
-          nullable: true
+          type:
+          - number
+          - 'null'
           example: 52.3220832
           description: The latitude of the project.
         longitude:
-          type: number
-          nullable: true
+          type:
+          - number
+          - 'null'
           example: 13.2922907
           description: The longitude of the project.
         is_archived:
@@ -646,80 +705,84 @@ components:
           description: The project key. This is a short string that identifies the project. It must be at least 1 character(s) long, and at most 12 characters long and may only consist of numbers and letters
         project_status:
           example: PROJECT_PREPARATION
-          nullable: true
           description: The phase of the project.
           allOf:
           - $ref: '#/components/schemas/ProjectStatus'
         project_volume:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           example: 500000000
           description: The volume of the project (in Euros).
         approved_additions_sum:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           example: 50000
           description: Sum of approved Change Orders (in Euros).
         owner_type:
-          nullable: true
           example: FreeText
           description: The type of the project owner reference.
           allOf:
           - $ref: '#/components/schemas/ProjectContactType'
         owner_person_id:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
-          nullable: true
           example: 123e4567-e89b-12d3-a456-426614174000
           description: The ID of the person from the organisation contact book linked as owner.
         owner_company_id:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
-          nullable: true
           example: 123e4567-e89b-12d3-a456-426614174000
           description: The ID of the company from the organisation contact book linked as owner.
         client:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: Munich Construction GmbH
           description: The client of the project.
         client_type:
-          nullable: true
           example: FreeText
           description: The type of the project client reference.
           allOf:
           - $ref: '#/components/schemas/ProjectContactType'
         client_person_id:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
-          nullable: true
           example: 123e4567-e89b-12d3-a456-426614174000
           description: The ID of the person from the organisation contact book linked as client.
         client_company_id:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
-          nullable: true
           example: 123e4567-e89b-12d3-a456-426614174000
           description: The ID of the company from the organisation contact book linked as client.
         main_responsible:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: Max Mustermann
           description: The main responsible person of the project.
         responsible_contact_id:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
-          nullable: true
           example: 123e4567-e89b-12d3-a456-426614174000
           description: The ID of the person from the project contact book assigned as main responsible.
         project_type:
-          nullable: true
           example: NEW_CONSTRUCTION
           description: The type of construction project.
           allOf:
           - $ref: '#/components/schemas/ProjectType'
         building_type:
-          nullable: true
           example: RESIDENTIAL_BUILDINGS
           description: The type of building being constructed.
           allOf:
@@ -730,8 +793,9 @@ components:
           example: '2021-07-01T00:00:00.000Z'
           description: The start date of the project.
         end_date:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           format: date-time
           example: '2021-07-01T00:00:00.000Z'
           description: The planned end date of the project.
@@ -769,22 +833,6 @@ components:
       - building_type
       - start_date
       - end_date
-    PaginatedOutputDto:
-      type: object
-      properties:
-        after:
-          type: string
-          example: null
-        count:
-          type: number
-          example: 1
-        total:
-          type: number
-          example: 1
-      required:
-      - after
-      - count
-      - total
     ProjectContactType:
       type: string
       enum:
@@ -792,39 +840,6 @@ components:
       - ContactBookPerson
       - ContactBookCompany
       description: The type of the project owner reference.
-    ProjectType:
-      type: string
-      enum:
-      - NEW_CONSTRUCTION
-      - ALTERATION
-      - REFURBISHMENT
-      description: The type of construction project.
-    ProjectStatus:
-      type: string
-      enum:
-      - PROJECT_PREPARATION
-      - PLANNING
-      - EXECUTION_PREPARATION
-      - EXECUTION
-      - PROJECT_COMPLETION
-      - COMPLETED
-      - DEFECTS_LIABILITY
-      description: The phase of the project.
-    BuildingType:
-      type: string
-      enum:
-      - RESIDENTIAL_BUILDINGS
-      - OFFICE_BUILDINGS
-      - COMMERCIAL_RETAIL
-      - INDUSTRIAL_MANUFACTURING
-      - LOGISTICS_WAREHOUSING
-      - HOTELS_HOSPITALITY
-      - HEALTHCARE_NURSING
-      - EDUCATION
-      - PUBLIC_BUILDINGS
-      - MIXED_USE
-      - OTHER_SPECIAL_STRUCTURES
-      description: The type of building being constructed.
   securitySchemes:
     CapmoAuth:
       type: apiKey

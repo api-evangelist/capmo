@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Capmo REST Organisation Companies Project Memberships API
+  title: Capmo REST Project Memberships API
   description: External REST API Documentation for Capmo
   version: '1.0'
   contact: {}
@@ -225,9 +225,10 @@ paths:
                           example: Internal server error
       security:
       - CapmoAuth: []
-      summary: ''
+      summary: Get project memberships
       tags:
       - Project Memberships
+      x-summary-source: derived
     post:
       description: This can be used to invite a project contact book person to a project identified by projectId. As a result, a project membership for them will be created.
       operationId: inviteProjectPerson
@@ -406,9 +407,10 @@ paths:
                           example: Internal server error
       security:
       - CapmoAuth: []
-      summary: ''
+      summary: Invite project person
       tags:
       - Project Memberships
+      x-summary-source: derived
   /api/v1/projects/{projectId}/memberships/{membershipId}:
     get:
       description: This can be used to retrieve a specific project membership by membershipId from a project identified by projectId.
@@ -587,9 +589,10 @@ paths:
                           example: Internal server error
       security:
       - CapmoAuth: []
-      summary: ''
+      summary: Get project membership
       tags:
       - Project Memberships
+      x-summary-source: derived
     delete:
       description: This can be used to revoke a project membership.
       operationId: revokeProjectMembership
@@ -757,11 +760,34 @@ paths:
                           example: Internal server error
       security:
       - CapmoAuth: []
-      summary: ''
+      summary: Revoke project membership
       tags:
       - Project Memberships
+      x-summary-source: derived
 components:
   schemas:
+    ProjectRole:
+      type: string
+      enum:
+      - ADMIN
+      - GUEST
+      description: The role assigned to the user in the project.
+    PaginatedOutputDto:
+      type: object
+      properties:
+        after:
+          type: string
+          example: null
+        count:
+          type: number
+          example: 1
+        total:
+          type: number
+          example: 1
+      required:
+      - after
+      - count
+      - total
     InviteProjectMemberDto:
       type: object
       properties:
@@ -773,12 +799,12 @@ components:
           description: 'The role assigned to the user in the project. Note: GUEST is deprecated and will be removed.'
           example: ADMIN
           deprecated: true
-          nullable: true
           allOf:
           - $ref: '#/components/schemas/ProjectRole'
         permission_set_id:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: 123e4567-e89b-12d3-a456-426614174000
           description: Optional permission set ID to assign to the invited user. If omitted, the project default permission set is used.
       required:
@@ -787,9 +813,10 @@ components:
       type: object
       properties:
         updated_by:
-          type: string
+          type:
+          - string
+          - 'null'
           example: 123e4567-e89b-12d3-a456-426614174000
-          nullable: true
           description: The unique identifier of the last user who updated the entity.
         created_at:
           type: string
@@ -802,8 +829,9 @@ components:
           example: '2021-07-01T00:00:00.000Z'
           description: The date when the entity was last updated (on the client).
         deleted_at:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           format: date-time
           example: '2021-07-01T00:00:00.000Z'
           description: The date when the entity was deleted (on the client).
@@ -818,8 +846,9 @@ components:
           example: '2021-07-01T00:00:00.000Z'
           description: The date when the entity was last updated (on the server).
         server_deleted_at:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           format: date-time
           example: '2021-07-01T00:00:00.000Z'
           description: The date when the entity was deleted (on the server).
@@ -845,8 +874,9 @@ components:
           example: 123e4567-e89b-12d3-a456-426614174000
           description: The unique identifier of the contact person assigned to the membership.
         invited_by:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: 123e4567-e89b-12d3-a456-426614174000
           description: The unique identifier of the user who invited the user linked to the membership.
       required:
@@ -863,28 +893,6 @@ components:
       - role
       - person_id
       - invited_by
-    PaginatedOutputDto:
-      type: object
-      properties:
-        after:
-          type: string
-          example: null
-        count:
-          type: number
-          example: 1
-        total:
-          type: number
-          example: 1
-      required:
-      - after
-      - count
-      - total
-    ProjectRole:
-      type: string
-      enum:
-      - ADMIN
-      - GUEST
-      description: The role assigned to the user in the project.
   securitySchemes:
     CapmoAuth:
       type: apiKey
