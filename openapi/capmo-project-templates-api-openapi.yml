@@ -424,29 +424,6 @@ components:
       - MIXED_USE
       - OTHER_SPECIAL_STRUCTURES
       description: The type of building being constructed.
-    ProjectType:
-      type: string
-      enum:
-      - NEW_CONSTRUCTION
-      - ALTERATION
-      - REFURBISHMENT
-      description: The type of construction project.
-    PaginatedOutputDto:
-      type: object
-      properties:
-        after:
-          type: string
-          example: null
-        count:
-          type: number
-          example: 1
-        total:
-          type: number
-          example: 1
-      required:
-      - after
-      - count
-      - total
     ProjectStatus:
       type: string
       enum:
@@ -458,13 +435,6 @@ components:
       - COMPLETED
       - DEFECTS_LIABILITY
       description: The phase of the project.
-    ProjectContactType:
-      type: string
-      enum:
-      - FreeText
-      - ContactBookPerson
-      - ContactBookCompany
-      description: The type of the project owner reference.
     ReadProjectTemplateDto:
       type: object
       properties:
@@ -668,6 +638,36 @@ components:
       - building_type
       - start_date
       - end_date
+    ProjectType:
+      type: string
+      enum:
+      - NEW_CONSTRUCTION
+      - ALTERATION
+      - REFURBISHMENT
+      description: The type of construction project.
+    ProjectContactType:
+      type: string
+      enum:
+      - FreeText
+      - ContactBookPerson
+      - ContactBookCompany
+      description: The type of the project owner reference.
+    PaginatedOutputDto:
+      type: object
+      properties:
+        after:
+          type: string
+          example: null
+        count:
+          type: number
+          example: 1
+        total:
+          type: number
+          example: 1
+      required:
+      - after
+      - count
+      - total
   securitySchemes:
     CapmoAuth:
       type: apiKey

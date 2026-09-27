@@ -766,28 +766,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ProjectRole:
-      type: string
-      enum:
-      - ADMIN
-      - GUEST
-      description: The role assigned to the user in the project.
-    PaginatedOutputDto:
-      type: object
-      properties:
-        after:
-          type: string
-          example: null
-        count:
-          type: number
-          example: 1
-        total:
-          type: number
-          example: 1
-      required:
-      - after
-      - count
-      - total
     InviteProjectMemberDto:
       type: object
       properties:
@@ -893,6 +871,28 @@ components:
       - role
       - person_id
       - invited_by
+    PaginatedOutputDto:
+      type: object
+      properties:
+        after:
+          type: string
+          example: null
+        count:
+          type: number
+          example: 1
+        total:
+          type: number
+          example: 1
+      required:
+      - after
+      - count
+      - total
+    ProjectRole:
+      type: string
+      enum:
+      - ADMIN
+      - GUEST
+      description: The role assigned to the user in the project.
   securitySchemes:
     CapmoAuth:
       type: apiKey

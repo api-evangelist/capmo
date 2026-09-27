@@ -928,13 +928,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    RequestStatus:
-      type: string
-      enum:
-      - ACCEPTED
-      - REJECTED
-      - PENDING
-      description: The status of the membership request.
     ReadOrganisationMembershipDto:
       type: object
       properties:
@@ -1025,6 +1018,31 @@ components:
       - role
       - request_status
       - person_id
+    InviteOrganisationMemberDto:
+      type: object
+      properties:
+        person_id:
+          type: string
+          description: The ID of the person to invite to the organisation.
+          example: 123e4567-e89b-12d3-a456-426614174000
+        role:
+          description: The role assigned to the user in the organisation.
+          example: ADMIN
+          allOf:
+          - $ref: '#/components/schemas/OrganisationMembershipType'
+      required:
+      - person_id
+      - role
+    UpdateOrganisationMembershipDto:
+      type: object
+      properties:
+        role:
+          description: The role assigned to the user in the organisation.
+          example: ADMIN
+          allOf:
+          - $ref: '#/components/schemas/OrganisationMembershipType'
+      required:
+      - role
     PaginatedOutputDto:
       type: object
       properties:
@@ -1041,37 +1059,19 @@ components:
       - after
       - count
       - total
-    InviteOrganisationMemberDto:
-      type: object
-      properties:
-        person_id:
-          type: string
-          description: The ID of the person to invite to the organisation.
-          example: 123e4567-e89b-12d3-a456-426614174000
-        role:
-          description: The role assigned to the user in the organisation.
-          example: ADMIN
-          allOf:
-          - $ref: '#/components/schemas/OrganisationMembershipType'
-      required:
-      - person_id
-      - role
     OrganisationMembershipType:
       type: string
       enum:
       - ADMIN
       - USER
       description: The role assigned to the user in the organisation.
-    UpdateOrganisationMembershipDto:
-      type: object
-      properties:
-        role:
-          description: The role assigned to the user in the organisation.
-          example: ADMIN
-          allOf:
-          - $ref: '#/components/schemas/OrganisationMembershipType'
-      required:
-      - role
+    RequestStatus:
+      type: string
+      enum:
+      - ACCEPTED
+      - REJECTED
+      - PENDING
+      description: The status of the membership request.
   securitySchemes:
     CapmoAuth:
       type: apiKey

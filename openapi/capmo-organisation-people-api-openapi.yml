@@ -952,22 +952,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    PaginatedOutputDto:
-      type: object
-      properties:
-        after:
-          type: string
-          example: null
-        count:
-          type: number
-          example: 1
-        total:
-          type: number
-          example: 1
-      required:
-      - after
-      - count
-      - total
     ReadOrganisationPersonDto:
       type: object
       properties:
@@ -1078,6 +1062,22 @@ components:
       - phone_number
       - company_id
       - membership_id
+    PaginatedOutputDto:
+      type: object
+      properties:
+        after:
+          type: string
+          example: null
+        count:
+          type: number
+          example: 1
+        total:
+          type: number
+          example: 1
+      required:
+      - after
+      - count
+      - total
     UpdateOrganisationPersonDto:
       type: object
       properties:

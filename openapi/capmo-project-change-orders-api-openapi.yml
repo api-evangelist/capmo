@@ -1130,6 +1130,30 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ReadChangeOrderStepDto:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: Unique ID of the step.
+        name:
+          type: string
+          example: Draft
+          description: The display name of the step.
+        type:
+          type: string
+          example: TO_DO
+          description: The type of the step (TO_DO, IN_PROGRESS, DONE).
+        position:
+          type: number
+          example: 0
+          description: The position of the step within the workflow.
+      required:
+      - id
+      - name
+      - type
+      - position
     ReadChangeOrderDto:
       type: object
       properties:
@@ -1321,46 +1345,106 @@ components:
       - cost
       - is_completed
       - description
-    PaginatedOutputDto:
+    UpdateChangeOrderDto:
       type: object
       properties:
-        after:
-          type: string
-          example: null
-        count:
-          type: number
-          example: 1
-        total:
-          type: number
-          example: 1
-      required:
-      - after
-      - count
-      - total
-    ReadChangeOrderStepDto:
-      type: object
-      properties:
-        id:
-          type: string
-          example: 123e4567-e89b-12d3-a456-426614174000
-          description: Unique ID of the step.
         name:
           type: string
-          example: Draft
-          description: The display name of the step.
-        type:
-          type: string
-          example: TO_DO
-          description: The type of the step (TO_DO, IN_PROGRESS, DONE).
-        position:
-          type: number
-          example: 0
-          description: The position of the step within the workflow.
-      required:
-      - id
-      - name
-      - type
-      - position
+          example: Fix plumbing issue
+          description: The display name of the change order.
+        order_number:
+          type:
+          - string
+          - 'null'
+          example: CO-001
+          description: The order number.
+        reason_for_change:
+          type:
+          - string
+          - 'null'
+          example: Design change
+          description: The reason for change.
+        project_categories:
+          example:
+          - 123e4567-e89b-12d3-a456-426614174000
+          - 123e4567-e89b-12d3-a456-426614174001
+          - 123e4567-e89b-12d3-a456-426614174002
+          description: Category IDs.
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        change_order_type:
+          example:
+          - VOBB_2_5
+          description: The change order type (VOBB enum).
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        bill_of_quantities:
+          type:
+          - string
+          - 'null'
+          example: BoQ-001
+          description: Bill of quantities reference.
+        project_companies:
+          example:
+          - 123e4567-e89b-12d3-a456-426614174000
+          - 123e4567-e89b-12d3-a456-426614174001
+          - 123e4567-e89b-12d3-a456-426614174002
+          description: Company IDs.
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        probability:
+          example:
+          - medium
+          description: Probability assessment.
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        assignee:
+          example:
+          - 123e4567-e89b-12d3-a456-426614174000
+          - 123e4567-e89b-12d3-a456-426614174001
+          - 123e4567-e89b-12d3-a456-426614174002
+          description: Assignee IDs.
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        cost:
+          type:
+          - number
+          - 'null'
+          example: 5000
+          description: Cost value.
+        is_completed:
+          type:
+          - boolean
+          - 'null'
+          example: false
+          description: Completion flag.
+        description:
+          type:
+          - string
+          - 'null'
+          example: Detailed description
+          description: Rich text description.
+        step_id:
+          type:
+          - string
+          - 'null'
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: The step ID to place the change order in.
     CreateChangeOrderDto:
       type: object
       properties:
@@ -1463,106 +1547,22 @@ components:
           description: The step ID to place the change order in.
       required:
       - name
-    UpdateChangeOrderDto:
+    PaginatedOutputDto:
       type: object
       properties:
-        name:
+        after:
           type: string
-          example: Fix plumbing issue
-          description: The display name of the change order.
-        order_number:
-          type:
-          - string
-          - 'null'
-          example: CO-001
-          description: The order number.
-        reason_for_change:
-          type:
-          - string
-          - 'null'
-          example: Design change
-          description: The reason for change.
-        project_categories:
-          example:
-          - 123e4567-e89b-12d3-a456-426614174000
-          - 123e4567-e89b-12d3-a456-426614174001
-          - 123e4567-e89b-12d3-a456-426614174002
-          description: Category IDs.
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        change_order_type:
-          example:
-          - VOBB_2_5
-          description: The change order type (VOBB enum).
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        bill_of_quantities:
-          type:
-          - string
-          - 'null'
-          example: BoQ-001
-          description: Bill of quantities reference.
-        project_companies:
-          example:
-          - 123e4567-e89b-12d3-a456-426614174000
-          - 123e4567-e89b-12d3-a456-426614174001
-          - 123e4567-e89b-12d3-a456-426614174002
-          description: Company IDs.
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        probability:
-          example:
-          - medium
-          description: Probability assessment.
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        assignee:
-          example:
-          - 123e4567-e89b-12d3-a456-426614174000
-          - 123e4567-e89b-12d3-a456-426614174001
-          - 123e4567-e89b-12d3-a456-426614174002
-          description: Assignee IDs.
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        cost:
-          type:
-          - number
-          - 'null'
-          example: 5000
-          description: Cost value.
-        is_completed:
-          type:
-          - boolean
-          - 'null'
-          example: false
-          description: Completion flag.
-        description:
-          type:
-          - string
-          - 'null'
-          example: Detailed description
-          description: Rich text description.
-        step_id:
-          type:
-          - string
-          - 'null'
-          example: 123e4567-e89b-12d3-a456-426614174000
-          description: The step ID to place the change order in.
+          example: null
+        count:
+          type: number
+          example: 1
+        total:
+          type: number
+          example: 1
+      required:
+      - after
+      - count
+      - total
   securitySchemes:
     CapmoAuth:
       type: apiKey

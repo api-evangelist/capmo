@@ -829,110 +829,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    UpdateSiteJournalDto:
-      type: object
-      properties:
-        source_id:
-          type: string
-          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
-          example: 123e4567-e89b-12d3-a456-426614174000
-        date:
-          type: string
-          description: The date of the site journal in ISO format (YYYY-MM-DD).
-          example: '2025-01-13'
-        visits:
-          description: Records the time intervals of visits.
-          type: array
-          items:
-            $ref: '#/components/schemas/SiteJournalVisitDto'
-        weather_observation:
-          type: object
-          description: The description of the weather for the given day.
-        company_attendances:
-          description: Describes the attendance, namely how many people and which company they belong.
-          type: array
-          items:
-            $ref: '#/components/schemas/SiteJournalCompanyAttendanceDto'
-        custom_texts:
-          description: Free-form custom text entries.
-          type: array
-          items:
-            $ref: '#/components/schemas/SiteJournalCustomTextDto'
-    SiteJournalCompanyAttendanceDto:
-      type: object
-      properties:
-        company_id:
-          type: string
-          example: 123e4567-e89b-12d3-a456-426614174000
-          description: The company unique identifier (UUID) associated with the attendees.
-        headcount:
-          type:
-          - number
-          - 'null'
-          example: 5
-          description: A positive number representing the number of attendees. Can be null.
-        description:
-          type:
-          - string
-          - 'null'
-          example: Arrived late due to traffic.
-          description: An optional note or annotation about the attendance.
-        worker_entries:
-          description: Individual worker entries for this company attendance.
-          type: array
-          items:
-            $ref: '#/components/schemas/SiteJournalWorkerEntryDto'
-      required:
-      - company_id
-      - headcount
-      - description
-    CreateSiteJournalDto:
-      type: object
-      properties:
-        source_id:
-          type: string
-          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
-          example: 123e4567-e89b-12d3-a456-426614174000
-        date:
-          type: string
-          description: The date of the site journal in ISO format (YYYY-MM-DD).
-          example: '2025-01-13'
-        visits:
-          description: Records the time intervals of visits.
-          type: array
-          items:
-            $ref: '#/components/schemas/SiteJournalVisitDto'
-        weather_observation:
-          type: object
-          description: The description of the weather for the given day.
-        company_attendances:
-          description: Describes the attendance, namely how many people and which company they belong.
-          type: array
-          items:
-            $ref: '#/components/schemas/SiteJournalCompanyAttendanceDto'
-        custom_texts:
-          description: Free-form custom text entries.
-          type: array
-          items:
-            $ref: '#/components/schemas/SiteJournalCustomTextDto'
-      required:
-      - date
-    PaginatedOutputDto:
-      type: object
-      properties:
-        after:
-          type: string
-          example: null
-        count:
-          type: number
-          example: 1
-        total:
-          type: number
-          example: 1
-      required:
-      - after
-      - count
-      - total
     SiteJournalCustomTextDto:
       type: object
       properties:
@@ -944,101 +840,6 @@ components:
           example: Foundation work completed on the east wing.
       required:
       - text
-    SiteJournalVisitDto:
-      type: object
-      properties:
-        started_at:
-          type:
-          - string
-          - 'null'
-          example: '11:00'
-          description: The start time (HH:mm) of a specific project stakeholder visit.
-        ended_at:
-          type:
-          - string
-          - 'null'
-          example: '12:00'
-          description: The end time (HH:mm) of a specific project stakeholder visit.
-        visitor_id:
-          type:
-          - string
-          - 'null'
-          example: 123e4567-e89b-12d3-a456-426614174000
-          description: The unique identifier (UUID) of the contact person who visited.
-        qualification:
-          type:
-          - string
-          - 'null'
-          enum:
-          - CONSTRUCTION_WORKER
-          - SITE_MANAGER
-          - SKILLED_WORKER
-          - HELPER
-          - ASSISTANT_WORKER
-          - FOREMAN
-          - FITTER
-          - ASSEMBLY_SUPERVISOR
-          - SENIOR_SITE_MANAGER
-          - SENIOR_FITTER
-          - SENIOR_FOREMAN
-          - FOREMAN_CONSTRUCTION
-          - PROJECT_MANAGER
-          - PROJECT_PLANNER
-          - SUPERVISOR
-          - MASTER_FOREMAN
-          - OTHER
-          example: CONSTRUCTION_WORKER
-          description: The job title/qualification of the visitor.
-      required:
-      - started_at
-      - ended_at
-      - visitor_id
-      - qualification
-    ReadSiteJournalDto:
-      type: object
-      properties:
-        source_id:
-          type: string
-          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
-          example: 123e4567-e89b-12d3-a456-426614174000
-        id:
-          type: string
-          example: 123e4567-e89b-12d3-a456-426614174000
-          description: The unique identifier of the site journal.
-        date:
-          type: string
-          description: The date of the site journal in ISO format (YYYY-MM-DD).
-          example: '2025-01-13'
-        project_id:
-          type: string
-          description: The unique identifier of the project.
-          example: adc99411-eaa2-11e9-11ed-efee563cda11
-        weather_observation:
-          type: object
-          description: The description of the weather for the given day.
-        visits:
-          description: Records the time interval of the visit.
-          type: array
-          items:
-            type: string
-        company_attendances:
-          description: Describes the attendance, namely how many people and which company they belong to.
-          type: array
-          items:
-            type: string
-        custom_texts:
-          description: Free-form custom text entries for this site journal.
-          type: array
-          items:
-            $ref: '#/components/schemas/SiteJournalCustomTextDto'
-      required:
-      - id
-      - date
-      - project_id
-      - weather_observation
-      - visits
-      - company_attendances
-      - custom_texts
     SiteJournalWorkerEntryDto:
       type: object
       properties:
@@ -1100,6 +901,205 @@ components:
       - ended_at
       - duration
       - worker_id
+      - qualification
+    CreateSiteJournalDto:
+      type: object
+      properties:
+        source_id:
+          type: string
+          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
+          example: 123e4567-e89b-12d3-a456-426614174000
+        date:
+          type: string
+          description: The date of the site journal in ISO format (YYYY-MM-DD).
+          example: '2025-01-13'
+        visits:
+          description: Records the time intervals of visits.
+          type: array
+          items:
+            $ref: '#/components/schemas/SiteJournalVisitDto'
+        weather_observation:
+          type: object
+          description: The description of the weather for the given day.
+        company_attendances:
+          description: Describes the attendance, namely how many people and which company they belong.
+          type: array
+          items:
+            $ref: '#/components/schemas/SiteJournalCompanyAttendanceDto'
+        custom_texts:
+          description: Free-form custom text entries.
+          type: array
+          items:
+            $ref: '#/components/schemas/SiteJournalCustomTextDto'
+      required:
+      - date
+    ReadSiteJournalDto:
+      type: object
+      properties:
+        source_id:
+          type: string
+          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
+          example: 123e4567-e89b-12d3-a456-426614174000
+        id:
+          type: string
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: The unique identifier of the site journal.
+        date:
+          type: string
+          description: The date of the site journal in ISO format (YYYY-MM-DD).
+          example: '2025-01-13'
+        project_id:
+          type: string
+          description: The unique identifier of the project.
+          example: adc99411-eaa2-11e9-11ed-efee563cda11
+        weather_observation:
+          type: object
+          description: The description of the weather for the given day.
+        visits:
+          description: Records the time interval of the visit.
+          type: array
+          items:
+            type: string
+        company_attendances:
+          description: Describes the attendance, namely how many people and which company they belong to.
+          type: array
+          items:
+            type: string
+        custom_texts:
+          description: Free-form custom text entries for this site journal.
+          type: array
+          items:
+            $ref: '#/components/schemas/SiteJournalCustomTextDto'
+      required:
+      - id
+      - date
+      - project_id
+      - weather_observation
+      - visits
+      - company_attendances
+      - custom_texts
+    PaginatedOutputDto:
+      type: object
+      properties:
+        after:
+          type: string
+          example: null
+        count:
+          type: number
+          example: 1
+        total:
+          type: number
+          example: 1
+      required:
+      - after
+      - count
+      - total
+    UpdateSiteJournalDto:
+      type: object
+      properties:
+        source_id:
+          type: string
+          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
+          example: 123e4567-e89b-12d3-a456-426614174000
+        date:
+          type: string
+          description: The date of the site journal in ISO format (YYYY-MM-DD).
+          example: '2025-01-13'
+        visits:
+          description: Records the time intervals of visits.
+          type: array
+          items:
+            $ref: '#/components/schemas/SiteJournalVisitDto'
+        weather_observation:
+          type: object
+          description: The description of the weather for the given day.
+        company_attendances:
+          description: Describes the attendance, namely how many people and which company they belong.
+          type: array
+          items:
+            $ref: '#/components/schemas/SiteJournalCompanyAttendanceDto'
+        custom_texts:
+          description: Free-form custom text entries.
+          type: array
+          items:
+            $ref: '#/components/schemas/SiteJournalCustomTextDto'
+    SiteJournalCompanyAttendanceDto:
+      type: object
+      properties:
+        company_id:
+          type: string
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: The company unique identifier (UUID) associated with the attendees.
+        headcount:
+          type:
+          - number
+          - 'null'
+          example: 5
+          description: A positive number representing the number of attendees. Can be null.
+        description:
+          type:
+          - string
+          - 'null'
+          example: Arrived late due to traffic.
+          description: An optional note or annotation about the attendance.
+        worker_entries:
+          description: Individual worker entries for this company attendance.
+          type: array
+          items:
+            $ref: '#/components/schemas/SiteJournalWorkerEntryDto'
+      required:
+      - company_id
+      - headcount
+      - description
+    SiteJournalVisitDto:
+      type: object
+      properties:
+        started_at:
+          type:
+          - string
+          - 'null'
+          example: '11:00'
+          description: The start time (HH:mm) of a specific project stakeholder visit.
+        ended_at:
+          type:
+          - string
+          - 'null'
+          example: '12:00'
+          description: The end time (HH:mm) of a specific project stakeholder visit.
+        visitor_id:
+          type:
+          - string
+          - 'null'
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: The unique identifier (UUID) of the contact person who visited.
+        qualification:
+          type:
+          - string
+          - 'null'
+          enum:
+          - CONSTRUCTION_WORKER
+          - SITE_MANAGER
+          - SKILLED_WORKER
+          - HELPER
+          - ASSISTANT_WORKER
+          - FOREMAN
+          - FITTER
+          - ASSEMBLY_SUPERVISOR
+          - SENIOR_SITE_MANAGER
+          - SENIOR_FITTER
+          - SENIOR_FOREMAN
+          - FOREMAN_CONSTRUCTION
+          - PROJECT_MANAGER
+          - PROJECT_PLANNER
+          - SUPERVISOR
+          - MASTER_FOREMAN
+          - OTHER
+          example: CONSTRUCTION_WORKER
+          description: The job title/qualification of the visitor.
+      required:
+      - started_at
+      - ended_at
+      - visitor_id
       - qualification
   securitySchemes:
     CapmoAuth:
