@@ -559,6 +559,22 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    PaginatedOutputDto:
+      type: object
+      properties:
+        after:
+          type: string
+          example: null
+        count:
+          type: number
+          example: 1
+        total:
+          type: number
+          example: 1
+      required:
+      - after
+      - count
+      - total
     BuildingType:
       type: string
       enum:
@@ -574,6 +590,13 @@ components:
       - MIXED_USE
       - OTHER_SPECIAL_STRUCTURES
       description: The type of building being constructed.
+    ProjectContactType:
+      type: string
+      enum:
+      - FreeText
+      - ContactBookPerson
+      - ContactBookCompany
+      description: The type of the project owner reference.
     ProjectStatus:
       type: string
       enum:
@@ -592,29 +615,6 @@ components:
       - ALTERATION
       - REFURBISHMENT
       description: The type of construction project.
-    ProjectContactType:
-      type: string
-      enum:
-      - FreeText
-      - ContactBookPerson
-      - ContactBookCompany
-      description: The type of the project owner reference.
-    PaginatedOutputDto:
-      type: object
-      properties:
-        after:
-          type: string
-          example: null
-        count:
-          type: number
-          example: 1
-        total:
-          type: number
-          example: 1
-      required:
-      - after
-      - count
-      - total
     ReadProjectDto:
       type: object
       properties:

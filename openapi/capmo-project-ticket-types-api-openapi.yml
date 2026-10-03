@@ -231,22 +231,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    PaginatedOutputDto:
-      type: object
-      properties:
-        after:
-          type: string
-          example: null
-        count:
-          type: number
-          example: 1
-        total:
-          type: number
-          example: 1
-      required:
-      - after
-      - count
-      - total
     ReadTicketTypeDto:
       type: object
       properties:
@@ -301,6 +285,22 @@ components:
       - server_deleted_at
       - id
       - name
+    PaginatedOutputDto:
+      type: object
+      properties:
+        after:
+          type: string
+          example: null
+        count:
+          type: number
+          example: 1
+        total:
+          type: number
+          example: 1
+      required:
+      - after
+      - count
+      - total
   securitySchemes:
     CapmoAuth:
       type: apiKey

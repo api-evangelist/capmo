@@ -1436,137 +1436,6 @@ components:
       - MIXED_USE
       - OTHER_SPECIAL_STRUCTURES
       description: The type of building being constructed.
-    ProjectStatus:
-      type: string
-      enum:
-      - PROJECT_PREPARATION
-      - PLANNING
-      - EXECUTION_PREPARATION
-      - EXECUTION
-      - PROJECT_COMPLETION
-      - COMPLETED
-      - DEFECTS_LIABILITY
-      description: The phase of the project.
-    CreateProjectDto:
-      type: object
-      properties:
-        source_id:
-          type: string
-          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
-          example: 123e4567-e89b-12d3-a456-426614174000
-        name:
-          type: string
-          description: The name of the project. Must be 128 characters or less.
-          maxLength: 128
-          example: Berlin Data Center Campus (BER1)
-        owner:
-          type: string
-          description: The owner of the project. Must be 255 characters or less.
-          maxLength: 255
-          example: Vantage Data Centers
-        address:
-          type: string
-          description: The address of the project. Must be between 6 and 128 characters long.
-          minLength: 6
-          maxLength: 128
-          example: Brandenburg Park, Uferring 5, Ludwigsfelde, Germany
-        latitude:
-          type: number
-          description: The latitude of the project. This is used to compute for instance the weather conditions on the project site.
-          example: 52.3220832
-        longitude:
-          type: number
-          description: The longitude of the project. This is used to compute the weather conditions.
-          example: 13.2922907
-        project_key:
-          type: string
-          description: The project key. This is a short string that identifies the project. It must be at least 1 character(s) long, and at most 12 characters long & may only consist of numbers and letters.
-          minLength: 1
-          maxLength: 12
-          pattern: ^[a-zA-Z0-9]+$
-          example: BER1
-        project_volume:
-          type: integer
-          description: The volume of the project (in Euros). Must be a positive integer.
-          minimum: 1
-          example: 500000000
-        project_status:
-          example: PROJECT_PREPARATION
-          description: The phase of the project.
-          allOf:
-          - $ref: '#/components/schemas/ProjectStatus'
-        start_date:
-          type: string
-          description: The start date of the project (in ISO8601 format). Must be between 2010-01-01 and 2039-12-31.
-          format: date-time
-          example: '2021-07-01T00:00:00.000Z'
-        end_date:
-          type:
-          - string
-          - 'null'
-          description: The planned end date of the project (in ISO8601 format). Must be between 2010-01-01 and 2039-12-31.
-          format: date-time
-          example: '2021-07-01T00:00:00.000Z'
-        owner_person_id:
-          type:
-          - string
-          - 'null'
-          format: uuid
-          example: 123e4567-e89b-12d3-a456-426614174000
-          description: Links the project owner to a person from the organisation contact book. Mutually exclusive with `owner_company_id`. Takes precedence over `owner` (free text) when provided.
-        owner_company_id:
-          type:
-          - string
-          - 'null'
-          format: uuid
-          example: 123e4567-e89b-12d3-a456-426614174000
-          description: Links the project owner to a company from the organisation contact book. Mutually exclusive with `owner_person_id`. Takes precedence over `owner` (free text) when provided.
-        client:
-          type:
-          - string
-          - 'null'
-          maxLength: 255
-          example: Munich Construction GmbH
-          description: The client of the project (free text). Must be 255 characters or less.
-        client_person_id:
-          type:
-          - string
-          - 'null'
-          format: uuid
-          example: 123e4567-e89b-12d3-a456-426614174000
-          description: Links the project client to a person from the organisation contact book. Mutually exclusive with `client_company_id`. Takes precedence over `client` (free text) when provided.
-        client_company_id:
-          type:
-          - string
-          - 'null'
-          format: uuid
-          example: 123e4567-e89b-12d3-a456-426614174000
-          description: Links the project client to a company from the organisation contact book. Mutually exclusive with `client_person_id`. Takes precedence over `client` (free text) when provided.
-        project_type:
-          example: NEW_CONSTRUCTION
-          description: The type of construction project.
-          allOf:
-          - $ref: '#/components/schemas/ProjectType'
-        building_type:
-          example: RESIDENTIAL_BUILDINGS
-          description: The type of building being constructed.
-          allOf:
-          - $ref: '#/components/schemas/BuildingType'
-        project_template_id:
-          type: string
-          description: The unique identifier of the project template. This is used to create a project from a project template. If not provided, the project will be created from scratch. This is mandatory if there is an organisation-level requirement to create projects from project templates only.
-          example: 224b4499-1c67-4315-9749-3d928d25ce2d
-      required:
-      - name
-      - address
-      - project_volume
-    ProjectType:
-      type: string
-      enum:
-      - NEW_CONSTRUCTION
-      - ALTERATION
-      - REFURBISHMENT
-      description: The type of construction project.
     ProjectContactType:
       type: string
       enum:
@@ -1574,22 +1443,6 @@ components:
       - ContactBookPerson
       - ContactBookCompany
       description: The type of the project owner reference.
-    PaginatedOutputDto:
-      type: object
-      properties:
-        after:
-          type: string
-          example: null
-        count:
-          type: number
-          example: 1
-        total:
-          type: number
-          example: 1
-      required:
-      - after
-      - count
-      - total
     ReadProjectDto:
       type: object
       properties:
@@ -1815,6 +1668,153 @@ components:
       - building_type
       - start_date
       - end_date
+    ProjectStatus:
+      type: string
+      enum:
+      - PROJECT_PREPARATION
+      - PLANNING
+      - EXECUTION_PREPARATION
+      - EXECUTION
+      - PROJECT_COMPLETION
+      - COMPLETED
+      - DEFECTS_LIABILITY
+      description: The phase of the project.
+    CreateProjectDto:
+      type: object
+      properties:
+        source_id:
+          type: string
+          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
+          example: 123e4567-e89b-12d3-a456-426614174000
+        name:
+          type: string
+          description: The name of the project. Must be 128 characters or less.
+          maxLength: 128
+          example: Berlin Data Center Campus (BER1)
+        owner:
+          type: string
+          description: The owner of the project. Must be 255 characters or less.
+          maxLength: 255
+          example: Vantage Data Centers
+        address:
+          type: string
+          description: The address of the project. Must be between 6 and 128 characters long.
+          minLength: 6
+          maxLength: 128
+          example: Brandenburg Park, Uferring 5, Ludwigsfelde, Germany
+        latitude:
+          type: number
+          description: The latitude of the project. This is used to compute for instance the weather conditions on the project site.
+          example: 52.3220832
+        longitude:
+          type: number
+          description: The longitude of the project. This is used to compute the weather conditions.
+          example: 13.2922907
+        project_key:
+          type: string
+          description: The project key. This is a short string that identifies the project. It must be at least 1 character(s) long, and at most 12 characters long & may only consist of numbers and letters.
+          minLength: 1
+          maxLength: 12
+          pattern: ^[a-zA-Z0-9]+$
+          example: BER1
+        project_volume:
+          type: integer
+          description: The volume of the project (in Euros). Must be a positive integer.
+          minimum: 1
+          example: 500000000
+        project_status:
+          example: PROJECT_PREPARATION
+          description: The phase of the project.
+          allOf:
+          - $ref: '#/components/schemas/ProjectStatus'
+        start_date:
+          type: string
+          description: The start date of the project (in ISO8601 format). Must be between 2010-01-01 and 2039-12-31.
+          format: date-time
+          example: '2021-07-01T00:00:00.000Z'
+        end_date:
+          type:
+          - string
+          - 'null'
+          description: The planned end date of the project (in ISO8601 format). Must be between 2010-01-01 and 2039-12-31.
+          format: date-time
+          example: '2021-07-01T00:00:00.000Z'
+        owner_person_id:
+          type:
+          - string
+          - 'null'
+          format: uuid
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: Links the project owner to a person from the organisation contact book. Mutually exclusive with `owner_company_id`. Takes precedence over `owner` (free text) when provided.
+        owner_company_id:
+          type:
+          - string
+          - 'null'
+          format: uuid
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: Links the project owner to a company from the organisation contact book. Mutually exclusive with `owner_person_id`. Takes precedence over `owner` (free text) when provided.
+        client:
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+          example: Munich Construction GmbH
+          description: The client of the project (free text). Must be 255 characters or less.
+        client_person_id:
+          type:
+          - string
+          - 'null'
+          format: uuid
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: Links the project client to a person from the organisation contact book. Mutually exclusive with `client_company_id`. Takes precedence over `client` (free text) when provided.
+        client_company_id:
+          type:
+          - string
+          - 'null'
+          format: uuid
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: Links the project client to a company from the organisation contact book. Mutually exclusive with `client_person_id`. Takes precedence over `client` (free text) when provided.
+        project_type:
+          example: NEW_CONSTRUCTION
+          description: The type of construction project.
+          allOf:
+          - $ref: '#/components/schemas/ProjectType'
+        building_type:
+          example: RESIDENTIAL_BUILDINGS
+          description: The type of building being constructed.
+          allOf:
+          - $ref: '#/components/schemas/BuildingType'
+        project_template_id:
+          type: string
+          description: The unique identifier of the project template. This is used to create a project from a project template. If not provided, the project will be created from scratch. This is mandatory if there is an organisation-level requirement to create projects from project templates only.
+          example: 224b4499-1c67-4315-9749-3d928d25ce2d
+      required:
+      - name
+      - address
+      - project_volume
+    ProjectType:
+      type: string
+      enum:
+      - NEW_CONSTRUCTION
+      - ALTERATION
+      - REFURBISHMENT
+      description: The type of construction project.
+    PaginatedOutputDto:
+      type: object
+      properties:
+        after:
+          type: string
+          example: null
+        count:
+          type: number
+          example: 1
+        total:
+          type: number
+          example: 1
+      required:
+      - after
+      - count
+      - total
   securitySchemes:
     CapmoAuth:
       type: apiKey

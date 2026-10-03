@@ -552,36 +552,7 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    WriteDocumentFileUploadDto:
-      type: object
-      properties:
-        mime_type:
-          type:
-          - string
-          - 'null'
-          description: The mime type of the file.
-          example: application/pdf
-      required:
-      - mime_type
-    WriteTicketAttachmentUploadDto:
-      type: object
-      properties:
-        name:
-          type: string
-          example: A-2-EG2.pdf
-          description: The name of the file, including the file extension.
-      required:
-      - name
-    WritePlanFileUploadDto:
-      type: object
-      properties:
-        name:
-          type: string
-          example: A-2-EG2.pdf
-          description: The name of the file, including the file extension.
-      required:
-      - name
-    ReadDocumentFileUploadDto:
+    ReadPlanFileUploadDto:
       type: object
       properties:
         upload_url:
@@ -614,7 +585,25 @@ components:
       - data_path
       - expires
       - fields
-    ReadPlanFileUploadDto:
+    WriteTicketAttachmentUploadDto:
+      type: object
+      properties:
+        name:
+          type: string
+          example: A-2-EG2.pdf
+          description: The name of the file, including the file extension.
+      required:
+      - name
+    WritePlanFileUploadDto:
+      type: object
+      properties:
+        name:
+          type: string
+          example: A-2-EG2.pdf
+          description: The name of the file, including the file extension.
+      required:
+      - name
+    ReadDocumentFileUploadDto:
       type: object
       properties:
         upload_url:
@@ -680,6 +669,17 @@ components:
       - data_path
       - expires
       - fields
+    WriteDocumentFileUploadDto:
+      type: object
+      properties:
+        mime_type:
+          type:
+          - string
+          - 'null'
+          description: The mime type of the file.
+          example: application/pdf
+      required:
+      - mime_type
   securitySchemes:
     CapmoAuth:
       type: apiKey

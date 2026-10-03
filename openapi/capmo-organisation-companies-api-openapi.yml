@@ -932,47 +932,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    UpdateOrganisationCompanyDto:
-      type: object
-      properties:
-        source_id:
-          type: string
-          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
-          example: 123e4567-e89b-12d3-a456-426614174000
-        name:
-          type: string
-          description: The name of the company.
-          example: Capmo
-          maxLength: 255
-        address_street:
-          type: string
-          description: The address (street) of the company.
-          example: Ridlerstraße 39
-          maxLength: 255
-        address_zip_code:
-          type: string
-          description: The address (zip code) of the company.
-          example: '80339'
-          maxLength: 255
-        address_city:
-          type: string
-          description: The address (city) of the company.
-          example: Munich
-          maxLength: 255
-        address_country:
-          type: string
-          description: The address (country) of the company. It is an ISO 3166-1 alpha-2 country code.
-          example: DE
-          maxLength: 255
-        tax_id:
-          type: string
-          description: The tax ID of the company.
-          example: '123456'
-          maxLength: 255
-        phone_number:
-          type: string
-          description: The phone number of the company. It must consist of between 1 and 15 digits and an optional leading "+" character
-          example: '+491764445566'
     ReadOrganisationCompanyDto:
       type: object
       properties:
@@ -1097,6 +1056,47 @@ components:
       - tax_id
       - phone_number
       - people_ids
+    UpdateOrganisationCompanyDto:
+      type: object
+      properties:
+        source_id:
+          type: string
+          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
+          example: 123e4567-e89b-12d3-a456-426614174000
+        name:
+          type: string
+          description: The name of the company.
+          example: Capmo
+          maxLength: 255
+        address_street:
+          type: string
+          description: The address (street) of the company.
+          example: Ridlerstraße 39
+          maxLength: 255
+        address_zip_code:
+          type: string
+          description: The address (zip code) of the company.
+          example: '80339'
+          maxLength: 255
+        address_city:
+          type: string
+          description: The address (city) of the company.
+          example: Munich
+          maxLength: 255
+        address_country:
+          type: string
+          description: The address (country) of the company. It is an ISO 3166-1 alpha-2 country code.
+          example: DE
+          maxLength: 255
+        tax_id:
+          type: string
+          description: The tax ID of the company.
+          example: '123456'
+          maxLength: 255
+        phone_number:
+          type: string
+          description: The phone number of the company. It must consist of between 1 and 15 digits and an optional leading "+" character
+          example: '+491764445566'
     CreateOrganisationCompanyDto:
       type: object
       properties:

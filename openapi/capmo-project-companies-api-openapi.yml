@@ -1142,7 +1142,7 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    UpdateProjectCompanyDto:
+    CreateProjectCompanyDto:
       type: object
       properties:
         source_id:
@@ -1183,6 +1183,12 @@ components:
           type: string
           description: The phone number of the company. It must consist of between 1 and 15 digits and an optional leading "+" character
           example: '+491764445566'
+        person_id:
+          type: string
+          description: The person ID assigned to the company.
+          example: 123e4567-e89b-12d3-a456-426614174000
+      required:
+      - name
     ReadProjectCompanyDto:
       type: object
       properties:
@@ -1314,7 +1320,7 @@ components:
       - phone_number
       - people_ids
       - created_from_id
-    CreateProjectCompanyDto:
+    UpdateProjectCompanyDto:
       type: object
       properties:
         source_id:
@@ -1355,12 +1361,6 @@ components:
           type: string
           description: The phone number of the company. It must consist of between 1 and 15 digits and an optional leading "+" character
           example: '+491764445566'
-        person_id:
-          type: string
-          description: The person ID assigned to the company.
-          example: 123e4567-e89b-12d3-a456-426614174000
-      required:
-      - name
     CreateCompanyFromOrganisationDto:
       type: object
       properties:

@@ -786,6 +786,29 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ReadAttachmentFileDto:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+          example: image/png
+          description: The type of the file.
+        name:
+          type:
+          - string
+          - 'null'
+          example: file.png
+          description: The file name
+        signed_download_url:
+          type: string
+          example: https://example.com/download/file.png
+          description: The file signed URL.
+      required:
+      - type
+      - name
+      - signed_download_url
     CreateAttachmentInputDto:
       type: object
       properties:
@@ -808,22 +831,6 @@ components:
       required:
       - name
       - data_path
-    PaginatedOutputDto:
-      type: object
-      properties:
-        after:
-          type: string
-          example: null
-        count:
-          type: number
-          example: 1
-        total:
-          type: number
-          example: 1
-      required:
-      - after
-      - count
-      - total
     ReadTicketAttachmentDto:
       type: object
       properties:
@@ -902,29 +909,22 @@ components:
       - ticket_id
       - project_id
       - file
-    ReadAttachmentFileDto:
+    PaginatedOutputDto:
       type: object
       properties:
-        type:
-          type:
-          - string
-          - 'null'
-          example: image/png
-          description: The type of the file.
-        name:
-          type:
-          - string
-          - 'null'
-          example: file.png
-          description: The file name
-        signed_download_url:
+        after:
           type: string
-          example: https://example.com/download/file.png
-          description: The file signed URL.
+          example: null
+        count:
+          type: number
+          example: 1
+        total:
+          type: number
+          example: 1
       required:
-      - type
-      - name
-      - signed_download_url
+      - after
+      - count
+      - total
   securitySchemes:
     CapmoAuth:
       type: apiKey

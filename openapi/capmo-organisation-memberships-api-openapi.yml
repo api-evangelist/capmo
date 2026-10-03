@@ -928,6 +928,19 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    OrganisationMembershipType:
+      type: string
+      enum:
+      - ADMIN
+      - USER
+      description: The role assigned to the user in the organisation.
+    RequestStatus:
+      type: string
+      enum:
+      - ACCEPTED
+      - REJECTED
+      - PENDING
+      description: The status of the membership request.
     ReadOrganisationMembershipDto:
       type: object
       properties:
@@ -1018,6 +1031,16 @@ components:
       - role
       - request_status
       - person_id
+    UpdateOrganisationMembershipDto:
+      type: object
+      properties:
+        role:
+          description: The role assigned to the user in the organisation.
+          example: ADMIN
+          allOf:
+          - $ref: '#/components/schemas/OrganisationMembershipType'
+      required:
+      - role
     InviteOrganisationMemberDto:
       type: object
       properties:
@@ -1032,16 +1055,6 @@ components:
           - $ref: '#/components/schemas/OrganisationMembershipType'
       required:
       - person_id
-      - role
-    UpdateOrganisationMembershipDto:
-      type: object
-      properties:
-        role:
-          description: The role assigned to the user in the organisation.
-          example: ADMIN
-          allOf:
-          - $ref: '#/components/schemas/OrganisationMembershipType'
-      required:
       - role
     PaginatedOutputDto:
       type: object
@@ -1059,19 +1072,6 @@ components:
       - after
       - count
       - total
-    OrganisationMembershipType:
-      type: string
-      enum:
-      - ADMIN
-      - USER
-      description: The role assigned to the user in the organisation.
-    RequestStatus:
-      type: string
-      enum:
-      - ACCEPTED
-      - REJECTED
-      - PENDING
-      description: The status of the membership request.
   securitySchemes:
     CapmoAuth:
       type: apiKey

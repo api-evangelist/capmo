@@ -1309,22 +1309,6 @@ components:
       - company_id
       - created_from_id
       - membership_id
-    PaginatedOutputDto:
-      type: object
-      properties:
-        after:
-          type: string
-          example: null
-        count:
-          type: number
-          example: 1
-        total:
-          type: number
-          example: 1
-      required:
-      - after
-      - count
-      - total
     UpdateProjectPersonDto:
       type: object
       properties:
@@ -1360,6 +1344,22 @@ components:
           type: string
           description: The company ID assigned to the person.
           example: 123e4567-e89b-12d3-a456-426614174000
+    PaginatedOutputDto:
+      type: object
+      properties:
+        after:
+          type: string
+          example: null
+        count:
+          type: number
+          example: 1
+        total:
+          type: number
+          example: 1
+      required:
+      - after
+      - count
+      - total
   securitySchemes:
     CapmoAuth:
       type: apiKey
