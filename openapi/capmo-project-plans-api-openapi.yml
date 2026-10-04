@@ -1709,12 +1709,141 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    SourceTypes:
-      type: string
-      enum:
-      - LOCAL
-      - CDE
-      description: Type of the plan source.
+    ReadPlanDto:
+      type: object
+      properties:
+        source_id:
+          type: string
+          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
+          example: 123e4567-e89b-12d3-a456-426614174000
+        created_by:
+          type:
+          - string
+          - 'null'
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: The unique identifier of the creator of the entity.
+        updated_by:
+          type:
+          - string
+          - 'null'
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: The unique identifier of the last user who updated the entity.
+        created_at:
+          type: string
+          format: date-time
+          example: '2021-07-01T00:00:00.000Z'
+          description: The date when the entity was created (on the client).
+        updated_at:
+          type: string
+          format: date-time
+          example: '2021-07-01T00:00:00.000Z'
+          description: The date when the entity was last updated (on the client).
+        deleted_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2021-07-01T00:00:00.000Z'
+          description: The date when the entity was deleted (on the client).
+        server_created_at:
+          type: string
+          format: date-time
+          example: '2021-07-01T00:00:00.000Z'
+          description: The date when the entity was created (on the server).
+        server_updated_at:
+          type: string
+          format: date-time
+          example: '2021-07-01T00:00:00.000Z'
+          description: The date when the entity was last updated (on the server).
+        server_deleted_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2021-07-01T00:00:00.000Z'
+          description: The date when the entity was deleted (on the server).
+        id:
+          type: string
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: Unique ID of the plan.
+        name:
+          type: string
+          example: A-2-EG2.pdf
+          description: The name of the plan.
+        description:
+          type:
+          - string
+          - 'null'
+          example: Outlines the comprehensive renovation of the East Wing of the building.
+          description: The description of the plan.
+        folder_id:
+          type:
+          - string
+          - 'null'
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: ID of the folder containing the plan. If set to `null`, refers to the default "Unsorted" folder.
+        file_id:
+          type: string
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: ID of the plan file attached to this plan.
+        file_name:
+          type:
+          - string
+          - 'null'
+          example: A-2-EG2.pdf
+          description: The name of the plan file attached to this plan, including its extension.
+        status:
+          description: Plan rendering status.
+          example: pending
+          allOf:
+          - $ref: '#/components/schemas/PlanRenderingStatus'
+        file_source_type:
+          description: Type of the plan source.
+          example: LOCAL
+          allOf:
+          - $ref: '#/components/schemas/SourceTypes'
+        file_source_id:
+          type:
+          - string
+          - 'null'
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: ID of the document. Only set if `source_type` is `CDE`.
+        has_new_source_version_available:
+          type:
+          - boolean
+          - 'null'
+          example: true
+          description: True when the document has a new version available. Only set if `source_type` is `CDE`.
+        total_versions:
+          type: number
+          example: 4
+          description: Deprecated. Please use `version_number` instead.
+          deprecated: true
+        version_number:
+          type: number
+          example: 5
+          description: Latest version number available for this plan.
+      required:
+      - created_by
+      - updated_by
+      - created_at
+      - updated_at
+      - deleted_at
+      - server_created_at
+      - server_updated_at
+      - server_deleted_at
+      - id
+      - name
+      - description
+      - folder_id
+      - file_id
+      - file_name
+      - status
+      - file_source_type
+      - file_source_id
+      - has_new_source_version_available
+      - total_versions
+      - version_number
     CreatePlanFromFileDto:
       type: object
       properties:
@@ -1754,83 +1883,22 @@ components:
       - folder_id
       - folder_name
       - file_path
-    CreatePlanFolderInputDto:
+    PaginatedOutputDto:
       type: object
       properties:
-        name:
+        after:
           type: string
-          example: Elevations
-          description: The name of the plan folder.
-        parent_folder_id:
-          type:
-          - string
-          - 'null'
-          example: 123e4567-e89b-12d3-a456-426614174000
-          description: Unique ID of the parent plan folder, `null` if at the root or `undefined` if the value was not set yet.
+          example: null
+        count:
+          type: number
+          example: 1
+        total:
+          type: number
+          example: 1
       required:
-      - name
-    PlanRenderingStatus:
-      type: string
-      enum:
-      - pending
-      - processing
-      - completed
-      - failed
-      description: Plan rendering status.
-    CreatePlanFromDocumentDto:
-      type: object
-      properties:
-        source_id:
-          type: string
-          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
-          example: 123e4567-e89b-12d3-a456-426614174000
-        name:
-          type: string
-          example: A-2-EG2.pdf
-          description: The name of the plan, including the file extension. If set to null or empty, defaults to the file name.
-        description:
-          type: string
-          example: Outlines the comprehensive renovation of the East Wing of the building.
-          description: The description of the plan.
-        folder_id:
-          type:
-          - string
-          - 'null'
-          example: 123e4567-e89b-12d3-a456-426614174000
-          description: 'ID of the folder containing the plan. If se to `null`, refers to the default "Unsorted" folder, other must point to an existing folder ID.
-
-            Folder name takes precedence over `folder_id` when specified.'
-        folder_name:
-          type:
-          - string
-          - 'null'
-          example: My folder
-          description: 'Name of the Folder. Will create a folder with this name if it does not exist.
-
-            Folder name takes precedence over `folder_id` when specified.'
-        file_source_id:
-          type: string
-          example: 123e4567-e89b-12d3-a456-426614174000
-          description: 'ID of the document to use. Please check the project document documentation for more information: https://capmoapi.readme.io/reference/createprojectdocument'
-      required:
-      - folder_id
-      - folder_name
-      - file_source_id
-    UpdatePlanFolderDto:
-      type: object
-      properties:
-        name:
-          type: string
-          example: Elevations
-          description: The name of the plan folder.
-        parent_folder_id:
-          type:
-          - string
-          - 'null'
-          example: 123e4567-e89b-12d3-a456-426614174000
-          description: Unique ID of the parent plan folder, `null` if at the root or `undefined` if the value was not set yet.
-      required:
-      - name
+      - after
+      - count
+      - total
     ReadPlanFolderDto:
       type: object
       properties:
@@ -1890,6 +1958,42 @@ components:
       - server_updated_at
       - server_deleted_at
       - id
+      - name
+    CreatePlanFolderInputDto:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Elevations
+          description: The name of the plan folder.
+        parent_folder_id:
+          type:
+          - string
+          - 'null'
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: Unique ID of the parent plan folder, `null` if at the root or `undefined` if the value was not set yet.
+      required:
+      - name
+    SourceTypes:
+      type: string
+      enum:
+      - LOCAL
+      - CDE
+      description: Type of the plan source.
+    UpdatePlanFolderDto:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Elevations
+          description: The name of the plan folder.
+        parent_folder_id:
+          type:
+          - string
+          - 'null'
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: Unique ID of the parent plan folder, `null` if at the root or `undefined` if the value was not set yet.
+      required:
       - name
     ReadPlanWithSignedUrlDto:
       type: object
@@ -2040,71 +2144,19 @@ components:
       - version_number
       - image_url
       - signed_url
-    ReadPlanDto:
+    CreatePlanFromDocumentDto:
       type: object
       properties:
         source_id:
           type: string
           description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
           example: 123e4567-e89b-12d3-a456-426614174000
-        created_by:
-          type:
-          - string
-          - 'null'
-          example: 123e4567-e89b-12d3-a456-426614174000
-          description: The unique identifier of the creator of the entity.
-        updated_by:
-          type:
-          - string
-          - 'null'
-          example: 123e4567-e89b-12d3-a456-426614174000
-          description: The unique identifier of the last user who updated the entity.
-        created_at:
-          type: string
-          format: date-time
-          example: '2021-07-01T00:00:00.000Z'
-          description: The date when the entity was created (on the client).
-        updated_at:
-          type: string
-          format: date-time
-          example: '2021-07-01T00:00:00.000Z'
-          description: The date when the entity was last updated (on the client).
-        deleted_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2021-07-01T00:00:00.000Z'
-          description: The date when the entity was deleted (on the client).
-        server_created_at:
-          type: string
-          format: date-time
-          example: '2021-07-01T00:00:00.000Z'
-          description: The date when the entity was created (on the server).
-        server_updated_at:
-          type: string
-          format: date-time
-          example: '2021-07-01T00:00:00.000Z'
-          description: The date when the entity was last updated (on the server).
-        server_deleted_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2021-07-01T00:00:00.000Z'
-          description: The date when the entity was deleted (on the server).
-        id:
-          type: string
-          example: 123e4567-e89b-12d3-a456-426614174000
-          description: Unique ID of the plan.
         name:
           type: string
           example: A-2-EG2.pdf
-          description: The name of the plan.
+          description: The name of the plan, including the file extension. If set to null or empty, defaults to the file name.
         description:
-          type:
-          - string
-          - 'null'
+          type: string
           example: Outlines the comprehensive renovation of the East Wing of the building.
           description: The description of the plan.
         folder_id:
@@ -2112,85 +2164,33 @@ components:
           - string
           - 'null'
           example: 123e4567-e89b-12d3-a456-426614174000
-          description: ID of the folder containing the plan. If set to `null`, refers to the default "Unsorted" folder.
-        file_id:
-          type: string
-          example: 123e4567-e89b-12d3-a456-426614174000
-          description: ID of the plan file attached to this plan.
-        file_name:
+          description: 'ID of the folder containing the plan. If se to `null`, refers to the default "Unsorted" folder, other must point to an existing folder ID.
+
+            Folder name takes precedence over `folder_id` when specified.'
+        folder_name:
           type:
           - string
           - 'null'
-          example: A-2-EG2.pdf
-          description: The name of the plan file attached to this plan, including its extension.
-        status:
-          description: Plan rendering status.
-          example: pending
-          allOf:
-          - $ref: '#/components/schemas/PlanRenderingStatus'
-        file_source_type:
-          description: Type of the plan source.
-          example: LOCAL
-          allOf:
-          - $ref: '#/components/schemas/SourceTypes'
+          example: My folder
+          description: 'Name of the Folder. Will create a folder with this name if it does not exist.
+
+            Folder name takes precedence over `folder_id` when specified.'
         file_source_id:
-          type:
-          - string
-          - 'null'
-          example: 123e4567-e89b-12d3-a456-426614174000
-          description: ID of the document. Only set if `source_type` is `CDE`.
-        has_new_source_version_available:
-          type:
-          - boolean
-          - 'null'
-          example: true
-          description: True when the document has a new version available. Only set if `source_type` is `CDE`.
-        total_versions:
-          type: number
-          example: 4
-          description: Deprecated. Please use `version_number` instead.
-          deprecated: true
-        version_number:
-          type: number
-          example: 5
-          description: Latest version number available for this plan.
-      required:
-      - created_by
-      - updated_by
-      - created_at
-      - updated_at
-      - deleted_at
-      - server_created_at
-      - server_updated_at
-      - server_deleted_at
-      - id
-      - name
-      - description
-      - folder_id
-      - file_id
-      - file_name
-      - status
-      - file_source_type
-      - file_source_id
-      - has_new_source_version_available
-      - total_versions
-      - version_number
-    PaginatedOutputDto:
-      type: object
-      properties:
-        after:
           type: string
-          example: null
-        count:
-          type: number
-          example: 1
-        total:
-          type: number
-          example: 1
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: 'ID of the document to use. Please check the project document documentation for more information: https://capmoapi.readme.io/reference/createprojectdocument'
       required:
-      - after
-      - count
-      - total
+      - folder_id
+      - folder_name
+      - file_source_id
+    PlanRenderingStatus:
+      type: string
+      enum:
+      - pending
+      - processing
+      - completed
+      - failed
+      description: Plan rendering status.
   securitySchemes:
     CapmoAuth:
       type: apiKey

@@ -1097,6 +1097,22 @@ components:
           type: string
           description: The phone number of the company. It must consist of between 1 and 15 digits and an optional leading "+" character
           example: '+491764445566'
+    PaginatedOutputDto:
+      type: object
+      properties:
+        after:
+          type: string
+          example: null
+        count:
+          type: number
+          example: 1
+        total:
+          type: number
+          example: 1
+      required:
+      - after
+      - count
+      - total
     CreateOrganisationCompanyDto:
       type: object
       properties:
@@ -1144,22 +1160,6 @@ components:
           example: 123e4567-e89b-12d3-a456-426614174000
       required:
       - name
-    PaginatedOutputDto:
-      type: object
-      properties:
-        after:
-          type: string
-          example: null
-        count:
-          type: number
-          example: 1
-        total:
-          type: number
-          example: 1
-      required:
-      - after
-      - count
-      - total
   securitySchemes:
     CapmoAuth:
       type: apiKey

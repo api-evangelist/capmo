@@ -829,34 +829,35 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    SiteJournalCompanyAttendanceDto:
+    UpdateSiteJournalDto:
       type: object
       properties:
-        company_id:
+        source_id:
           type: string
+          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
           example: 123e4567-e89b-12d3-a456-426614174000
-          description: The company unique identifier (UUID) associated with the attendees.
-        headcount:
-          type:
-          - number
-          - 'null'
-          example: 5
-          description: A positive number representing the number of attendees. Can be null.
-        description:
-          type:
-          - string
-          - 'null'
-          example: Arrived late due to traffic.
-          description: An optional note or annotation about the attendance.
-        worker_entries:
-          description: Individual worker entries for this company attendance.
+        date:
+          type: string
+          description: The date of the site journal in ISO format (YYYY-MM-DD).
+          example: '2025-01-13'
+        visits:
+          description: Records the time intervals of visits.
           type: array
           items:
-            $ref: '#/components/schemas/SiteJournalWorkerEntryDto'
-      required:
-      - company_id
-      - headcount
-      - description
+            $ref: '#/components/schemas/SiteJournalVisitDto'
+        weather_observation:
+          type: object
+          description: The description of the weather for the given day.
+        company_attendances:
+          description: Describes the attendance, namely how many people and which company they belong.
+          type: array
+          items:
+            $ref: '#/components/schemas/SiteJournalCompanyAttendanceDto'
+        custom_texts:
+          description: Free-form custom text entries.
+          type: array
+          items:
+            $ref: '#/components/schemas/SiteJournalCustomTextDto'
     SiteJournalVisitDto:
       type: object
       properties:
@@ -907,6 +908,22 @@ components:
       - ended_at
       - visitor_id
       - qualification
+    PaginatedOutputDto:
+      type: object
+      properties:
+        after:
+          type: string
+          example: null
+        count:
+          type: number
+          example: 1
+        total:
+          type: number
+          example: 1
+      required:
+      - after
+      - count
+      - total
     ReadSiteJournalDto:
       type: object
       properties:
@@ -952,7 +969,35 @@ components:
       - visits
       - company_attendances
       - custom_texts
-    UpdateSiteJournalDto:
+    SiteJournalCompanyAttendanceDto:
+      type: object
+      properties:
+        company_id:
+          type: string
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: The company unique identifier (UUID) associated with the attendees.
+        headcount:
+          type:
+          - number
+          - 'null'
+          example: 5
+          description: A positive number representing the number of attendees. Can be null.
+        description:
+          type:
+          - string
+          - 'null'
+          example: Arrived late due to traffic.
+          description: An optional note or annotation about the attendance.
+        worker_entries:
+          description: Individual worker entries for this company attendance.
+          type: array
+          items:
+            $ref: '#/components/schemas/SiteJournalWorkerEntryDto'
+      required:
+      - company_id
+      - headcount
+      - description
+    CreateSiteJournalDto:
       type: object
       properties:
         source_id:
@@ -981,6 +1026,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SiteJournalCustomTextDto'
+      required:
+      - date
+    SiteJournalCustomTextDto:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+          description: Free-form text content for this custom text entry.
+          example: Foundation work completed on the east wing.
+      required:
+      - text
     SiteJournalWorkerEntryDto:
       type: object
       properties:
@@ -1043,64 +1101,6 @@ components:
       - duration
       - worker_id
       - qualification
-    SiteJournalCustomTextDto:
-      type: object
-      properties:
-        text:
-          type:
-          - string
-          - 'null'
-          description: Free-form text content for this custom text entry.
-          example: Foundation work completed on the east wing.
-      required:
-      - text
-    CreateSiteJournalDto:
-      type: object
-      properties:
-        source_id:
-          type: string
-          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
-          example: 123e4567-e89b-12d3-a456-426614174000
-        date:
-          type: string
-          description: The date of the site journal in ISO format (YYYY-MM-DD).
-          example: '2025-01-13'
-        visits:
-          description: Records the time intervals of visits.
-          type: array
-          items:
-            $ref: '#/components/schemas/SiteJournalVisitDto'
-        weather_observation:
-          type: object
-          description: The description of the weather for the given day.
-        company_attendances:
-          description: Describes the attendance, namely how many people and which company they belong.
-          type: array
-          items:
-            $ref: '#/components/schemas/SiteJournalCompanyAttendanceDto'
-        custom_texts:
-          description: Free-form custom text entries.
-          type: array
-          items:
-            $ref: '#/components/schemas/SiteJournalCustomTextDto'
-      required:
-      - date
-    PaginatedOutputDto:
-      type: object
-      properties:
-        after:
-          type: string
-          example: null
-        count:
-          type: number
-          example: 1
-        total:
-          type: number
-          example: 1
-      required:
-      - after
-      - count
-      - total
   securitySchemes:
     CapmoAuth:
       type: apiKey

@@ -552,39 +552,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ReadPlanFileUploadDto:
-      type: object
-      properties:
-        upload_url:
-          type: string
-          example: https://example.com/upload-url
-          description: The upload URL for the file.
-        data_path:
-          type: string
-          example: tmp/d53e8d26-ed1e-11ee-82f7-df9b7663c64f/0a963a56-d21f-40e7-bf1f-36c0f5b1cafb
-          description: The unique identifier of the file.
-        expires:
-          type: number
-          example: 3600
-          description: The expiration time in seconds of the upload URL.
-        fields:
-          type: object
-          description: Additional fields required for the upload.
-          example:
-            Content-Type: application/pdf
-            bucket: <bucket-name>
-            X-Amz-Algorithm: AWS4-HMAC-SHA256
-            X-Amz-Credential: <string>
-            X-Amz-Date: 20240429T034549Z
-            X-Amz-Security-Token: <string>
-            key: tmp/9357781c-05da-11ef-9539-7b47b1fda975/eae0751a-9e89-4ff3-98a9-d4cb31f2a792
-            Policy: <string>
-            X-Amz-Signature: <string>
-      required:
-      - upload_url
-      - data_path
-      - expires
-      - fields
     WriteTicketAttachmentUploadDto:
       type: object
       properties:
@@ -594,48 +561,17 @@ components:
           description: The name of the file, including the file extension.
       required:
       - name
-    WritePlanFileUploadDto:
+    WriteDocumentFileUploadDto:
       type: object
       properties:
-        name:
-          type: string
-          example: A-2-EG2.pdf
-          description: The name of the file, including the file extension.
+        mime_type:
+          type:
+          - string
+          - 'null'
+          description: The mime type of the file.
+          example: application/pdf
       required:
-      - name
-    ReadDocumentFileUploadDto:
-      type: object
-      properties:
-        upload_url:
-          type: string
-          example: https://example.com/upload-url
-          description: The upload URL for the file.
-        data_path:
-          type: string
-          example: tmp/d53e8d26-ed1e-11ee-82f7-df9b7663c64f/0a963a56-d21f-40e7-bf1f-36c0f5b1cafb
-          description: The unique identifier of the file.
-        expires:
-          type: number
-          example: 3600
-          description: The expiration time in seconds of the upload URL.
-        fields:
-          type: object
-          description: Additional fields required for the upload.
-          example:
-            Content-Type: application/pdf
-            bucket: <bucket-name>
-            X-Amz-Algorithm: AWS4-HMAC-SHA256
-            X-Amz-Credential: <string>
-            X-Amz-Date: 20240429T034549Z
-            X-Amz-Security-Token: <string>
-            key: tmp/9357781c-05da-11ef-9539-7b47b1fda975/eae0751a-9e89-4ff3-98a9-d4cb31f2a792
-            Policy: <string>
-            X-Amz-Signature: <string>
-      required:
-      - upload_url
-      - data_path
-      - expires
-      - fields
+      - mime_type
     ReadTicketAttachmentUploadDto:
       type: object
       properties:
@@ -669,17 +605,81 @@ components:
       - data_path
       - expires
       - fields
-    WriteDocumentFileUploadDto:
+    ReadPlanFileUploadDto:
       type: object
       properties:
-        mime_type:
-          type:
-          - string
-          - 'null'
-          description: The mime type of the file.
-          example: application/pdf
+        upload_url:
+          type: string
+          example: https://example.com/upload-url
+          description: The upload URL for the file.
+        data_path:
+          type: string
+          example: tmp/d53e8d26-ed1e-11ee-82f7-df9b7663c64f/0a963a56-d21f-40e7-bf1f-36c0f5b1cafb
+          description: The unique identifier of the file.
+        expires:
+          type: number
+          example: 3600
+          description: The expiration time in seconds of the upload URL.
+        fields:
+          type: object
+          description: Additional fields required for the upload.
+          example:
+            Content-Type: application/pdf
+            bucket: <bucket-name>
+            X-Amz-Algorithm: AWS4-HMAC-SHA256
+            X-Amz-Credential: <string>
+            X-Amz-Date: 20240429T034549Z
+            X-Amz-Security-Token: <string>
+            key: tmp/9357781c-05da-11ef-9539-7b47b1fda975/eae0751a-9e89-4ff3-98a9-d4cb31f2a792
+            Policy: <string>
+            X-Amz-Signature: <string>
       required:
-      - mime_type
+      - upload_url
+      - data_path
+      - expires
+      - fields
+    ReadDocumentFileUploadDto:
+      type: object
+      properties:
+        upload_url:
+          type: string
+          example: https://example.com/upload-url
+          description: The upload URL for the file.
+        data_path:
+          type: string
+          example: tmp/d53e8d26-ed1e-11ee-82f7-df9b7663c64f/0a963a56-d21f-40e7-bf1f-36c0f5b1cafb
+          description: The unique identifier of the file.
+        expires:
+          type: number
+          example: 3600
+          description: The expiration time in seconds of the upload URL.
+        fields:
+          type: object
+          description: Additional fields required for the upload.
+          example:
+            Content-Type: application/pdf
+            bucket: <bucket-name>
+            X-Amz-Algorithm: AWS4-HMAC-SHA256
+            X-Amz-Credential: <string>
+            X-Amz-Date: 20240429T034549Z
+            X-Amz-Security-Token: <string>
+            key: tmp/9357781c-05da-11ef-9539-7b47b1fda975/eae0751a-9e89-4ff3-98a9-d4cb31f2a792
+            Policy: <string>
+            X-Amz-Signature: <string>
+      required:
+      - upload_url
+      - data_path
+      - expires
+      - fields
+    WritePlanFileUploadDto:
+      type: object
+      properties:
+        name:
+          type: string
+          example: A-2-EG2.pdf
+          description: The name of the file, including the file extension.
+      required:
+      - name
   securitySchemes:
     CapmoAuth:
       type: apiKey

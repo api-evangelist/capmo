@@ -850,12 +850,6 @@ components:
       - role
       - person_id
       - invited_by
-    ProjectRole:
-      type: string
-      enum:
-      - ADMIN
-      - GUEST
-      description: The role assigned to the user in the project.
     InviteProjectMemberDto:
       type: object
       properties:
@@ -893,6 +887,12 @@ components:
       - after
       - count
       - total
+    ProjectRole:
+      type: string
+      enum:
+      - ADMIN
+      - GUEST
+      description: The role assigned to the user in the project.
   securitySchemes:
     CapmoAuth:
       type: apiKey

@@ -230,6 +230,18 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ReadPaginatedProjectTicketCommentsDto:
+      type: object
+      properties:
+        after:
+          type: string
+          example: null
+        count:
+          type: number
+          example: 1
+      required:
+      - after
+      - count
     ReadProjectTicketCommentDto:
       type: object
       properties:
@@ -276,18 +288,6 @@ components:
       - created_at
       - updated_at
       - deleted_at
-    ReadPaginatedProjectTicketCommentsDto:
-      type: object
-      properties:
-        after:
-          type: string
-          example: null
-        count:
-          type: number
-          example: 1
-      required:
-      - after
-      - count
   securitySchemes:
     CapmoAuth:
       type: apiKey

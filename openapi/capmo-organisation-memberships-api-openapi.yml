@@ -928,12 +928,32 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    OrganisationMembershipType:
-      type: string
-      enum:
-      - ADMIN
-      - USER
-      description: The role assigned to the user in the organisation.
+    UpdateOrganisationMembershipDto:
+      type: object
+      properties:
+        role:
+          description: The role assigned to the user in the organisation.
+          example: ADMIN
+          allOf:
+          - $ref: '#/components/schemas/OrganisationMembershipType'
+      required:
+      - role
+    PaginatedOutputDto:
+      type: object
+      properties:
+        after:
+          type: string
+          example: null
+        count:
+          type: number
+          example: 1
+        total:
+          type: number
+          example: 1
+      required:
+      - after
+      - count
+      - total
     RequestStatus:
       type: string
       enum:
@@ -941,6 +961,12 @@ components:
       - REJECTED
       - PENDING
       description: The status of the membership request.
+    OrganisationMembershipType:
+      type: string
+      enum:
+      - ADMIN
+      - USER
+      description: The role assigned to the user in the organisation.
     ReadOrganisationMembershipDto:
       type: object
       properties:
@@ -1031,16 +1057,6 @@ components:
       - role
       - request_status
       - person_id
-    UpdateOrganisationMembershipDto:
-      type: object
-      properties:
-        role:
-          description: The role assigned to the user in the organisation.
-          example: ADMIN
-          allOf:
-          - $ref: '#/components/schemas/OrganisationMembershipType'
-      required:
-      - role
     InviteOrganisationMemberDto:
       type: object
       properties:
@@ -1056,22 +1072,6 @@ components:
       required:
       - person_id
       - role
-    PaginatedOutputDto:
-      type: object
-      properties:
-        after:
-          type: string
-          example: null
-        count:
-          type: number
-          example: 1
-        total:
-          type: number
-          example: 1
-      required:
-      - after
-      - count
-      - total
   securitySchemes:
     CapmoAuth:
       type: apiKey

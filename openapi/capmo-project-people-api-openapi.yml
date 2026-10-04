@@ -1144,6 +1144,22 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    PaginatedOutputDto:
+      type: object
+      properties:
+        after:
+          type: string
+          example: null
+        count:
+          type: number
+          example: 1
+        total:
+          type: number
+          example: 1
+      required:
+      - after
+      - count
+      - total
     CreateProjectPersonDto:
       type: object
       properties:
@@ -1192,6 +1208,41 @@ components:
           description: The unique identifier of the organisation contact book person that should be added to the project.
       required:
       - person_id
+    UpdateProjectPersonDto:
+      type: object
+      properties:
+        source_id:
+          type: string
+          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
+          example: 123e4567-e89b-12d3-a456-426614174000
+        first_name:
+          type: string
+          description: The first name of the person.
+          example: John
+          maxLength: 255
+        last_name:
+          type: string
+          description: The last name of the person.
+          example: Doe
+          maxLength: 255
+        email:
+          type: string
+          description: The email address of the person.
+          example: john.doe@example.com
+          maxLength: 255
+        position:
+          type: string
+          description: The position of the person.
+          example: accountant
+          maxLength: 255
+        phone_number:
+          type: string
+          description: The phone number of the person. It must consist of between 1 and 15 digits and an optional leading "+" character.
+          example: '+491764445566'
+        company_id:
+          type: string
+          description: The company ID assigned to the person.
+          example: 123e4567-e89b-12d3-a456-426614174000
     ReadProjectPersonDto:
       type: object
       properties:
@@ -1309,57 +1360,6 @@ components:
       - company_id
       - created_from_id
       - membership_id
-    UpdateProjectPersonDto:
-      type: object
-      properties:
-        source_id:
-          type: string
-          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
-          example: 123e4567-e89b-12d3-a456-426614174000
-        first_name:
-          type: string
-          description: The first name of the person.
-          example: John
-          maxLength: 255
-        last_name:
-          type: string
-          description: The last name of the person.
-          example: Doe
-          maxLength: 255
-        email:
-          type: string
-          description: The email address of the person.
-          example: john.doe@example.com
-          maxLength: 255
-        position:
-          type: string
-          description: The position of the person.
-          example: accountant
-          maxLength: 255
-        phone_number:
-          type: string
-          description: The phone number of the person. It must consist of between 1 and 15 digits and an optional leading "+" character.
-          example: '+491764445566'
-        company_id:
-          type: string
-          description: The company ID assigned to the person.
-          example: 123e4567-e89b-12d3-a456-426614174000
-    PaginatedOutputDto:
-      type: object
-      properties:
-        after:
-          type: string
-          example: null
-        count:
-          type: number
-          example: 1
-        total:
-          type: number
-          example: 1
-      required:
-      - after
-      - count
-      - total
   securitySchemes:
     CapmoAuth:
       type: apiKey
