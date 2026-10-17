@@ -1709,6 +1709,167 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    CreatePlanFolderInputDto:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Elevations
+          description: The name of the plan folder.
+        parent_folder_id:
+          type:
+          - string
+          - 'null'
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: Unique ID of the parent plan folder, `null` if at the root or `undefined` if the value was not set yet.
+      required:
+      - name
+    CreatePlanFromFileDto:
+      type: object
+      properties:
+        source_id:
+          type: string
+          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
+          example: 123e4567-e89b-12d3-a456-426614174000
+        name:
+          type: string
+          example: A-2-EG2.pdf
+          description: The name of the plan, including the file extension. If set to null or empty, defaults to the file name.
+        description:
+          type: string
+          example: Outlines the comprehensive renovation of the East Wing of the building.
+          description: The description of the plan.
+        folder_id:
+          type:
+          - string
+          - 'null'
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: 'ID of the folder containing the plan. If se to `null`, refers to the default "Unsorted" folder, other must point to an existing folder ID.
+
+            Folder name takes precedence over `folder_id` when specified.'
+        folder_name:
+          type:
+          - string
+          - 'null'
+          example: My folder
+          description: 'Name of the Folder. Will create a folder with this name if it does not exist.
+
+            Folder name takes precedence over `folder_id` when specified.'
+        file_path:
+          type: string
+          example: 0ba6d5d9-d718-45b4-bb34-f39b97b89154/A-2-EG2.pdf
+          description: 'Data path of the uploaded file. Please check the file uploading documentation for more information: https://capmoapi.readme.io/reference/file-management-api'
+      required:
+      - folder_id
+      - folder_name
+      - file_path
+    PlanRenderingStatus:
+      type: string
+      enum:
+      - pending
+      - processing
+      - completed
+      - failed
+      description: Plan rendering status.
+    ReadPlanFolderDto:
+      type: object
+      properties:
+        created_at:
+          type: string
+          format: date-time
+          example: '2021-07-01T00:00:00.000Z'
+          description: The date when the entity was created (on the client).
+        updated_at:
+          type: string
+          format: date-time
+          example: '2021-07-01T00:00:00.000Z'
+          description: The date when the entity was last updated (on the client).
+        deleted_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2021-07-01T00:00:00.000Z'
+          description: The date when the entity was deleted (on the client).
+        server_created_at:
+          type: string
+          format: date-time
+          example: '2021-07-01T00:00:00.000Z'
+          description: The date when the entity was created (on the server).
+        server_updated_at:
+          type: string
+          format: date-time
+          example: '2021-07-01T00:00:00.000Z'
+          description: The date when the entity was last updated (on the server).
+        server_deleted_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2021-07-01T00:00:00.000Z'
+          description: The date when the entity was deleted (on the server).
+        id:
+          type: string
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: Unique ID of the plan folder.
+        name:
+          type: string
+          example: Elevations
+          description: The name of the plan folder.
+        parent_folder_id:
+          type:
+          - string
+          - 'null'
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: Unique ID of the parent plan folder, `null` if at the root or `undefined` if the value was not set yet.
+      required:
+      - created_at
+      - updated_at
+      - deleted_at
+      - server_created_at
+      - server_updated_at
+      - server_deleted_at
+      - id
+      - name
+    CreatePlanFromDocumentDto:
+      type: object
+      properties:
+        source_id:
+          type: string
+          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
+          example: 123e4567-e89b-12d3-a456-426614174000
+        name:
+          type: string
+          example: A-2-EG2.pdf
+          description: The name of the plan, including the file extension. If set to null or empty, defaults to the file name.
+        description:
+          type: string
+          example: Outlines the comprehensive renovation of the East Wing of the building.
+          description: The description of the plan.
+        folder_id:
+          type:
+          - string
+          - 'null'
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: 'ID of the folder containing the plan. If se to `null`, refers to the default "Unsorted" folder, other must point to an existing folder ID.
+
+            Folder name takes precedence over `folder_id` when specified.'
+        folder_name:
+          type:
+          - string
+          - 'null'
+          example: My folder
+          description: 'Name of the Folder. Will create a folder with this name if it does not exist.
+
+            Folder name takes precedence over `folder_id` when specified.'
+        file_source_id:
+          type: string
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: 'ID of the document to use. Please check the project document documentation for more information: https://capmoapi.readme.io/reference/createprojectdocument'
+      required:
+      - folder_id
+      - folder_name
+      - file_source_id
     ReadPlanDto:
       type: object
       properties:
@@ -1844,142 +2005,6 @@ components:
       - has_new_source_version_available
       - total_versions
       - version_number
-    CreatePlanFromFileDto:
-      type: object
-      properties:
-        source_id:
-          type: string
-          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
-          example: 123e4567-e89b-12d3-a456-426614174000
-        name:
-          type: string
-          example: A-2-EG2.pdf
-          description: The name of the plan, including the file extension. If set to null or empty, defaults to the file name.
-        description:
-          type: string
-          example: Outlines the comprehensive renovation of the East Wing of the building.
-          description: The description of the plan.
-        folder_id:
-          type:
-          - string
-          - 'null'
-          example: 123e4567-e89b-12d3-a456-426614174000
-          description: 'ID of the folder containing the plan. If se to `null`, refers to the default "Unsorted" folder, other must point to an existing folder ID.
-
-            Folder name takes precedence over `folder_id` when specified.'
-        folder_name:
-          type:
-          - string
-          - 'null'
-          example: My folder
-          description: 'Name of the Folder. Will create a folder with this name if it does not exist.
-
-            Folder name takes precedence over `folder_id` when specified.'
-        file_path:
-          type: string
-          example: 0ba6d5d9-d718-45b4-bb34-f39b97b89154/A-2-EG2.pdf
-          description: 'Data path of the uploaded file. Please check the file uploading documentation for more information: https://capmoapi.readme.io/reference/file-management-api'
-      required:
-      - folder_id
-      - folder_name
-      - file_path
-    PaginatedOutputDto:
-      type: object
-      properties:
-        after:
-          type: string
-          example: null
-        count:
-          type: number
-          example: 1
-        total:
-          type: number
-          example: 1
-      required:
-      - after
-      - count
-      - total
-    ReadPlanFolderDto:
-      type: object
-      properties:
-        created_at:
-          type: string
-          format: date-time
-          example: '2021-07-01T00:00:00.000Z'
-          description: The date when the entity was created (on the client).
-        updated_at:
-          type: string
-          format: date-time
-          example: '2021-07-01T00:00:00.000Z'
-          description: The date when the entity was last updated (on the client).
-        deleted_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2021-07-01T00:00:00.000Z'
-          description: The date when the entity was deleted (on the client).
-        server_created_at:
-          type: string
-          format: date-time
-          example: '2021-07-01T00:00:00.000Z'
-          description: The date when the entity was created (on the server).
-        server_updated_at:
-          type: string
-          format: date-time
-          example: '2021-07-01T00:00:00.000Z'
-          description: The date when the entity was last updated (on the server).
-        server_deleted_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2021-07-01T00:00:00.000Z'
-          description: The date when the entity was deleted (on the server).
-        id:
-          type: string
-          example: 123e4567-e89b-12d3-a456-426614174000
-          description: Unique ID of the plan folder.
-        name:
-          type: string
-          example: Elevations
-          description: The name of the plan folder.
-        parent_folder_id:
-          type:
-          - string
-          - 'null'
-          example: 123e4567-e89b-12d3-a456-426614174000
-          description: Unique ID of the parent plan folder, `null` if at the root or `undefined` if the value was not set yet.
-      required:
-      - created_at
-      - updated_at
-      - deleted_at
-      - server_created_at
-      - server_updated_at
-      - server_deleted_at
-      - id
-      - name
-    CreatePlanFolderInputDto:
-      type: object
-      properties:
-        name:
-          type: string
-          example: Elevations
-          description: The name of the plan folder.
-        parent_folder_id:
-          type:
-          - string
-          - 'null'
-          example: 123e4567-e89b-12d3-a456-426614174000
-          description: Unique ID of the parent plan folder, `null` if at the root or `undefined` if the value was not set yet.
-      required:
-      - name
-    SourceTypes:
-      type: string
-      enum:
-      - LOCAL
-      - CDE
-      description: Type of the plan source.
     UpdatePlanFolderDto:
       type: object
       properties:
@@ -2144,53 +2169,28 @@ components:
       - version_number
       - image_url
       - signed_url
-    CreatePlanFromDocumentDto:
+    PaginatedOutputDto:
       type: object
       properties:
-        source_id:
+        after:
           type: string
-          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
-          example: 123e4567-e89b-12d3-a456-426614174000
-        name:
-          type: string
-          example: A-2-EG2.pdf
-          description: The name of the plan, including the file extension. If set to null or empty, defaults to the file name.
-        description:
-          type: string
-          example: Outlines the comprehensive renovation of the East Wing of the building.
-          description: The description of the plan.
-        folder_id:
-          type:
-          - string
-          - 'null'
-          example: 123e4567-e89b-12d3-a456-426614174000
-          description: 'ID of the folder containing the plan. If se to `null`, refers to the default "Unsorted" folder, other must point to an existing folder ID.
-
-            Folder name takes precedence over `folder_id` when specified.'
-        folder_name:
-          type:
-          - string
-          - 'null'
-          example: My folder
-          description: 'Name of the Folder. Will create a folder with this name if it does not exist.
-
-            Folder name takes precedence over `folder_id` when specified.'
-        file_source_id:
-          type: string
-          example: 123e4567-e89b-12d3-a456-426614174000
-          description: 'ID of the document to use. Please check the project document documentation for more information: https://capmoapi.readme.io/reference/createprojectdocument'
+          example: null
+        count:
+          type: number
+          example: 1
+        total:
+          type: number
+          example: 1
       required:
-      - folder_id
-      - folder_name
-      - file_source_id
-    PlanRenderingStatus:
+      - after
+      - count
+      - total
+    SourceTypes:
       type: string
       enum:
-      - pending
-      - processing
-      - completed
-      - failed
-      description: Plan rendering status.
+      - LOCAL
+      - CDE
+      description: Type of the plan source.
   securitySchemes:
     CapmoAuth:
       type: apiKey

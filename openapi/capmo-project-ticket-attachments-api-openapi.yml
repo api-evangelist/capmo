@@ -786,6 +786,44 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    CreateAttachmentInputDto:
+      type: object
+      properties:
+        source_id:
+          type: string
+          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
+          example: 123e4567-e89b-12d3-a456-426614174000
+        name:
+          type: string
+          description: The name of the file after initial upload.
+          example: Report_2024.pdf
+        data_path:
+          type: string
+          description: The data path of the file.
+          example: 9357781c-05da-11ef-9539-7b47b1fda975/Report_2024.pdf
+        mime_type:
+          type: string
+          description: The mime type of the file.
+          example: application/pdf
+      required:
+      - name
+      - data_path
+    PaginatedOutputDto:
+      type: object
+      properties:
+        after:
+          type: string
+          example: null
+        count:
+          type: number
+          example: 1
+        total:
+          type: number
+          example: 1
+      required:
+      - after
+      - count
+      - total
     ReadTicketAttachmentDto:
       type: object
       properties:
@@ -887,44 +925,6 @@ components:
       - type
       - name
       - signed_download_url
-    CreateAttachmentInputDto:
-      type: object
-      properties:
-        source_id:
-          type: string
-          description: The unique identifier of the source. This is a user-generated string. You can use this to link the person to a resource in an external system.
-          example: 123e4567-e89b-12d3-a456-426614174000
-        name:
-          type: string
-          description: The name of the file after initial upload.
-          example: Report_2024.pdf
-        data_path:
-          type: string
-          description: The data path of the file.
-          example: 9357781c-05da-11ef-9539-7b47b1fda975/Report_2024.pdf
-        mime_type:
-          type: string
-          description: The mime type of the file.
-          example: application/pdf
-      required:
-      - name
-      - data_path
-    PaginatedOutputDto:
-      type: object
-      properties:
-        after:
-          type: string
-          example: null
-        count:
-          type: number
-          example: 1
-        total:
-          type: number
-          example: 1
-      required:
-      - after
-      - count
-      - total
   securitySchemes:
     CapmoAuth:
       type: apiKey

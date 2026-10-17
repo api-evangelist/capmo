@@ -766,6 +766,49 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    InviteProjectMemberDto:
+      type: object
+      properties:
+        person_id:
+          type: string
+          description: The ID of the person to invite to the project.
+          example: 123e4567-e89b-12d3-a456-426614174000
+        role:
+          description: 'The role assigned to the user in the project. Note: GUEST is deprecated and will be removed.'
+          example: ADMIN
+          deprecated: true
+          allOf:
+          - $ref: '#/components/schemas/ProjectRole'
+        permission_set_id:
+          type:
+          - string
+          - 'null'
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: Optional permission set ID to assign to the invited user. If omitted, the project default permission set is used.
+      required:
+      - person_id
+    PaginatedOutputDto:
+      type: object
+      properties:
+        after:
+          type: string
+          example: null
+        count:
+          type: number
+          example: 1
+        total:
+          type: number
+          example: 1
+      required:
+      - after
+      - count
+      - total
+    ProjectRole:
+      type: string
+      enum:
+      - ADMIN
+      - GUEST
+      description: The role assigned to the user in the project.
     ReadProjectMembershipDto:
       type: object
       properties:
@@ -850,49 +893,6 @@ components:
       - role
       - person_id
       - invited_by
-    InviteProjectMemberDto:
-      type: object
-      properties:
-        person_id:
-          type: string
-          description: The ID of the person to invite to the project.
-          example: 123e4567-e89b-12d3-a456-426614174000
-        role:
-          description: 'The role assigned to the user in the project. Note: GUEST is deprecated and will be removed.'
-          example: ADMIN
-          deprecated: true
-          allOf:
-          - $ref: '#/components/schemas/ProjectRole'
-        permission_set_id:
-          type:
-          - string
-          - 'null'
-          example: 123e4567-e89b-12d3-a456-426614174000
-          description: Optional permission set ID to assign to the invited user. If omitted, the project default permission set is used.
-      required:
-      - person_id
-    PaginatedOutputDto:
-      type: object
-      properties:
-        after:
-          type: string
-          example: null
-        count:
-          type: number
-          example: 1
-        total:
-          type: number
-          example: 1
-      required:
-      - after
-      - count
-      - total
-    ProjectRole:
-      type: string
-      enum:
-      - ADMIN
-      - GUEST
-      description: The role assigned to the user in the project.
   securitySchemes:
     CapmoAuth:
       type: apiKey

@@ -409,6 +409,39 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ProjectStatus:
+      type: string
+      enum:
+      - PROJECT_PREPARATION
+      - PLANNING
+      - EXECUTION_PREPARATION
+      - EXECUTION
+      - PROJECT_COMPLETION
+      - COMPLETED
+      - DEFECTS_LIABILITY
+      description: The phase of the project.
+    BuildingType:
+      type: string
+      enum:
+      - RESIDENTIAL_BUILDINGS
+      - OFFICE_BUILDINGS
+      - COMMERCIAL_RETAIL
+      - INDUSTRIAL_MANUFACTURING
+      - LOGISTICS_WAREHOUSING
+      - HOTELS_HOSPITALITY
+      - HEALTHCARE_NURSING
+      - EDUCATION
+      - PUBLIC_BUILDINGS
+      - MIXED_USE
+      - OTHER_SPECIAL_STRUCTURES
+      description: The type of building being constructed.
+    ProjectContactType:
+      type: string
+      enum:
+      - FreeText
+      - ContactBookPerson
+      - ContactBookCompany
+      description: The type of the project owner reference.
     ReadProjectTemplateDto:
       type: object
       properties:
@@ -612,6 +645,13 @@ components:
       - building_type
       - start_date
       - end_date
+    ProjectType:
+      type: string
+      enum:
+      - NEW_CONSTRUCTION
+      - ALTERATION
+      - REFURBISHMENT
+      description: The type of construction project.
     PaginatedOutputDto:
       type: object
       properties:
@@ -628,46 +668,6 @@ components:
       - after
       - count
       - total
-    ProjectStatus:
-      type: string
-      enum:
-      - PROJECT_PREPARATION
-      - PLANNING
-      - EXECUTION_PREPARATION
-      - EXECUTION
-      - PROJECT_COMPLETION
-      - COMPLETED
-      - DEFECTS_LIABILITY
-      description: The phase of the project.
-    ProjectContactType:
-      type: string
-      enum:
-      - FreeText
-      - ContactBookPerson
-      - ContactBookCompany
-      description: The type of the project owner reference.
-    BuildingType:
-      type: string
-      enum:
-      - RESIDENTIAL_BUILDINGS
-      - OFFICE_BUILDINGS
-      - COMMERCIAL_RETAIL
-      - INDUSTRIAL_MANUFACTURING
-      - LOGISTICS_WAREHOUSING
-      - HOTELS_HOSPITALITY
-      - HEALTHCARE_NURSING
-      - EDUCATION
-      - PUBLIC_BUILDINGS
-      - MIXED_USE
-      - OTHER_SPECIAL_STRUCTURES
-      description: The type of building being constructed.
-    ProjectType:
-      type: string
-      enum:
-      - NEW_CONSTRUCTION
-      - ALTERATION
-      - REFURBISHMENT
-      description: The type of construction project.
   securitySchemes:
     CapmoAuth:
       type: apiKey
