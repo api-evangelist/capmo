@@ -64,6 +64,171 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Capmo is a company surfaced as a portfolio company of bessemer-venture-partners and added to the API Evangelist network as a stub for enrichment. Sector: vertical-software. This profile is a lead awaiting the enrichment pipeline.
+Capmo is a Munich-based construction project management platform ("Bauprojektmanagement-Software") for the DACH market, backed by Bessemer Venture Partners. Its web and mobile apps cover defect and task management (tickets), site journals (Bautagebuch), plans, documents, change orders, project and organisation contact books, and reporting for construction teams. Capmo exposes a public REST API (api.capmo.de, /api/v1) documented on ReadMe, with API-key authentication, cursor pagination, a 600 requests/minute rate limit, HMAC-signed webhooks for change-order events, and downloadable OpenAPI specifications for both the REST and Webhook surfaces.
 
-Backed by: bessemer-venture-partners — https://www.capmo.com/en/
+**Areas:** Company · Vertical Software · Construction · Project Management · Construction Technology · Field Management · Buildings · DACH
+
+## Capmo on APIs.io
+
+Everything profiled for Capmo is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/capmo/](https://apis.io/providers/capmo/)** — or go straight to one of the APIs or properties below.
+
+### APIs (23)
+
+- [Capmo Organisation Companies API](https://apis.io/apis/capmo/capmo-organisation-companies-api/) — The Organisation Companies API from Capmo — 2 operation(s) for organisation companies.
+- [Capmo Organisation Memberships API](https://apis.io/apis/capmo/capmo-organisation-memberships-api/) — The Organisation Memberships API from Capmo — 2 operation(s) for organisation memberships.
+- [Capmo Organisation People API](https://apis.io/apis/capmo/capmo-organisation-people-api/) — The Organisation People API from Capmo — 2 operation(s) for organisation people.
+- [Capmo Organisation Projects API](https://apis.io/apis/capmo/capmo-organisation-projects-api/) — The Organisation Projects API from Capmo — 2 operation(s) for organisation projects.
+- [Capmo Other API](https://apis.io/apis/capmo/capmo-other-api/) — The Other API from Capmo — 1 operation(s) for other.
+- [Capmo Project Change Orders API](https://apis.io/apis/capmo/capmo-project-change-orders-api/) — The Project Change Orders API from Capmo — 3 operation(s) for project change orders.
+- [Capmo Project Companies API](https://apis.io/apis/capmo/capmo-project-companies-api/) — The Project Companies API from Capmo — 3 operation(s) for project companies.
+- [Capmo Project Documents API](https://apis.io/apis/capmo/capmo-project-documents-api/) — The Project Documents API from Capmo — 4 operation(s) for project documents.
+- [Capmo Project Memberships API](https://apis.io/apis/capmo/capmo-project-memberships-api/) — The Project Memberships API from Capmo — 2 operation(s) for project memberships.
+- [Capmo Project People API](https://apis.io/apis/capmo/capmo-project-people-api/) — The Project People API from Capmo — 3 operation(s) for project people.
+- [Capmo Project Permission Sets API](https://apis.io/apis/capmo/capmo-project-permission-sets-api/) — The Project Permission Sets API from Capmo — 1 operation(s) for project permission sets.
+- [Capmo Project Plans API](https://apis.io/apis/capmo/capmo-project-plans-api/) — The Project Plans API from Capmo — 4 operation(s) for project plans.
+- [Capmo Project Room Listings API](https://apis.io/apis/capmo/capmo-project-room-listings-api/) — The Project Room Listings API from Capmo — 1 operation(s) for project room listings.
+- [Capmo Project Site Journals API](https://apis.io/apis/capmo/capmo-project-site-journals-api/) — The Project Site Journals API from Capmo — 2 operation(s) for project site journals.
+- [Capmo Project Templates API](https://apis.io/apis/capmo/capmo-project-templates-api/) — The Project Templates API from Capmo — 2 operation(s) for project templates.
+- [Capmo Project Ticket Attachments API](https://apis.io/apis/capmo/capmo-project-ticket-attachments-api/) — The Project Ticket Attachments API from Capmo — 2 operation(s) for project ticket attachments.
+- [Capmo Project Ticket Categories API](https://apis.io/apis/capmo/capmo-project-ticket-categories-api/) — The Project Ticket Categories API from Capmo — 1 operation(s) for project ticket categories.
+- [Capmo Project Ticket Comments API](https://apis.io/apis/capmo/capmo-project-ticket-comments-api/) — The Project Ticket Comments API from Capmo — 1 operation(s) for project ticket comments.
+- [Capmo Project Ticket Tags API](https://apis.io/apis/capmo/capmo-project-ticket-tags-api/) — The Project Ticket Tags API from Capmo — 1 operation(s) for project ticket tags.
+- [Capmo Project Ticket Types API](https://apis.io/apis/capmo/capmo-project-ticket-types-api/) — The Project Ticket Types API from Capmo — 1 operation(s) for project ticket types.
+- [Capmo Project Tickets API](https://apis.io/apis/capmo/capmo-project-tickets-api/) — The Project Tickets API from Capmo — 2 operation(s) for project tickets.
+- [Capmo Projects API](https://apis.io/apis/capmo/capmo-projects-api/) — The Projects API from Capmo — 3 operation(s) for projects.
+- [Capmo Uploads API](https://apis.io/apis/capmo/capmo-uploads-api/) — The Uploads API from Capmo — 3 operation(s) for uploads.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [capmo](https://apis.io/servers/capmo/capmo/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Capmo Agentic Access](https://apis.io/agentic-access/capmo/capmo-agentic-access/)
+
+#### Collections (24)
+
+Postman and Open Collection request collections.
+
+- [Capmo REST Organisation Companies API](https://apis.io/collections/capmo/open-capmo-organisation-companies-api/)
+- [Capmo REST Organisation Companies Organisation Memberships API](https://apis.io/collections/capmo/open-capmo-organisation-memberships-api/)
+- [Capmo REST Organisation Companies Organisation People API](https://apis.io/collections/capmo/open-capmo-organisation-people-api/)
+- [Capmo REST Organisation Companies Organisation Projects API](https://apis.io/collections/capmo/open-capmo-organisation-projects-api/)
+- [Capmo REST Organisation Companies Other API](https://apis.io/collections/capmo/open-capmo-other-api/)
+- [Capmo REST Organisation Companies Project Change Orders API](https://apis.io/collections/capmo/open-capmo-project-change-orders-api/)
+- [Capmo REST Organisation Companies Project Companies API](https://apis.io/collections/capmo/open-capmo-project-companies-api/)
+- [Capmo REST Organisation Companies Project Documents API](https://apis.io/collections/capmo/open-capmo-project-documents-api/)
+- [Capmo REST Organisation Companies Project Memberships API](https://apis.io/collections/capmo/open-capmo-project-memberships-api/)
+- [Capmo REST Organisation Companies Project People API](https://apis.io/collections/capmo/open-capmo-project-people-api/)
+- [Capmo REST Organisation Companies Project Permission Sets API](https://apis.io/collections/capmo/open-capmo-project-permission-sets-api/)
+- [Capmo REST Organisation Companies Project Plans API](https://apis.io/collections/capmo/open-capmo-project-plans-api/)
+- [Capmo REST Organisation Companies Project Room Listings API](https://apis.io/collections/capmo/open-capmo-project-room-listings-api/)
+- [Capmo REST Organisation Companies Project Site Journals API](https://apis.io/collections/capmo/open-capmo-project-site-journals-api/)
+- [Capmo REST Organisation Companies Project Templates API](https://apis.io/collections/capmo/open-capmo-project-templates-api/)
+- [Capmo REST Organisation Companies Project Ticket Attachments API](https://apis.io/collections/capmo/open-capmo-project-ticket-attachments-api/)
+- [Capmo REST Organisation Companies Project Ticket Categories API](https://apis.io/collections/capmo/open-capmo-project-ticket-categories-api/)
+- [Capmo REST Organisation Companies Project Ticket Comments API](https://apis.io/collections/capmo/open-capmo-project-ticket-comments-api/)
+- [Capmo REST Organisation Companies Project Ticket Tags API](https://apis.io/collections/capmo/open-capmo-project-ticket-tags-api/)
+- [Capmo REST Organisation Companies Project Ticket Types API](https://apis.io/collections/capmo/open-capmo-project-ticket-types-api/)
+- [Capmo REST Organisation Companies Project Tickets API](https://apis.io/collections/capmo/open-capmo-project-tickets-api/)
+- [Capmo REST Organisation Companies Projects API](https://apis.io/collections/capmo/open-capmo-projects-api/)
+- [Capmo REST Organisation Companies Uploads API](https://apis.io/collections/capmo/open-capmo-uploads-api/)
+- [Capmo Webhook API](https://apis.io/collections/capmo/open-capmo-webhook-api-openapi-original/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Capmo Rest Api Overlay](https://apis.io/overlays/capmo/capmo-rest-api-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Capmo Authentication](https://apis.io/security/capmo/capmo-authentication/)
+- [Capmo Domain Security](https://apis.io/security/capmo/capmo-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Capmo Plans Pricing](https://apis.io/plans/capmo/capmo-plans-pricing/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.capmo.com/en/)
+- [Documentation](https://capmoapi.readme.io/reference/where-to-start)
+- [Getting started](https://capmoapi.readme.io/reference/where-to-start)
+- [API reference](https://capmoapi.readme.io/reference/where-to-start)
+- [Pricing](https://www.capmo.com/en/preise)
+- [Support](https://support.capmo.com/)
+- [Blog](https://www.capmo.com/blog)
+- [Terms of service](https://www.capmo.com/en/agb)
+- [Privacy policy](https://www.capmo.com/en/datenschutz)
+- [GitHub](https://github.com/capmo)
+- [Status](https://statuspage.capmo.de/)
+
+## API Evangelist rating
+
+**Kin Score 45.9** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 53.7 |
+| Contract governance | 4.5 |
+| Operational transparency | 31.6 |
+| Developer ergonomics | 39.9 |
+| Access clarity | 59.2 |
+
+**Agent readiness 30.4** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | — |
+| Event Surface Described | unknown |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 24.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/capmo/](https://apis.io/providers/capmo/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Capmo: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/capmo/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
